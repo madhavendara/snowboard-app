@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "Hansief Rough";
+  src: url("./fonts/Hansief-Rough.woff2") format("woff2"), url("./fonts/Hansief-Rough.woff") format("woff"), url("./fonts/Hansief-Rough.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hansief";
+  src: url("./fonts/Hansief.woff2") format("woff2"), url("./fonts/Hansief.woff") format("woff"), url("./fonts/Hansief.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#choice-section {
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(-3.88%, #0A3B66), to(#001A3D));
+  background: linear-gradient(180deg, #0A3B66 -3.88%, #001A3D 100%);
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+#choice-section .mountain-bg {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -35vh;
+  z-index: 1;
+}
+#choice-section .cloud-bg {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8%;
+  z-index: 2;
+}
+#choice-section .rider-person {
+  width: 20%;
+  position: absolute;
+  left: 50%;
+  bottom: 34%;
+  z-index: 3;
+}
+#choice-section img.brand-logo {
+  width: 120px;
+}
+#choice-section .choice-container {
+  position: relative;
+  z-index: 5;
+  width: 90%;
+  max-width: 950px;
+  margin: 0 auto;
+  margin-top: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 2rem;
+}
+#choice-section .choice-container .choice-box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: #0A3B66;
+  padding: 20px 30px;
+}
+#choice-section .choice-container .choice-box h1 {
+  font-family: "Hansief";
+  text-transform: uppercase;
+  color: #fff;
+}

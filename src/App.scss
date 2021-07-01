@@ -1,0 +1,97 @@
+$primary : #0A3B66;
+
+@font-face {
+    font-family: 'Hansief Rough';
+    src: url('./fonts/Hansief-Rough.woff2') format('woff2'),
+        url('./fonts/Hansief-Rough.woff') format('woff'),
+        url('./fonts/Hansief-Rough.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hansief';
+    src: url('./fonts/Hansief.woff2') format('woff2'),
+        url('./fonts/Hansief.woff') format('woff'),
+        url('./fonts/Hansief.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.container
+{
+    width: 100%;
+    max-width: 1200px;
+    margin : 0 auto;
+}
+
+// choice section css
+#choice-section
+{
+    width : 100%;
+    background: linear-gradient(180deg, #0A3B66 -3.88%, #001A3D 100%);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    .mountain-bg
+    {
+        width: 100%;
+        position: absolute;
+        left : 0;
+        right : 0;
+        bottom : -35vh;
+        z-index: 1;
+    }
+
+    .cloud-bg
+    {
+        width: 100%;
+        position: absolute;
+        left : 0;
+        right : 0;
+        top: 8%;
+        z-index: 2;
+    }
+
+    .rider-person
+    {
+        width: 20%;
+        position: absolute;
+        left: 50%;
+        bottom: 34%;
+        z-index: 3;
+    }
+
+    img.brand-logo {
+        width: 120px;
+    }
+
+    .choice-container
+    {
+        position: relative;
+        z-index: 5;
+        width: 90%;
+        max-width: 950px;
+        margin : 0 auto;
+        margin-top: 10%;
+        display: flex;
+        grid-gap: 2rem;
+
+        .choice-box
+        {
+            flex : 1;
+            background : $primary;
+            padding: 20px 30px;
+
+            h1
+            {
+                font-family: 'Hansief';
+                text-transform: uppercase;
+                color : #fff;
+            }
+        }
+    }
+}
