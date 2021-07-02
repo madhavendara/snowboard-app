@@ -1,5 +1,6 @@
 $primary : #0A3B66;
 $secondry : #0A1823;
+$black : #242128;
 
 @font-face {
     font-family: 'Hansief';
@@ -15,6 +16,13 @@ body
 {
     padding : 0;
     margin : 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+*
+{
+    margin : 0;
+    padding : 0;
 }
 .container
 {
@@ -211,4 +219,187 @@ body
     height: 100vh;
     background: url(./assest/app-background.svg);
     background-size: 100% auto;
+    display: flex;
+
+
+    .app-sidebar
+    {
+        flex-basis: 32%;
+        background: $black;
+        box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
+        padding : 40px 25px;
+
+        .app-logo
+        {
+            width: 56%;
+        }
+    }
+    .canvas-area
+    {
+        flex-basis: 68%;
+    }
+
+    .filter-container
+    {
+        display: flex;
+        grid-gap: 25px;
+        margin-top: 8vh;
+    }
+
+    .search-bar-container
+    {
+        width: 100%;
+        display: flex;
+        grid-gap: 10px;
+        .search-input
+        {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            flex-basis: 100%;
+            background: none;
+            box-sizing: border-box;
+            font-size: 16px;
+            padding-bottom: 5px;
+            color : #fff;
+            &::placeholder
+            {
+                color : rgba(255,255,255,0.3);
+            }
+
+            &:focus
+            {
+                border-bottom: 1px solid rgba(255,255,255,0.8);
+            }
+
+            &:hover
+            {
+                border-bottom: 1px solid rgba(255,255,255,0.8);
+            }
+        }
+    }
+
+    .filter-icon
+    {
+        cursor: pointer;
+    }
+
+    .product-listing
+    {
+        margin-top: 30px;
+        overflow-y: scroll;
+        max-height: 75%;
+    }
+
+    .product-card
+    {
+        display: flex;
+        grid-gap: 20px;
+        background: #5B5A6048;
+        border: 1px solid rgba(255,255,255,0.4);
+        box-sizing: border-box;
+        padding : 9.5px;
+        margin-bottom: 10px;
+        width: 96%;
+
+        .product-img-container
+        {
+            flex-basis: 20%;
+
+            .product-img
+            {
+                width: 100%;
+            }
+        }
+
+        .product-content
+        {
+            flex-basis: 75%;
+
+            .title-content
+            {
+                display: flex;
+                justify-content: space-between;
+
+                h1
+                {
+                    font-size: 1.1rem;
+                    color : #fff;
+                    font-weight: 600;
+                    margin : 0;
+                }
+
+                h5
+                {
+                    color : #fff;
+                    font-weight: 400;
+                    font-size: 14px;
+                    margin : 0;
+                }
+            }
+        }
+
+        .star
+        {
+            background: url(./assest/stars.png);
+            background-size: auto 100%;
+            height: 18px;
+            background-repeat: no-repeat;
+            margin : 3px 0px;
+        }
+        .star-4
+        {
+            width: 80px;
+        }
+
+        .star-5
+        {
+            width: 100px; 
+        }
+
+        .star-3
+        {
+            width: 60px;
+        }
+
+        .star-2
+        {
+            width: 40px;
+        }
+
+        .star-1
+        {
+            width: 20px;
+        }
+
+        .price-container
+        {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            h3
+            {
+                color : #fff;
+            }
+
+            .selection-check
+            {
+                width: 30px;
+                height: 30px;
+                box-shadow: none;
+                border : none; 
+                cursor: pointer; 
+            }
+
+            .no-active-selection
+            {
+                background : url(./assest/product-check.svg);
+                background-size: 100% 100%;
+            }
+        }
+    }
 }

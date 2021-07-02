@@ -23,7 +23,7 @@ function Choice(props) {
                 <div className="choice-box choice-2">
                     <h1>Snowboard Science</h1>
                     <img src={snowScience} className="snow-img snow-science" alt="snowCompare"/>
-                    <a href="#" className="choice-button">Explore</a>
+                    <Link to="/snowboardeducation" className="choice-button">Explore</Link>
                 </div>
             </div>
             <img src={mountain} alt="mountain" className='mountain-bg'/>

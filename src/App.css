@@ -8,6 +8,12 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -166,4 +172,172 @@ body {
   height: 100vh;
   background: url(./assest/app-background.svg);
   background-size: 100% auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#comparison-app .app-sidebar {
+  -ms-flex-preferred-size: 32%;
+      flex-basis: 32%;
+  background: #242128;
+  -webkit-box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
+          box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
+  padding: 40px 25px;
+}
+#comparison-app .app-sidebar .app-logo {
+  width: 56%;
+}
+#comparison-app .canvas-area {
+  -ms-flex-preferred-size: 68%;
+      flex-basis: 68%;
+}
+#comparison-app .filter-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 25px;
+  margin-top: 8vh;
+}
+#comparison-app .search-bar-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 10px;
+}
+#comparison-app .search-bar-container .search-input {
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  background: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 16px;
+  padding-bottom: 5px;
+  color: #fff;
+}
+#comparison-app .search-bar-container .search-input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+#comparison-app .search-bar-container .search-input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+#comparison-app .search-bar-container .search-input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+#comparison-app .search-bar-container .search-input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+#comparison-app .search-bar-container .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+#comparison-app .search-bar-container .search-input:focus {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+#comparison-app .search-bar-container .search-input:hover {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+#comparison-app .filter-icon {
+  cursor: pointer;
+}
+#comparison-app .product-listing {
+  margin-top: 30px;
+  overflow-y: scroll;
+  max-height: 75%;
+}
+#comparison-app .product-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 20px;
+  background: #5B5A6048;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 9.5px;
+  margin-bottom: 10px;
+  width: 96%;
+}
+#comparison-app .product-card .product-img-container {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+}
+#comparison-app .product-card .product-img-container .product-img {
+  width: 100%;
+}
+#comparison-app .product-card .product-content {
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+}
+#comparison-app .product-card .product-content .title-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#comparison-app .product-card .product-content .title-content h1 {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+}
+#comparison-app .product-card .product-content .title-content h5 {
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+}
+#comparison-app .product-card .star {
+  background: url(./assest/stars.png);
+  background-size: auto 100%;
+  height: 18px;
+  background-repeat: no-repeat;
+  margin: 3px 0px;
+}
+#comparison-app .product-card .star-4 {
+  width: 80px;
+}
+#comparison-app .product-card .star-5 {
+  width: 100px;
+}
+#comparison-app .product-card .star-3 {
+  width: 60px;
+}
+#comparison-app .product-card .star-2 {
+  width: 40px;
+}
+#comparison-app .product-card .star-1 {
+  width: 20px;
+}
+#comparison-app .product-card .price-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+#comparison-app .product-card .price-container h3 {
+  color: #fff;
+}
+#comparison-app .product-card .price-container .selection-check {
+  width: 30px;
+  height: 30px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  cursor: pointer;
+}
+#comparison-app .product-card .price-container .no-active-selection {
+  background: url(./assest/product-check.svg);
+  background-size: 100% 100%;
 }
