@@ -1,14 +1,5 @@
 $primary : #0A3B66;
-
-@font-face {
-    font-family: 'Hansief Rough';
-    src: url('./fonts/Hansief-Rough.woff2') format('woff2'),
-        url('./fonts/Hansief-Rough.woff') format('woff'),
-        url('./fonts/Hansief-Rough.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+$secondry : #0A1823;
 
 @font-face {
     font-family: 'Hansief';
@@ -20,6 +11,11 @@ $primary : #0A3B66;
     font-display: swap;
 }
 
+body
+{
+    padding : 0;
+    margin : 0;
+}
 .container
 {
     width: 100%;
@@ -42,8 +38,9 @@ $primary : #0A3B66;
         position: absolute;
         left : 0;
         right : 0;
-        bottom : -35vh;
+        bottom : -29vh;
         z-index: 1;
+        transition: all 0.4s;
     }
 
     .cloud-bg
@@ -52,18 +49,10 @@ $primary : #0A3B66;
         position: absolute;
         left : 0;
         right : 0;
-        top: 8%;
+        top: 6%;
         z-index: 2;
     }
 
-    .rider-person
-    {
-        width: 20%;
-        position: absolute;
-        left: 50%;
-        bottom: 34%;
-        z-index: 3;
-    }
 
     img.brand-logo {
         width: 120px;
@@ -74,24 +63,152 @@ $primary : #0A3B66;
         position: relative;
         z-index: 5;
         width: 90%;
-        max-width: 950px;
+        max-width: 760px;
         margin : 0 auto;
-        margin-top: 10%;
+        margin-top: 2%;
         display: flex;
         grid-gap: 2rem;
 
         .choice-box
         {
             flex : 1;
-            background : $primary;
+            background : $secondry;
             padding: 20px 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+            transition: all 0.4s;
+            cursor: pointer;
 
             h1
             {
                 font-family: 'Hansief';
                 text-transform: uppercase;
                 color : #fff;
+                font-size: 50px;
+                font-weight: normal;
+                padding-bottom: 6.5rem;
+            }
+
+            &:hover
+            {
+                overflow: visible;
+                background : transparent;
+
+                .snow-img
+                {
+                    opacity: 1;
+                    width: 150%;
+                }
+
+                .snow-compare
+                {
+                    left: -50%;
+                }
+
+                .snow-science
+                {
+                    right: -50%;
+                }
+                .choice-button
+                {
+                    background : transparent;
+                    color : transparent;
+
+                    &::after
+                    {
+                        opacity: 0;
+                    }
+
+                    &::before
+                    {
+                        opacity: 1;
+                    }
+                }
+
             }
         }
+
+        .snow-img
+        {
+            position: absolute;
+            width: 130%;
+            bottom: -11%;
+            opacity: 0.2;
+            z-index: -1;
+            transition: all 0.4s;
+        }
+
+        .snow-compare
+        {
+            left: -30%;
+        }
+        .snow-science
+        {
+            right : -30%;
+        }
+        .choice-button
+        {
+            background : $primary;
+            padding : 15px 30px;
+            color : #fff;
+            text-transform: uppercase;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 0;
+
+            &::after
+            {
+                content: "";
+                background: url(./assest/arrow.svg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                width: 8px;
+                height: 13px;
+                margin-left: 20px;
+                display: inline-block;
+            }
+
+            &::before
+            {
+                content: "";
+                background: url(./assest/arrow-circle.svg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                width : 50px;
+                height: 50px;
+                position: absolute;
+                right : 0px;
+                top : 50%;
+                transform: translateY(-50%);
+                opacity: 0;
+                z-index: -1;
+
+            }
+
+        }
+
+        
     }
+
+    .choice-container:hover + .mountain-bg
+        {
+            bottom: -10vh;
+            filter: blur(2px);
+            opacity: 0.7;
+        }
+}
+
+
+//  comparison app
+
+#comparison-app
+{
+    width: 100%;
+    height: 100vh;
+    background: url(./assest/app-background.svg);
+    background-size: 100% auto;
 }

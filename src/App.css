@@ -1,17 +1,15 @@
 @font-face {
-  font-family: "Hansief Rough";
-  src: url("./fonts/Hansief-Rough.woff2") format("woff2"), url("./fonts/Hansief-Rough.woff") format("woff"), url("./fonts/Hansief-Rough.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
   font-family: "Hansief";
   src: url("./fonts/Hansief.woff2") format("woff2"), url("./fonts/Hansief.woff") format("woff"), url("./fonts/Hansief.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -31,23 +29,18 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -35vh;
+  bottom: -29vh;
   z-index: 1;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
 }
 #choice-section .cloud-bg {
   width: 100%;
   position: absolute;
   left: 0;
   right: 0;
-  top: 8%;
+  top: 6%;
   z-index: 2;
-}
-#choice-section .rider-person {
-  width: 20%;
-  position: absolute;
-  left: 50%;
-  bottom: 34%;
-  z-index: 3;
 }
 #choice-section img.brand-logo {
   width: 120px;
@@ -56,9 +49,9 @@
   position: relative;
   z-index: 5;
   width: 90%;
-  max-width: 950px;
+  max-width: 760px;
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,11 +61,109 @@
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background: #0A3B66;
+  background: #0A1823;
   padding: 20px 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
 }
 #choice-section .choice-container .choice-box h1 {
   font-family: "Hansief";
   text-transform: uppercase;
   color: #fff;
+  font-size: 50px;
+  font-weight: normal;
+  padding-bottom: 6.5rem;
+}
+#choice-section .choice-container .choice-box:hover {
+  overflow: visible;
+  background: transparent;
+}
+#choice-section .choice-container .choice-box:hover .snow-img {
+  opacity: 1;
+  width: 150%;
+}
+#choice-section .choice-container .choice-box:hover .snow-compare {
+  left: -50%;
+}
+#choice-section .choice-container .choice-box:hover .snow-science {
+  right: -50%;
+}
+#choice-section .choice-container .choice-box:hover .choice-button {
+  background: transparent;
+  color: transparent;
+}
+#choice-section .choice-container .choice-box:hover .choice-button::after {
+  opacity: 0;
+}
+#choice-section .choice-container .choice-box:hover .choice-button::before {
+  opacity: 1;
+}
+#choice-section .choice-container .snow-img {
+  position: absolute;
+  width: 130%;
+  bottom: -11%;
+  opacity: 0.2;
+  z-index: -1;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+#choice-section .choice-container .snow-compare {
+  left: -30%;
+}
+#choice-section .choice-container .snow-science {
+  right: -30%;
+}
+#choice-section .choice-container .choice-button {
+  background: #0A3B66;
+  padding: 15px 30px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+}
+#choice-section .choice-container .choice-button::after {
+  content: "";
+  background: url(./assest/arrow.svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 8px;
+  height: 13px;
+  margin-left: 20px;
+  display: inline-block;
+}
+#choice-section .choice-container .choice-button::before {
+  content: "";
+  background: url(./assest/arrow-circle.svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  opacity: 0;
+  z-index: -1;
+}
+#choice-section .choice-container:hover + .mountain-bg {
+  bottom: -10vh;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+  opacity: 0.7;
+}
+
+#comparison-app {
+  width: 100%;
+  height: 100vh;
+  background: url(./assest/app-background.svg);
+  background-size: 100% auto;
 }
