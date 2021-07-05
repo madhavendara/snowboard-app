@@ -1,41 +1,45 @@
-// component import
-import React , { useState, useEffect,useRef} from 'react'
+import React , { useState, useEffect, useRef } from 'react'
 import Searchbar from '../component/searchbar'
 import ProductFilter from '../component/filter'
 import Productcard from '../component/productcard'
-
-// images import
-import Productgraphics from '../component/productgraphics'
-import applogo from '../assest/applogo.svg'
-import placeholder_graphics from '../assest/placeholder-box.svg'
-import arrowline from '../assest/arrow-line.svg'
-
-
-// Json import
 import ProductJSON from '../JSON/products'
-import productsGraphicsJSON from '../JSON/productGraphics'
+
+
+import applogo from '../assest/applogo.svg'
 
 
 const Comparison = () => {
 
     const [copyJSON , changecopy]  = useState([])
-    const [activeproduct] = useState([])
-    const [activeGraphics] = useState([]);
-    const [canvasHeight, setCanvasWidth] = useState(null);
-    const canvas = useRef(null)
+    const [activeproduct , updateactive] = useState([])
+
     let anotherCopy = [...ProductJSON];
+    const [image, setImage] = useState(null)
+    const canvas = useRef(null)
+    useEffect(() => {
+      const src =   "https://spotlexdigital.com/compare/product_graphics/product-1.svg"
+      const catImage = new Image();
+      catImage.src = src.replace(/#74A1DC/g,'#e05030');
+      catImage.onload = () => setImage(catImage)
+    }, [])
+  
+    useEffect(() => {
+      if(image && canvas) {
+        const ctx = canvas.current.getContext("2d")
+        ctx.fillStyle = "red"
+        ctx.fillRect(0, 0, 400, 256 + 80)
+        ctx.drawImage(image, (400 - 256) / 2, 40 , 300,300)
+  
+      }
+    }, [image, canvas])
 
 
     useEffect(() => {
-        let exampleCopy = [...ProductJSON];
-
-        for(let i = 0; i < exampleCopy.length; i++)
+        for(let i = 0; i < anotherCopy.length; i++)
         {
-            exampleCopy[i]["added"] = false
+            anotherCopy[i]["added"] = false
         }
-
-        setCanvasWidth(canvas.current.offsetHeight)
-        changecopy(exampleCopy)
+        changecopy(anotherCopy)
     }, [])
 
     const productAdded = (key) => {
@@ -50,15 +54,6 @@ const Comparison = () => {
                     {
                         
                         const index = activeproduct.indexOf(anotherCopy[i].id)
-
-                        for(let i = 0; i < activeGraphics.length; i++)
-                        {
-                            if(activeGraphics[i]["ref"] === key)
-                            {
-                                activeGraphics.splice(i,1);
-                            }
-                        }
-
                         if (index > -1) {
                             activeproduct.splice(index, 1);
                         }
@@ -71,16 +66,6 @@ const Comparison = () => {
                         if(activeproduct.length < 4)
                         {
                         activeproduct.push(anotherCopy[i].id)
-
-
-                        for(let i = 0; i < productsGraphicsJSON.length; i++)
-                        {
-                            if(productsGraphicsJSON[i]["ref"] === key)
-                            {
-                                activeGraphics.push(productsGraphicsJSON[i])
-                            }
-                        }        
-
                         anotherCopy[i].added = true
                         }
                         else
@@ -93,21 +78,6 @@ const Comparison = () => {
             }
           
      }
-
-     const Graphicsrender =  activeGraphics.map(graphics => {
-        return (
-            <Productgraphics 
-            color="white" 
-             url={graphics["img"]} 
-             key={graphics.id}
-             title={graphics.Title}
-             size={graphics.size}
-             canvasHeight={canvasHeight}
-             />
-        )
-    })
-
-    const placeholder = <img className="image-center" src={placeholder_graphics} alt="placeholder"/>
 
     return (
         
@@ -152,22 +122,12 @@ const Comparison = () => {
 
             <div className='canvas-area'>
 
-                <div className="canvas-header">
-                    <h1>ALL SELECTED PRODUCTS</h1>
-                    <div className="outline-profile-switch">
-                        <button className="switch-button switch-active">OUTLINE</button>
-                        <img src={arrowline} alt="arrow-line"/>    
-                        <button className="switch-button">PROFILE</button>
-                    </div>
-                </div>
-                <div className="canvas-content" ref={canvas}>
-                        {
-                        Array.isArray(activeGraphics) && activeGraphics.length > 1 ? Graphicsrender : placeholder
-                        }
-                </div>
-               
-                {/* <Productgraphics color="red"  url={productsGraphicsJSON[0]["img"]}/> */}
-    
+                <canvas 
+                ref={canvas}
+                width={400}
+                height={256 + 80}
+                className="cityof-dream"
+                />
            </div>
         </section>
     )

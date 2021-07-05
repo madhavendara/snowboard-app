@@ -11,6 +11,27 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+h1 {
+  font-family: "Hansief";
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: normal;
+  padding-bottom: 15px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+}
+
+h5 {
+  font-family: "Hansief";
+  font-size: 13px;
+  font-weight: normal;
+  color: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -82,7 +103,16 @@ body {
   color: #fff;
   font-size: 50px;
   font-weight: normal;
-  padding-bottom: 6.5rem;
+  padding-bottom: 4.5rem;
+  padding-top: 3.5rem;
+}
+#choice-section .choice-container .choice-box h1::before {
+  content: "";
+  display: block;
+  margin-bottom: 2rem;
+  width: 3.1rem;
+  height: 2px;
+  background: #5b5a60;
 }
 #choice-section .choice-container .choice-box:hover {
   overflow: visible;
@@ -124,7 +154,7 @@ body {
   right: -30%;
 }
 #choice-section .choice-container .choice-button {
-  background: #0A3B66;
+  background: #2741CC;
   padding: 15px 30px;
   color: #fff;
   text-transform: uppercase;
@@ -179,17 +209,13 @@ body {
 #comparison-app .app-sidebar {
   -ms-flex-preferred-size: 32%;
       flex-basis: 32%;
-  background: #242128;
+  background: #000000;
   -webkit-box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
           box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
   padding: 40px 25px;
 }
 #comparison-app .app-sidebar .app-logo {
   width: 56%;
-}
-#comparison-app .canvas-area {
-  -ms-flex-preferred-size: 68%;
-      flex-basis: 68%;
 }
 #comparison-app .filter-container {
   display: -webkit-box;
@@ -251,18 +277,29 @@ body {
   overflow-y: scroll;
   max-height: 75%;
 }
+#comparison-app .product-listing::-webkit-scrollbar {
+  width: 5px;
+}
+#comparison-app .product-listing::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+#comparison-app .product-listing::-webkit-scrollbar-thumb {
+  background-color: #2741CC;
+  outline: none;
+}
 #comparison-app .product-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   grid-gap: 20px;
-  background: #5B5A6048;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(91, 90, 96, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 9.5px;
   margin-bottom: 10px;
-  width: 96%;
+  width: 97%;
 }
 #comparison-app .product-card .product-img-container {
   -ms-flex-preferred-size: 20%;
@@ -285,6 +322,7 @@ body {
 }
 #comparison-app .product-card .product-content .title-content h1 {
   font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   font-weight: 600;
   margin: 0;
@@ -338,6 +376,123 @@ body {
   cursor: pointer;
 }
 #comparison-app .product-card .price-container .no-active-selection {
-  background: url(./assest/product-check.svg);
+  background: url(./assest/plus.svg);
   background-size: 100% 100%;
+}
+#comparison-app .product-card .price-container .active-selection-1 {
+  background: url(./assest/product-check-1.svg);
+  background-size: 100% 100%;
+}
+#comparison-app .product-card .price-container .active-selection-2 {
+  background: url(./assest/product-check-2.svg);
+  background-size: 100% 100%;
+}
+#comparison-app .product-card .price-container .active-selection-3 {
+  background: url(./assest/product-check-3.svg);
+  background-size: 100% 100%;
+}
+#comparison-app .product-card .price-container .active-selection-4 {
+  background: url(./assest/product-check-4.svg);
+  background-size: 100% 100%;
+}
+
+path.cls-1 {
+  fill: black;
+}
+
+.svg-ari {
+  max-height: 100%;
+}
+
+.canvas-area {
+  -ms-flex-preferred-size: 68%;
+      flex-basis: 68%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 3rem;
+}
+.canvas-area > * {
+  width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.canvas-area .canvas-header button.switch-button {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-family: "Hansief";
+  font-size: 1.1rem;
+  opacity: 0.5;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
+.canvas-area .canvas-header button.switch-active {
+  opacity: 1;
+  cursor: default;
+}
+.canvas-area .canvas-header .outline-profile-switch {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  grid-gap: 0.9rem;
+}
+.canvas-area .canvas-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 2.3rem;
+  padding-top: 2.3rem;
+  height: 100%;
+}
+.canvas-area .canvas-content .snowboard-graphics-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  max-height: 90%;
+}
+.canvas-area .canvas-content .snowboard-graphics-container .graphics-img-container {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.canvas-area .canvas-content .snowboard-graphics-container h5 {
+  color: #fff;
+}
+
+.product-graphics-box {
+  -webkit-mask-position: center center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  background: #fff;
+}
+
+img.image-center {
+  max-width: 380px;
+  display: block;
+  margin: auto;
 }

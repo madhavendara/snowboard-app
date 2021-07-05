@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route , Switch } from 'react-router-dom';
+import { Route , Switch} from 'react-router-dom';
 
 import './App.css'
 import Choice from './container/choice'
@@ -8,18 +8,19 @@ import Education from './container/snowboardEducation'
 function App() {
   return (
     <React.Fragment>
-        <Switch>
-            <Route path='/' exact>
-                  <Choice />
-            </Route>
-            <Route path='/comparisonapp'>
-                  <Comparison />
-            </Route>
-            <Route path='/snowboardeducation'>
-                  <Education />
-            </Route>
+    
+            <Switch>
+                  <Route path='/' exact>
+                        <Choice />
+                  </Route>
+                  <Route path='/comparisonapp'>
+                        <Comparison />
+                  </Route>
+                  <Route path='/snowboardeducation'>
+                        <Education />
+                  </Route>
 
-        </Switch>
+            </Switch>
     </React.Fragment>
     
   );

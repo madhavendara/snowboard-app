@@ -1,6 +1,6 @@
-$primary : #0A3B66;
+$primary : #2741CC;
 $secondry : #0A1823;
-$black : #242128;
+$black : #000000;
 
 @font-face {
     font-family: 'Hansief';
@@ -17,6 +17,30 @@ body
     padding : 0;
     margin : 0;
     font-family: 'Poppins', sans-serif;
+}
+
+h1
+{
+    font-family: 'Hansief';
+    color : #fff;
+    font-size: 2.4rem;
+    font-weight: normal;
+    padding-bottom: 15px;
+}
+
+h4
+{
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: "Poppins", sans-serif;
+}
+
+h5
+{
+    font-family: 'Hansief';
+    font-size: 13px;
+    font-weight: normal;
+    color : #fff;
 }
 
 *
@@ -95,7 +119,18 @@ body
                 color : #fff;
                 font-size: 50px;
                 font-weight: normal;
-                padding-bottom: 6.5rem;
+                padding-bottom: 4.5rem;
+                padding-top: 3.5rem;
+                
+                &::before
+                {
+                    content: '';
+                    display: block;
+                    margin-bottom: 2rem;
+                    width: 3.1rem;
+                    height: 2px;
+                    background: rgba(91, 90, 96, 1);
+                }
             }
 
             &:hover
@@ -234,10 +269,7 @@ body
             width: 56%;
         }
     }
-    .canvas-area
-    {
-        flex-basis: 68%;
-    }
+   
 
     .filter-container
     {
@@ -292,18 +324,32 @@ body
         margin-top: 30px;
         overflow-y: scroll;
         max-height: 75%;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+
+          }
+           
+          &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          }
+           
+          &::-webkit-scrollbar-thumb {
+            background-color: $primary;
+            outline: none;
+          }
     }
 
     .product-card
     {
         display: flex;
         grid-gap: 20px;
-        background: #5B5A6048;
-        border: 1px solid rgba(255,255,255,0.4);
+        background: rgba(91,90,96,.48);
+        border: 1px solid rgba(255,255,255,0.7);
         box-sizing: border-box;
         padding : 9.5px;
         margin-bottom: 10px;
-        width: 96%;
+        width: 97%;
 
         .product-img-container
         {
@@ -327,6 +373,7 @@ body
                 h1
                 {
                     font-size: 1.1rem;
+                    font-family: "Poppins", sans-serif;
                     color : #fff;
                     font-weight: 600;
                     margin : 0;
@@ -397,9 +444,130 @@ body
 
             .no-active-selection
             {
-                background : url(./assest/product-check.svg);
+                background : url(./assest/plus.svg);
+                background-size: 100% 100%;
+            }
+            .active-selection-1
+            {
+                background : url(./assest/product-check-1.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-2
+            {
+                background : url(./assest/product-check-2.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-3
+            {
+                background : url(./assest/product-check-3.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-4
+            {
+                background : url(./assest/product-check-4.svg);
                 background-size: 100% 100%;
             }
         }
     }
+}
+
+path.cls-1 {
+    fill: black;
+}
+
+.svg-ari
+{
+    max-height: 100%;
+}
+
+.canvas-area
+{
+    flex-basis: 68%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    
+    > *
+    {
+        width: 87%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .canvas-header
+    {
+        button.switch-button {
+            background: none;
+            box-shadow: none;
+            outline: none;
+            border: none;
+            color: #fff;
+            font-family: "Hansief";
+            font-size: 1.1rem;
+            opacity: .5;
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+            cursor: pointer;
+        }
+        button.switch-active
+        {
+            opacity: 1;
+            cursor: default;
+        }
+
+        .outline-profile-switch
+        {
+            display: inline-flex;
+            grid-gap: 0.9rem;
+        }
+    }
+
+    .canvas-content
+        {
+            display: flex;
+            grid-gap: 2.3rem;
+            padding-top: 2.3rem;
+            height: 100%;
+
+            .snowboard-graphics-container
+            {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                text-align: center;
+                max-height: 90%;
+
+                .graphics-img-container
+                {
+                    flex-basis: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+                h5
+                {
+                    color : #fff;
+                }
+            }
+        }
+}
+
+
+
+.product-graphics-box
+{
+    -webkit-mask-position: center center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    background: #fff;
+}
+
+
+img.image-center {
+    max-width: 380px;
+    display: block;
+    margin: auto;
 }
