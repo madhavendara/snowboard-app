@@ -37,6 +37,11 @@ h5 {
   padding: 0;
 }
 
+@media (min-width: 1800px) {
+  :root {
+    font-size: 21px;
+  }
+}
 .container {
   width: 100%;
   max-width: 1200px;
@@ -73,16 +78,19 @@ h5 {
   width: 120px;
 }
 #choice-section .choice-container {
-  position: relative;
+  position: absolute;
   z-index: 5;
   width: 90%;
-  max-width: 760px;
+  max-width: 42rem;
   margin: 0 auto;
-  margin-top: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   grid-gap: 2rem;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 #choice-section .choice-container .choice-box {
   -webkit-box-flex: 1;

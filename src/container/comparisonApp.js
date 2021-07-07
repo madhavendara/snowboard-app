@@ -164,7 +164,7 @@ const Comparison = () => {
                 </div>
                 <div className="canvas-content" ref={canvas}>
                         {
-                        Array.isArray(activeGraphics) && activeGraphics.length > 1 ? Graphicsrender : placeholder
+                        Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
                         }
                 </div>
                
