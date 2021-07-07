@@ -3,6 +3,7 @@ import React , { useState, useEffect,useRef} from 'react'
 import Searchbar from '../component/searchbar'
 import ProductFilter from '../component/filter'
 import Productcard from '../component/productcard'
+import Toolbar from '../component/toolbar'
 
 // images import
 import Productgraphics from '../component/productgraphics'
@@ -21,6 +22,7 @@ const Comparison = () => {
     const [copyJSON , changecopy]  = useState([])
     const [activeproduct] = useState([])
     const [activeGraphics] = useState([]);
+    const [colorSets] = useState(["#74A1DC","#C4CADA" , "#A3AFD3" , "#2E69E2"]);
     const [canvasHeight, setCanvasWidth] = useState(null);
     const canvas = useRef(null)
     let anotherCopy = [...ProductJSON];
@@ -94,10 +96,10 @@ const Comparison = () => {
           
      }
 
-     const Graphicsrender =  activeGraphics.map(graphics => {
+     const Graphicsrender =  activeGraphics.map((graphics , i) => {
         return (
             <Productgraphics 
-            color="white" 
+            color={colorSets[i]} 
              url={graphics["img"]} 
              key={graphics.id}
              title={graphics.Title}
@@ -151,7 +153,7 @@ const Comparison = () => {
             </div>
 
             <div className='canvas-area'>
-
+                    <Toolbar/>
                 <div className="canvas-header">
                     <h1>ALL SELECTED PRODUCTS</h1>
                     <div className="outline-profile-switch">

@@ -484,6 +484,43 @@ path.cls-1 {
   color: #fff;
 }
 
+.toolbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: fixed;
+  right: 2%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  max-width: 70px;
+}
+.toolbar-container .toolbar-options {
+  width: 70px;
+  height: 70px;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: pointer;
+}
+.toolbar-container .collapsible {
+  background: url(./assest/collapsible.svg);
+  background-size: 100% 100%;
+}
+.toolbar-container .base {
+  background: url(./assest/base.svg);
+  background-size: 100% 100%;
+}
+.toolbar-container .graph {
+  background: url(./assest/graph.svg);
+  background-size: 100% 100%;
+}
+
 .product-graphics-box {
   -webkit-mask-position: center center;
   -webkit-mask-size: contain;

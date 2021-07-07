@@ -555,6 +555,45 @@ path.cls-1 {
         }
 }
 
+.toolbar-container
+{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 70px;
+
+    .toolbar-options
+    {
+        width: 70px;
+        height: 70px;
+        border : none;
+        outline: none;
+        box-shadow: none;
+        cursor: pointer;
+    }
+
+    .collapsible
+    {
+        background : url(./assest/collapsible.svg);
+        background-size: 100% 100%;
+    }
+
+    .base
+    {
+        background : url(./assest/base.svg);
+        background-size: 100% 100%;
+    }
+
+    .graph
+    {
+        background : url(./assest/graph.svg);
+        background-size: 100% 100%;
+    }
+
+}
 
 
 .product-graphics-box
