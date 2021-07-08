@@ -32,14 +32,38 @@ h5 {
   color: #fff;
 }
 
+@media (min-width: 1800px) {
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+  }
+}
 * {
   margin: 0;
   padding: 0;
 }
 
+@media (min-width: 1024px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    font-size: 14px;
+  }
+}
 @media (min-width: 1800px) {
   :root {
     font-size: 21px;
+  }
+}
+@media (min-width: 1800px) {
+  :root {
+    font-size: 30px;
   }
 }
 .container {
@@ -109,7 +133,7 @@ h5 {
   font-family: "Hansief";
   text-transform: uppercase;
   color: #fff;
-  font-size: 50px;
+  font-size: 2.8rem;
   font-weight: normal;
   padding-bottom: 4.5rem;
   padding-top: 3.5rem;
@@ -220,10 +244,15 @@ h5 {
   background: #000000;
   -webkit-box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
           box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
-  padding: 40px 25px;
+  padding: 2.8rem 1.75rem;
 }
 #comparison-app .app-sidebar .app-logo {
-  width: 56%;
+  width: 49%;
+}
+@media (min-width: 2000px) {
+  #comparison-app .app-sidebar {
+    padding-bottom: 10px;
+  }
 }
 #comparison-app .filter-container {
   display: -webkit-box;
@@ -460,6 +489,9 @@ path.cls-1 {
   grid-gap: 2.3rem;
   padding-top: 2.3rem;
   height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .canvas-area .canvas-content .snowboard-graphics-container {
   display: -webkit-box;
@@ -487,6 +519,17 @@ path.cls-1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+@media (min-width: 2000px) {
+  .canvas-area .canvas-content .snowboard-graphics-container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .canvas-area .canvas-content .snowboard-graphics-container .graphics-img-container {
+    -ms-flex-preferred-size: 70%;
+        flex-basis: 70%;
+  }
 }
 .canvas-area .canvas-content .snowboard-graphics-container h5 {
   color: #fff;
