@@ -10,7 +10,8 @@ const productsGraphics = [
         "ref" : "p1",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg
+        "img" : productImg,
+        "graph" : [85,55,30]
     },
 
     {
@@ -18,7 +19,8 @@ const productsGraphics = [
         "ref" : "p2",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg2
+        "img" : productImg2,
+        "graph" : [45,75,55]
     },
 
     {
@@ -26,7 +28,8 @@ const productsGraphics = [
         "ref" : "p3",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg3
+        "img" : productImg3,
+        "graph" : [70,40,30]
     },
 
     {
@@ -34,7 +37,8 @@ const productsGraphics = [
         "ref" : "p4",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg4
+        "img" : productImg4,
+        "graph" : [55,80,30]
     },
 
 
@@ -43,7 +47,8 @@ const productsGraphics = [
         "ref" : "p5",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg
+        "img" : productImg,
+        "graph" : [70,40,30]
     },
 
     {
@@ -51,7 +56,8 @@ const productsGraphics = [
         "ref" : "p6",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg2
+        "img" : productImg2,
+        "graph" : [90,70,60]
     },
 
     {
@@ -59,7 +65,8 @@ const productsGraphics = [
         "ref" : "p7",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg3
+        "img" : productImg3,
+        "graph" : [55,80,30]
     },
 
     {
@@ -67,7 +74,8 @@ const productsGraphics = [
         "ref" : "p8",
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
-        "img" : productImg4
+        "img" : productImg4,
+        "graph" : [40,80,60]
     },
     
 ]

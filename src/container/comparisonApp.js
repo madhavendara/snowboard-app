@@ -23,7 +23,8 @@ const Comparison = () => {
     const [activeproduct] = useState([])
     const [activeGraphics] = useState([]);
     const [colorSets] = useState(["#74A1DC","#C4CADA" , "#A3AFD3" , "#2E69E2"]);
-    const [canvasHeight, setCanvasWidth] = useState(null);
+    const [canvasHeight, setCanvasHeight] = useState(null);
+    const [canvasWidth, setCanvasWidth] = useState(null);
     const canvas = useRef(null)
     let anotherCopy = [...ProductJSON];
 
@@ -36,7 +37,8 @@ const Comparison = () => {
             exampleCopy[i]["added"] = false
         }
 
-        setCanvasWidth(canvas.current.offsetHeight)
+        setCanvasHeight(canvas.current.offsetHeight)
+        setCanvasWidth(canvas.current.offsetWidth)
         changecopy(exampleCopy)
     }, [])
 
@@ -104,7 +106,9 @@ const Comparison = () => {
              key={graphics.id}
              title={graphics.Title}
              size={graphics.size}
+             graph={graphics.graph}
              canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
              />
         )
     })

@@ -1,5 +1,5 @@
 $primary : #2741CC;
-$secondry : #0A1823;
+$secondry : #353848;
 $black : #000000;
 
 @font-face {
@@ -17,6 +17,21 @@ body
     padding : 0;
     margin : 0;
     font-family: 'Poppins', sans-serif;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+
+      }
+       
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background: $secondry;
+      }
+       
+      &::-webkit-scrollbar-thumb {
+        background-color: $primary;
+        outline: none;
+      }
 }
 
 h1
@@ -41,6 +56,17 @@ h5
     font-size: 13px;
     font-weight: normal;
     color : #fff;
+}
+
+canvas
+{
+  display: block;
+  margin: auto;
+}
+
+.graph-canvas
+{
+    margin-top: 2rem;
 }
 
 @media(min-width : 1800px)
@@ -86,11 +112,11 @@ h5
     }
 }
 
-@media(min-width : 1800px)
+@media(min-width : 2200px)
 {
     :root
     {
-        font-size: 30px;
+        font-size: 27px;
     }
 }
 .container
@@ -298,18 +324,23 @@ h5
 #comparison-app
 {
     width: 100%;
-    height: 100vh;
     background: url(./assest/app-background.svg);
     background-size: 100% auto;
-    display: flex;
-
-
+    min-height: 100vh;
     .app-sidebar
     {
-        flex-basis: 32%;
-        background: $black;
-        box-shadow: 0px 4px 60px rgba(36, 33, 40, 0.68);
-        padding : 2.8rem 1.75rem;
+        width: 30%;
+        background: #000000;
+        box-shadow: 0px 4px 60px rgb(36 33 40 / 68%);
+        padding: 2.8rem 1.75rem;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        z-index: 99;
+        box-sizing: border-box;
+        padding-bottom: 0px;
+        display: flex;
+        flex-direction: column;;
 
         .app-logo
         {
@@ -375,7 +406,6 @@ h5
     {
         margin-top: 30px;
         overflow-y: scroll;
-        max-height: 75%;
 
         &::-webkit-scrollbar {
             width: 5px;
@@ -429,6 +459,7 @@ h5
                     color : #fff;
                     font-weight: 600;
                     margin : 0;
+                    padding-bottom: 0px;
                 }
 
                 h5
@@ -537,10 +568,11 @@ path.cls-1 {
 
 .canvas-area
 {
-    flex-basis: 68%;
+    width : 70%;
     display: flex;
     flex-direction: column;
     padding-top: 3rem;
+    margin-left: auto;
     
     > *
     {
@@ -581,8 +613,8 @@ path.cls-1 {
         {
             display: flex;
             grid-gap: 2.3rem;
-            padding-top: 2.3rem;
-            height: 100%;
+            padding-top: 6.3rem;
+            min-height: 52vh;
             justify-content: center;
 
             .snowboard-graphics-container
@@ -594,11 +626,17 @@ path.cls-1 {
                 text-align: center;
                 max-height: 90%;
 
+                .graphic-text
+                {
+                    padding-top: 2rem;
+                }
+
                 .graphics-img-container
                 {
                     flex-basis: 100%;
                     display: flex;
-                    align-items: center;
+                    align-items: center;        
+                   
                 }
 
                 @media(min-width : 2000px)

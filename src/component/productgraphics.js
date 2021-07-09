@@ -1,4 +1,5 @@
 import React , {useState, useEffect}  from 'react'
+import Graph from './graph'
 
 const Mask = ({ mask , width , height , color}) => (
     <div className="product-graphics-box"  style={{
@@ -17,8 +18,6 @@ const Productgraphics = (props) => {
     const [deminition , setdeminition] = useState({})  
     let [image, setImage] = useState("null")
 
-    
-    
     useEffect(() => {
         const img = new Image();
         img.src = props.url;
@@ -67,6 +66,8 @@ const Productgraphics = (props) => {
             <h4 style={{color : props.color}}>{props.title}</h4> 
             <h5>{props.size}</h5>
          </div>
+
+         <Graph color={props.color} width={props.canvasWidth / 5.3} graph={props.graph}/>
   
       </div>
        
