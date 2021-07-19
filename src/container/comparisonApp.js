@@ -4,10 +4,12 @@ import Searchbar from '../component/searchbar'
 import ProductFilter from '../component/filter'
 import Productcard from '../component/productcard'
 import Toolbar from '../component/toolbar'
+import Header from './header'
+import Completegraph from '../component/completegraph'
+import Productgraphics from '../component/productgraphics'
+import Productgraphics2 from '../component/productgraphics_text'
 
 // images import
-import Productgraphics from '../component/productgraphics'
-import applogo from '../assest/applogo.svg'
 import placeholder_graphics from '../assest/placeholder-box.svg'
 import arrowline from '../assest/arrow-line.svg'
 
@@ -21,13 +23,21 @@ const Comparison = () => {
 
     const [copyJSON , changecopy]  = useState([])
     const [activeproduct] = useState([])
-    const [activeGraphics] = useState([]);
-    const [colorSets] = useState(["#74A1DC","#C4CADA" , "#A3AFD3" , "#2E69E2"]);
-    const [canvasHeight, setCanvasHeight] = useState(null);
-    const [canvasWidth, setCanvasWidth] = useState(null);
+    const [activeGraphics] = useState([])
+    const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
+    const [canvasHeight, setCanvasHeight] = useState(null)
+    const [canvasWidth, setCanvasWidth] = useState(null)
+
+
+    const [collapsible , setcollapsible] = useState(false)
+    const [alignBottom , setalignBottom] = useState(false)
+    const [graphactive , setgraphactive] = useState(false)
+
+
     const canvas = useRef(null)
     let anotherCopy = [...ProductJSON];
 
+   
 
     useEffect(() => {
         let exampleCopy = [...ProductJSON];
@@ -106,6 +116,18 @@ const Comparison = () => {
              key={graphics.id}
              title={graphics.Title}
              size={graphics.size}
+
+             />
+        )
+    })
+
+    const graphicstext = activeGraphics.map((graphics , i) => {
+        return (
+            <Productgraphics2 
+            color={colorSets[i]} 
+             key={graphics.id}
+             title={graphics.Title}
+             size={graphics.size}
              graph={graphics.graph}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth}
@@ -113,14 +135,14 @@ const Comparison = () => {
         )
     })
 
+
     const placeholder = <img className="image-center" src={placeholder_graphics} alt="placeholder"/>
 
     return (
         
         <section id="comparison-app">
             <div className='app-sidebar'>
-                <img src={applogo} className="app-logo" alt="ShredMetrix"/>
-
+                <Header page="compare"/>
                 <div className="filter-container">
                     <Searchbar />
                     <ProductFilter />
@@ -157,20 +179,38 @@ const Comparison = () => {
             </div>
 
             <div className='canvas-area'>
-                    <Toolbar/>
+                    <Toolbar 
+                    collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
+                    base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}
+                    graphfun={() => !graphactive ? setgraphactive(true) : setgraphactive(false)}
+                    callapsible={collapsible}
+                    alignBottom={alignBottom}
+                    graphactive={graphactive}
+
+                    />
                 <div className="canvas-header">
                     <h1>ALL SELECTED PRODUCTS</h1>
                     <div className="outline-profile-switch">
-                        <button className="switch-button switch-active">OUTLINE</button>
+                        <button className="switch-button switch-active button">OUTLINE</button>
                         <img src={arrowline} alt="arrow-line"/>    
-                        <button className="switch-button">PROFILE</button>
+                        <button className="switch-button button">PROFILE</button>
                     </div>
                 </div>
-                <div className="canvas-content" ref={canvas}>
+                <div className="canvas-content" data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? "true" : "false"} ref={canvas}>
                         {
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
-                        }
+                        }   
                 </div>
+
+                <div className="canvas-text" data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
+                        {
+                        Array.isArray(activeGraphics) && activeGraphics.length ? graphicstext : null
+                        }   
+                </div>
+
+                
+
+                <Completegraph activeGraphics={activeGraphics} colorSets={colorSets}/>
                
                 {/* <Productgraphics color="red"  url={productsGraphicsJSON[0]["img"]}/> */}
     

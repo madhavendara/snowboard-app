@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import mountain from '../assest/mountain.png'
-import logo from '../assest/logo.svg'
+import Header from './header'
 import cloud from '../assest/cloud.png'
 import snowScience from '../assest/snowboard-science.png'
 import snowCompare from '../assest/snowboard-compare.png'
@@ -11,7 +11,7 @@ function Choice(props) {
     return (
         <section id='choice-section'>
             <nav id="main-navbar" className="container">
-                <img src={logo} className='brand-logo' alt="Shredmetrix" />
+                <Header page="choice"/>
             </nav>
             <div className="choice-container">
                 <div className="choice-box choice-1">
