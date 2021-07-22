@@ -190,6 +190,15 @@ canvas {
   margin: 20px;
 }
 
+nav #icon {
+  float: left;
+  margin-left: 40px;
+  line-height: 80px;
+  width: 20px;
+  margin: 20px;
+  cursor: pointer;
+}
+
 #menu.hidenav {
   left: -100%;
 }
@@ -625,8 +634,9 @@ path.cls-1 {
 }
 .canvas-area .canvas-header h1 {
   color: #fff;
+  font-size: 3rem;
 }
-.canvas-area .canvas-header .button.switch-active {
+.canvas-area .canvas-header .button[data-active=true] {
   opacity: 1;
   cursor: default;
 }
@@ -669,6 +679,23 @@ path.cls-1 {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   top: auto;
+}
+.canvas-area [data-callpased=true][data-alignbottom=true][data-lineview=true] .snowboard-graphics-container {
+  position: absolute;
+  left: 0;
+  bottom: auto;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  top: auto;
+}
+.canvas-area [data-lineview=true] {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.canvas-area [data-lineview=true][data-alignbottom=true] .graphics-img-container {
+  margin-right: auto;
 }
 .canvas-area [data-alignbottom=true] .graphics-img-container {
   -webkit-box-align: end !important;
@@ -857,6 +884,7 @@ img {
 .main-div {
   margin-top: 70px;
   padding: 0 140px;
+  padding-top: 7rem;
   color: white;
 }
 .main-div .heading-text {
@@ -1105,6 +1133,7 @@ img {
 
 .Invest-main {
   position: relative;
+  padding-top: 7rem;
 }
 .Invest-main .fly-img {
   position: absolute;
@@ -1395,6 +1424,11 @@ img {
   width: 30px;
   padding: 0 10px;
 }
+@media (min-width: 1500px) {
+  .left-right {
+    display: none;
+  }
+}
 
 .card-position {
   height: 90vh;
@@ -1649,10 +1683,23 @@ img {
 
 .snowboard-menu.container {
   position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  left: 0%;
   top: 3%;
+  width: 100%;
+  display: block;
+  max-width: 100%;
+  z-index: 9;
+}
+.snowboard-menu.container .app-header {
+  width: 100%;
+  max-width: 1160px;
+  margin: auto;
+}
+@media (min-width: 1600px) {
+  .snowboard-menu.container .app-header {
+    width: 90%;
+    max-width: 1590px;
+  }
 }
 
 /*===============on click page Mobile Responive css start===============*/
@@ -1855,4 +1902,43 @@ img {
     margin: 17px 10px;
     padding: 4px 17px;
   }
+}
+#loader {
+  position: fixed;
+  z-index: 999999;
+  background: #353848;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-row-gap: 3rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+#loader .center-icon {
+  width: 90px;
+  display: block;
+}
+#loader h5 {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.loader-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.login-container {
+  padding-top: 8rem;
 }

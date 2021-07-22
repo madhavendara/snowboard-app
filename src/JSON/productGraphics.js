@@ -3,6 +3,10 @@ import productImg2 from '../assest/product-2.svg'
 import productImg3 from '../assest/product-3.svg'
 import productImg4 from '../assest/product-4.svg'
 
+import productline from '../assest/product-line-1.svg'
+import productline2 from '../assest/product-line-2.svg'
+import productline3 from '../assest/product-line-3.svg'
+import productline4 from '../assest/product-line-4.svg'
 
 const productsGraphics = [
     {
@@ -11,6 +15,7 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg,
+        "line" : productline,
         "graph" : [85,55,30]
     },
 
@@ -20,6 +25,7 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg2,
+        "line" : productline2,
         "graph" : [45,75,55]
     },
 
@@ -29,6 +35,7 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg3,
+        "line" : productline3,
         "graph" : [70,40,30]
     },
 
@@ -38,9 +45,9 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg4,
+        "line" : productline4,
         "graph" : [55,80,30]
     },
-
 
     {
         "id" : "g5",
@@ -48,7 +55,8 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg,
-        "graph" : [70,40,30]
+        "line" : productline,
+        "graph" : [85,55,30]
     },
 
     {
@@ -57,7 +65,8 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg2,
-        "graph" : [90,70,60]
+        "line" : productline2,
+        "graph" : [45,75,55]
     },
 
     {
@@ -66,7 +75,8 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg3,
-        "graph" : [55,80,30]
+        "line" : productline3,
+        "graph" : [70,40,30]
     },
 
     {
@@ -75,8 +85,13 @@ const productsGraphics = [
         "Title" : "AitMax 720 React",
         "size" : "128 - 136",
         "img" : productImg4,
-        "graph" : [40,80,60]
+        "line" : productline4,
+        "graph" : [55,80,30]
     },
+
+
+    
+        
     
 ]
 

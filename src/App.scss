@@ -239,6 +239,15 @@ canvas
 
 }
 
+nav #icon {
+    float: left;
+    margin-left: 40px;
+    line-height: 80px;
+    width: 20px;
+    margin: 20px;
+    cursor: pointer;
+}
+
 #menu.hidenav 
 {
    left: -100%;
@@ -734,12 +743,15 @@ path.cls-1 {
         h1
         {
             color : #fff;
+            font-size: 3rem;
         }
-        .button.switch-active
+        .button[data-active = "true"]
         {
             opacity: 1;
             cursor: default;
         }
+
+
 
         .outline-profile-switch
         {
@@ -785,6 +797,37 @@ path.cls-1 {
             top: auto;
         }
     }
+
+    [data-callpased="true"][data-alignbottom="true"][data-lineview="true"]
+    {
+        .snowboard-graphics-container
+        {
+            position: absolute;
+            left: 0;
+            bottom: auto;
+            transform: translateX(0%);
+            top: auto;
+        }
+    }
+
+    
+
+    [data-lineview="true"]
+        {
+            flex-direction: column;
+        }
+
+        [data-lineview="true"][data-alignbottom="true"]
+        {
+            .graphics-img-container
+            {
+                margin-right: auto;
+            }
+        }
+        
+        
+
+        
 
         [data-alignbottom="true"]
         {
@@ -1011,6 +1054,7 @@ img
 .main-div{
     margin-top: 70px;
     padding: 0 140px;
+    padding-top: 7rem;
     color: white;
     .heading-text
     {
@@ -1306,6 +1350,7 @@ img
 }
 .Invest-main{
         position: relative;
+        padding-top: 7rem;
         .fly-img
         {
             position: absolute;
@@ -1625,6 +1670,11 @@ img
         width: 30px;
         padding: 0 10px;
     }
+
+    @media(min-width : 1500px)
+    {
+        display: none;
+    }
 }
 .card-position{
     height: 90vh;
@@ -1911,9 +1961,24 @@ img
 
 .snowboard-menu.container {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0%;
     top: 3%;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    z-index: 9;
+
+     .app-header {
+        width: 100%;
+        max-width: 1160px;
+        margin: auto;
+
+        @media(min-width : 1600px)
+        {
+            width: 90%;
+            max-width: 1590px;
+        }
+    }
 }
 
 /*===============on click page Mobile Responive css start===============*/
@@ -2160,3 +2225,50 @@ img
     } 
 
 }
+
+//loading styles
+
+#loader
+{
+    position: fixed;
+    z-index: 999999;
+    background: $secondry;
+    width: 100%;
+    height: 100%;
+    right : 0;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    grid-row-gap: 3rem;
+    flex-direction: column;
+
+
+   .center-icon
+   {
+       width: 90px;
+    //    animation: rotate 2s linear 0s infinite;
+       display: block;
+   }
+
+   h5
+   {
+       color : #fff;
+       font-size: 1.5rem;
+   }
+}
+
+.loader-active
+{
+    display: flex;
+}
+
+.login-container
+{
+    padding-top: 8rem;
+}
+
+// @keyframes rotate {
+//     from { -webkit-transform: rotateY(0deg)}
+//     to{ -webkit-transform: rotateY(360deg)}
+// }

@@ -9,6 +9,9 @@ import Boardcomponent from './container/Education/board-component'
 import ConditionAffect from './container/Education/conditionaffect'
 import Riderstyle from './container/Education/riderstyle'
 import Chooseboard from './container/Education/chooseaboard'
+import About from './container/aboutus'
+import Invest from './container/invest'
+import Login from './container/login'
 
 function App() {
   return (
@@ -39,6 +42,18 @@ function App() {
 
                   <Route path='/snowboardeducation/chooseboard' exact>
                         <Chooseboard />
+                  </Route>
+
+                  <Route path='/about' exact>
+                        <About />
+                  </Route>
+
+                  <Route path='/invest' exact>
+                        <Invest />
+                  </Route>
+
+                  <Route path='/login' exact>
+                        <Login />
                   </Route>
                   
                   

@@ -19,30 +19,57 @@ const Productgraphics = (props) => {
 
     useEffect(() => {
         const img = new Image();
-        img.src = props.url;
-       
+        const img2 = new Image();
 
+        img.src = props.url;
+        img2.src = props.url2;
+  
         img.onload = function() {
           let properties
 
-            if(props.canvasHeight > 800)
-            {
-              const ratio = this.height / this.width
-              properties = {width : props.canvasHeight * 0.0875 , height : (props.canvasHeight * 0.0875) * ratio}
-            }
+              if(!props.lineview)
+              {
+                if(props.canvasHeight > 800)
+                {
+                  const ratio = this.height / this.width
+                  properties = {width : props.canvasHeight * 0.0875 , height : (props.canvasHeight * 0.0875) * ratio}
+                }
 
-            else
-            {
-              const ratio = this.height / this.width
-              properties = {width : 70 , height : 70 * ratio}
-            }
-                  
-            setdeminition(properties);
-            setImage(img)
+                else
+                {
+                  const ratio = this.height / this.width
+                  properties = {width : 70 , height : 70 * ratio}
+                }
+
+                setdeminition(properties);
+                setImage(img)
+              }
           }
 
-      }, [props.canvasHeight,props.url])
+          img2.onload = function() {
+            let properties
+  
+                if(props.lineview)
+                {
+                  const widthratio = this.width / 400
+                  const actuallwidth = props.canvasWidth * widthratio
+                  const ratio = this.height / this.width
+                  properties = {width : actuallwidth , height : ratio * actuallwidth}
+  
+                  setdeminition(properties);
+                  setImage(img2)
 
+                  console.log(this.width)
+                }
+            }
+
+      }, [props.canvasHeight,props.url ,props.lineview ])
+
+
+      // else
+      // {
+      //
+      // }
 
     // const changeWidth = (imgWidth,imgHeight) => {
     //     var yourImg = document.getElementById('step1');

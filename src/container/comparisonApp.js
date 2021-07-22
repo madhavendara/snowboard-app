@@ -8,6 +8,7 @@ import Header from './header'
 import Completegraph from '../component/completegraph'
 import Productgraphics from '../component/productgraphics'
 import Productgraphics2 from '../component/productgraphics_text'
+import Loading from '../component/loading'
 
 // images import
 import placeholder_graphics from '../assest/placeholder-box.svg'
@@ -22,22 +23,26 @@ import productsGraphicsJSON from '../JSON/productGraphics'
 const Comparison = () => {
 
     const [copyJSON , changecopy]  = useState([])
+    const [loading,setloading] = useState(true)
     const [activeproduct] = useState([])
     const [activeGraphics] = useState([])
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
 
-
+    // toggle states
     const [collapsible , setcollapsible] = useState(false)
     const [alignBottom , setalignBottom] = useState(false)
     const [graphactive , setgraphactive] = useState(false)
+    const [lineview , setlineview] = useState(false)
 
 
     const canvas = useRef(null)
     let anotherCopy = [...ProductJSON];
 
-   
+    useEffect(() => {
+        setloading(false)
+    }, [Productcard])
 
     useEffect(() => {
         let exampleCopy = [...ProductJSON];
@@ -51,6 +56,17 @@ const Comparison = () => {
         setCanvasWidth(canvas.current.offsetWidth)
         changecopy(exampleCopy)
     }, [])
+
+    useEffect(() => {
+        if(graphactive)
+        {
+            window.scrollTo(0, 200)
+        }
+        else
+        {
+            window.scrollTo(0, 0)
+        }
+    },[graphactive])
 
     const productAdded = (key) => {
 
@@ -112,10 +128,14 @@ const Comparison = () => {
         return (
             <Productgraphics 
             color={colorSets[i]} 
-             url={graphics["img"]} 
+             url={graphics["img"]}
+             url2={graphics["line"]}
+             lineview={lineview} 
              key={graphics.id}
              title={graphics.Title}
              size={graphics.size}
+             canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
 
              />
         )
@@ -131,6 +151,7 @@ const Comparison = () => {
              graph={graphics.graph}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth}
+           
              />
         )
     })
@@ -139,6 +160,9 @@ const Comparison = () => {
     const placeholder = <img className="image-center" src={placeholder_graphics} alt="placeholder"/>
 
     return (
+        <React.Fragment>
+
+            <Loading active={loading}/>
         
         <section id="comparison-app">
             <div className='app-sidebar'>
@@ -191,12 +215,16 @@ const Comparison = () => {
                 <div className="canvas-header">
                     <h1>ALL SELECTED PRODUCTS</h1>
                     <div className="outline-profile-switch">
-                        <button className="switch-button switch-active button">OUTLINE</button>
+                        <button className="switch-button button" data-active={!lineview} onClick={()=> setlineview(false)}>OUTLINE</button>
                         <img src={arrowline} alt="arrow-line"/>    
-                        <button className="switch-button button">PROFILE</button>
+                        <button className="switch-button button" data-active={lineview} onClick={ ()=> setlineview(true)}>PROFILE</button>
                     </div>
                 </div>
-                <div className="canvas-content" data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? "true" : "false"} ref={canvas}>
+                <div className="canvas-content"
+                 data-lineview={lineview}
+
+                        
+data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? "true" : "false"} ref={canvas}>
                         {
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
                         }   
@@ -216,6 +244,7 @@ const Comparison = () => {
     
            </div>
         </section>
+        </React.Fragment>
     )
 }
 

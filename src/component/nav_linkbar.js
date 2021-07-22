@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 //images import
 import login from '../assest/login.png'
@@ -17,7 +18,7 @@ const Navbar_linkbar = (props) => {
            <a href="#" className="close-btn" onClick={props.closenav}>&times;</a>
         </li>
         <li className="login">
-            <a href="#">LOGIN</a>
+        <Link to="/login">LOGIN</Link>
             <img src={login} alt="login"/>
         </li>
         
@@ -25,8 +26,8 @@ const Navbar_linkbar = (props) => {
             <img src={search} alt=""/>
             <input type="text" name="fname" placeholder="Search Here."/>
         </li>
-        <li><a href="#about">About us</a></li>
-        <li><a href="#contact">INVEST</a></li>
+        <li><Link to="/about">About us</Link></li>
+        <li><Link to="/invest">INVEST</Link></li>
         <li><a href="#feedback">REVIEW</a></li>
         <div className="login">
             <img src={usa} alt=""/>

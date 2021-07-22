@@ -1,6 +1,8 @@
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Header from './header'
+import Footer from './footer'
+import Loading from '../component/loading'
 
 // images import
 import left from '../assest/left.svg'
@@ -8,16 +10,20 @@ import right from '../assest/right.svg'
 import boat from '../assest/boat.png'
 import Vector2 from '../assest/Vector2.svg'
 import second from '../assest/second.png'
-import facebook from '../assest/facebook.svg'
-import twitter from '../assest/twitter.svg'
-import linkedin from '../assest/linkedin.svg'
-import insta from '../assest/insta.svg'
 
 
 const Education = () => {
     const [slideState,setSlide] = useState("left-part")
+    const [loading,setloading] = useState(true)
+
+    useEffect(() => {
+        setloading(false)
+    }, [])
 
     return (
+        <React.Fragment>
+             <Loading active={loading}/>
+        
         <section id="snowboard-education">
             <div className='snowboard-menu container'>
                 <Header/>
@@ -91,36 +97,11 @@ const Education = () => {
                     </div>
                 </div>
             </div>
-            <div className="contact-wall container-fluid">
-                <div className="row">
-                    <div className="contact-text">
-                        <h3>LOGO.</h3>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,</p>
-                    </div>
-                    <div className="contact-menu">
-                        <ul>
-                            <li><a href="#about">About US</a></li>
-                            <li><a href="#service">INVEST</a></li>
-                            <li><a href="#contact">REVIEW</a></li>
-                            <li><a href="#feedback">MORE PAGES</a></li>
-                        </ul>  
-                    </div>
-                </div>
-               <div className="boder row">
-                    <div className="social-icon">
-                        <img src={insta} alt=""/>
-                        <img src={facebook} alt=""/>
-                        <img src={twitter} alt=""/>
-                        <img src={linkedin} alt=""/>
-                    </div>
-                  <div className="text-last">
-                    <p>Copyright ©2021shredmetrix</p>
-                  </div>
-               </div>
-            </div>    
-            
+               
+            <Footer/>
       
         </section>
+        </React.Fragment>
     )
 }
 
