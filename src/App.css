@@ -365,6 +365,8 @@ nav #icon {
   background: url(./assest/app-background.svg);
   background-size: 100% auto;
   min-height: 100vh;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
 }
 #comparison-app .app-sidebar {
   width: 30%;
@@ -386,11 +388,21 @@ nav #icon {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
 }
 @media (min-width: 2000px) {
   #comparison-app .app-sidebar {
     padding-bottom: 10px;
   }
+}
+#comparison-app .app-sidebar .expand-btn {
+  position: absolute;
+  right: -45px;
+  width: 45px;
+  z-index: 99;
+  top: 0;
+  cursor: pointer;
 }
 #comparison-app .filter-container {
   display: -webkit-box;
@@ -571,6 +583,24 @@ nav #icon {
   background-size: 100% 100%;
 }
 
+#comparison-app[data-callpased=true] .app-sidebar {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+#comparison-app[data-callpased=true] .app-sidebar .expand-btn {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+#comparison-app[data-callpased=true] .canvas-area {
+  width: 100%;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+
 .app-logo {
   max-height: 6.7rem;
   height: auto;
@@ -612,6 +642,8 @@ path.cls-1 {
           flex-direction: column;
   padding-top: 3rem;
   margin-left: auto;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
 }
 .canvas-area > * {
   width: 87%;

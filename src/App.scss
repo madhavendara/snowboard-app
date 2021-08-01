@@ -454,6 +454,7 @@ nav #icon {
     background: url(./assest/app-background.svg);
     background-size: 100% auto;
     min-height: 100vh;
+    transition: all 0.6s;
     .app-sidebar
     {
         width: 30%;
@@ -468,14 +469,24 @@ nav #icon {
         padding-bottom: 0px;
         display: flex;
         flex-direction: column;
-
-       
-
+        transition: all 0.6s;
         @media(min-width: 2000px)
         {
             padding-bottom: 10px;
         }
+
+        .expand-btn
+        {
+            position: absolute;
+            right: -45px;
+            width: 45px;
+            z-index: 99;
+            top: 0;
+            cursor: pointer;
+        }
     }
+
+    
 
     .filter-container
     {
@@ -680,6 +691,31 @@ nav #icon {
     }
 }
 
+#comparison-app[data-callpased="true"]
+    {
+        
+        .app-sidebar
+        {
+            transform: translateX(-100%);
+            transition: all 0.6s;
+
+            .expand-btn
+            {
+                transform-origin: center center;
+                transform: rotate(
+            180deg
+            );
+            }
+        }
+
+        .canvas-area
+        {
+            width: 100%;
+            transition: all 0.6s;
+        }
+        
+    }
+
 .app-logo
 {
     max-height: 6.7rem;
@@ -716,6 +752,7 @@ path.cls-1 {
     flex-direction: column;
     padding-top: 3rem;
     margin-left: auto;
+    transition: all 0.6s;
     
     > *
     {
