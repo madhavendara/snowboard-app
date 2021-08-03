@@ -81,35 +81,6 @@ const Comparison = () => {
         }
     },[graphactive])
 
-    useEffect(() => {
-            if(activeGraphics.length > 0)
-            {
-                let newOne = [];
-                for (let i = 0; i <= activeGraphics.length; i++)
-                    {
-                        if(activeGraphics[i])
-                        {
-                        let elements = [ { amount : activeGraphics[i].size , precentage : Math.floor(activeGraphics[i].size / sizebase * 100)}  , 
-                        { amount : activeGraphics[i].EffectiveEdge , precentage : Math.floor(activeGraphics[i].EffectiveEdge / EffectiveEdgebase * 100)}, 
-                        { amount : activeGraphics[i].TipWidth , precentage : Math.floor(activeGraphics[i].TipWidth / TipWidthbase * 100)},
-                        { amount : activeGraphics[i].WaistWidth , precentage : Math.floor(activeGraphics[i].WaistWidth / WaistWidthbase * 100)}
-                        ];
-                        newOne.push(elements)
-                        }   
-                    }
-
-                    setActivebar(newOne)
-            }
-
-            
-
-            console.log(activebars)
-       
-        
-    },[activeGraphics.length])
-
-    
-
     const productAdded = (key) => {
 
         
@@ -163,8 +134,32 @@ const Comparison = () => {
                     changecopy(anotherCopy) 
                 }
             }
+            
+            barUpdate(activeGraphics)
           
      }
+
+
+     const barUpdate = (graphics) => {
+            let newOne = [];
+            for (let i = 0; i < graphics.length; i++)
+                {
+                   
+                        let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100)}  , 
+                        { amount : graphics[i].EffectiveEdge , precentage : Math.floor(graphics[i].EffectiveEdge / EffectiveEdgebase * 100)}, 
+                        { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
+                        { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
+                        ];
+                        newOne.push(elements)
+                  
+                    
+                
+                }
+                console.log(newOne)
+                setActivebar(newOne)
+                console.log(activebars)
+
+    }
 
      const Graphicsrender =  activeGraphics.map((graphics , i) => {
         return (
