@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import Navbar_linkbar from '../component/nav_linkbar'
+import NavbarLinkbar from '../component/nav_linkbar'
 
 
 // images import
@@ -25,7 +25,7 @@ const Header2 = (props) => {
         <label id="icon" onClick={openNav}>
             <img src={barbtn} alt=""/>
         </label>
-            <Navbar_linkbar classlist={navclass} closenav={closeNav}/>
+            <NavbarLinkbar classlist={navclass} closenav={closeNav}/>
     </nav>    
     )
 }

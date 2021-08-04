@@ -4,51 +4,48 @@ const Completegraph = (props) => {
 
     const canvasfull = useRef(null)
     const [canvaswidth] = useState(160)
-  
     useEffect(() => {
           const ctx = canvasfull.current.getContext("2d")
-        for(let i = 0; i < props.activeBars.length; i++)
+        for(let i = 0; i < props.activeGraphics.length; i++)
             {
               if(i === 0)
               {
-                let bar = props.activeBars[i]
-                
+                let bar = props.activeGraphics[i].graph
                 for(let j = 0; j < bar.length; j++)
                 {
                     ctx.fillStyle = props.colorSets[i]
-                    ctx.fillRect(0,(j*26 + 10),canvaswidth * bar[j].precentage / 100,15)
+                    ctx.fillRect(0,(j*26 + 10),canvaswidth * bar[j] / 100,15)
 
                     ctx.font = "14px Poppins"
                     ctx.fillStyle = "black"
                     ctx.textAlign = "center"
-                    ctx.fillText(bar[j].amount,(canvaswidth * bar[j].precentage / 100 - 20), (j*26 + 23))
-                    console.log(bar[j].precentage)
+                    ctx.fillText(bar[j] + '%',(canvaswidth * bar[j] / 100 - 20), (j*26 + 23))
                 }
   
               }
 
               else
               {
-                let bar = props.activeBars[i]
+                let bar = props.activeGraphics[i].graph
                 for(let j = 0; j < bar.length; j++)
                 {
                     let prestate = 0;
                    
                     for(let k = 0; k <= i-1; k++)
                     {
-                      let allstates = props.activeBars[k]
-                      prestate += canvaswidth * allstates[j].precentage / 100
+                      let allstates = props.activeGraphics[k].graph
+                      prestate += canvaswidth * allstates[j] / 100
                     }
 
 
                   
                     ctx.fillStyle = props.colorSets[i]
-                    ctx.fillRect(prestate,(j*26 + 10),canvaswidth * bar[j].precentage / 100,15)
+                    ctx.fillRect(prestate,(j*26 + 10),canvaswidth * bar[j] / 100,15)
 
                     ctx.font = "14px Poppins"
                     ctx.fillStyle = "black"
                     ctx.textAlign = "center"
-                    ctx.fillText(bar[j].amount,(canvaswidth * bar[j].precentage / 100 - 20) + prestate, (j*26 + 23))
+                    ctx.fillText(bar[j] + '%',(canvaswidth * bar[j] / 100 - 20) + prestate, (j*26 + 23))
                 }
               }
                      
@@ -75,8 +72,8 @@ const Completegraph = (props) => {
         //     ctx.fillText(bar[i] + '%',(props.width * bar[i] / 100 - 20), (i*26 + 23))
         //   }
           
-  // eslint-disable-next-line
-      }, [props.activeBars.length])
+    
+      }, [props.activeGraphics.length])
 
 
 
@@ -85,7 +82,7 @@ const Completegraph = (props) => {
         <div className="complete-graph">
         <canvas className="fullgraph-canvas"
           ref={canvasfull}
-          width={canvaswidth * (props.activeBars.length)}
+          width={canvaswidth * (props.activeGraphics.length - 0.7)}
           height={200}
         />
 

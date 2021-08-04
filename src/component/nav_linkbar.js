@@ -15,7 +15,7 @@ const Navbar_linkbar = (props) => {
         <ul id="menu" className={props.classlist}>
         <li className="login">
             <p>Close</p>
-           <a href="#" className="close-btn" onClick={props.closenav}>&times;</a>
+           <div className="close-btn" onClick={props.closenav}>&times;</div>
         </li>
         <li className="login">
         <Link to="/login">LOGIN</Link>
@@ -31,7 +31,7 @@ const Navbar_linkbar = (props) => {
         <li><a href="#feedback">REVIEW</a></li>
         <div className="login">
             <img src={usa} alt=""/>
-            <a>United State</a>
+            <p>United State</p>
         </div>
          <div className="in-item">
             <div className="social-icon">

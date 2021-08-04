@@ -40,7 +40,7 @@ function MouseOver(event) {
     {
           if(i === 1)
         {
-          if(y <= i * 25 && barActive != i)
+          if(y <= i * 25 && barActive !== i)
           {
             setbarActive(i);
           }
@@ -48,7 +48,7 @@ function MouseOver(event) {
 
         else
         {
-          if(y <= i * 25 && y >= (i-1) * 25 && barActive != i)
+          if(y <= i * 25 && y >= (i-1) * 25 && barActive !== i)
           {
             setbarActive(i);
           }
@@ -97,7 +97,7 @@ function MouseOver(event) {
 
   
 
-        if(barActive && i+1 == barActive)
+        if(barActive && i+1 === barActive)
         {
           ctx.font = "800 14px Poppins"
           ctx.fillStyle = "black"
@@ -126,6 +126,7 @@ function MouseOver(event) {
       }
       
     }
+    // eslint-disable-next-line
   }, [props.color , barActive])
 
   return (

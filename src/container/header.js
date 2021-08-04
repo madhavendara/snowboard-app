@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { Link } from 'react-router-dom'
-import Navbar_linkbar from '../component/nav_linkbar'
+import NavbaLinkbar from '../component/nav_linkbar'
 
 
 // images import
@@ -24,10 +24,10 @@ const Header = (props) => {
 
     return (
         <div className="app-header" id="main-header">
-            <Navbar_linkbar classlist={navclass} closenav={closeNav}/>
+            <NavbaLinkbar classlist={navclass} closenav={closeNav}/>
                 <img src={navbar_logo} className="navbar-link" alt="navbar" onClick={openNav}/> 
             <Link to="/">
-                <img src={props.page == 'compare' ? applogo : logo}  className="app-logo" alt="ShredMetrix"/>
+                <img src={props.page === 'compare' ? applogo : logo}  className="app-logo" alt="ShredMetrix"/>
             </Link>    
         </div>
     )

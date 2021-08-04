@@ -22,7 +22,8 @@ const ProductFilter = () => {
                                 </div>
                                 <div className="top-title">
                                     <h1>Filter</h1>
-                                    <a href="#" className="close-btn" onClick={() => setfilteractive(false)}>&times;</a>
+                                    
+                                    <a href="validvalue" className="close-btn" onClick={() => setfilteractive(false)}>&times;</a>
                                 </div>
                                 <div className="accordion">
                                     <div className="mainAccordion active-content">

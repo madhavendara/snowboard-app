@@ -40,12 +40,12 @@ const Education = () => {
                 <div className="card-position container">
                     <div className="row">
                     <div className="left-right">
-                        <a href="#" className="active" onClick={(e) => {setSlide("left-part"); e.preventDefault()}}>
+                        <div className="active" onClick={(e) => {setSlide("left-part"); e.preventDefault()}}>
                             <img src={left} alt=""/>
-                        </a>
-                        <a href="#" onClick={(e) => {setSlide("right-part"); e.preventDefault()}}>
+                        </div>
+                        <div onClick={(e) => {setSlide("right-part"); e.preventDefault()}}>
                             <img src={right} alt=""/>
-                        </a>
+                        </div>
                     </div>
                     </div>
                     <div className={slideState + " row"}>

@@ -1,3 +1,5 @@
+
+
 // component import
 import React , { useState, useEffect,useRef} from 'react'
 import Searchbar from '../component/searchbar'
@@ -25,7 +27,7 @@ import productsGraphicsJSON from '../JSON/productGraphics'
 const Comparison = () => {
 
     const [copyJSON , changecopy]  = useState([])
-    const [loading,setloading] = useState(true)
+    const [loading] = useState(true)
     const [activeproduct] = useState([])
     const [activeGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
@@ -287,7 +289,7 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
 
                 
 
-                <Completegraph activeGraphics={activeGraphics} colorSets={colorSets}/>
+                <Completegraph activeGraphics={activeGraphics} activeBars={activebars} colorSets={colorSets}/>
                
                 {/* <Productgraphics color="red"  url={productsGraphicsJSON[0]["img"]}/> */}
     

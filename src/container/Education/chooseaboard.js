@@ -28,8 +28,8 @@ const Chooseboard = () => {
           </div>
           <div className="row">
             <div className="left-right">
-                <a href="#" className="active"><img src={chevronleft} alt=""/></a>
-                <a href="#"><img src={chevronright} alt=""/></a>
+            <div className="active"><img src={chevronleft} alt=""/></div>
+                <div><img src={chevronright} alt=""/></div>
             </div>
         </div>
         <div className="row">

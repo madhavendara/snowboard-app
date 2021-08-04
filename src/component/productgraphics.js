@@ -62,7 +62,7 @@ const Productgraphics = (props) => {
                   console.log(this.width)
                 }
             }
-
+ // eslint-disable-next-line
       }, [props.canvasHeight,props.url ,props.lineview ])
 
 
