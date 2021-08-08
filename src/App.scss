@@ -902,7 +902,7 @@ path.cls-1 {
         }
 
         
-        [data-graph="true"]
+        [data-graph="true"][data-active="true"]
         {
             .graph-canvas
             {
@@ -911,7 +911,7 @@ path.cls-1 {
         }
 
 
-        [data-callpaseds="true"][data-graph="true"] + .complete-graph
+        .complete-graph[data-activestatus="true"][data-callpaseds="true"][data-graph="true"]
         {
             display: block;
         }
@@ -922,6 +922,19 @@ path.cls-1 {
             display: flex;
             grid-gap: 2.3rem;
             justify-content: center;
+
+            .graphic-text
+            {
+                display: none;
+            }
+        }
+
+        .canvas-text[data-active="true"]
+        {
+            .graphic-text
+            {
+                display: block;
+            }
         }
 
         .snowboard-graphics-container

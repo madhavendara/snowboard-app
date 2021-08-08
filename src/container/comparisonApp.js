@@ -31,6 +31,9 @@ const Comparison = () => {
     const [activeproduct] = useState([])
     const [activeGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
+    const [activebars2 , setActivebar2] = useState([])
+
+
 
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
@@ -52,6 +55,10 @@ const Comparison = () => {
     const EffectiveEdgebase = 1200;
     const TipWidthbase = 350;
     const WaistWidthbase = 300;
+
+    const taperbase = 12;
+    const Sidecutradiusbase = 8.0;
+    const StanceSetbackbase = 64;
 
 
     const canvas = useRef(null)
@@ -144,6 +151,7 @@ const Comparison = () => {
 
      const barUpdate = (graphics) => {
             let newOne = [];
+            let newOne2 = []; 
             for (let i = 0; i < graphics.length; i++)
                 {
                    
@@ -152,15 +160,24 @@ const Comparison = () => {
                         { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
                         { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
                         ];
+
+                        let elements2 =  
+                            [
+                               { amount : graphics[i]["size"] , precentage : Math.floor(graphics[i]["size"] / sizebase * 100) }  , 
+                               { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100)}, 
+                               { amount : graphics[i]["Sidecut radius"] , precentage : Math.floor(graphics[i]["Sidecut radius"] / Sidecutradiusbase * 100) },
+                               { amount : graphics[i]["Stance Setback"] , precentage : Math.floor(graphics[i]["Stance Setback"] / StanceSetbackbase * 100) }
+                            ]
+
                         newOne.push(elements)
-                  
+                        newOne2.push(elements2)
                     
                 
                 }
-                console.log(newOne)
+            
                 setActivebar(newOne)
-                console.log(activebars)
-
+                setActivebar2(newOne2)
+            
     }
 
      const Graphicsrender =  activeGraphics.map((graphics , i) => {
@@ -180,7 +197,7 @@ const Comparison = () => {
         )
     })
 
-    const graphicstext = activeGraphics.map((graphics , i) => {
+    const graphicsoutline = activeGraphics.map((graphics , i) => {
         return (
             <Productgraphics2 
             color={colorSets[i]} 
@@ -188,20 +205,45 @@ const Comparison = () => {
              title={graphics.Title}
              size={graphics.size}
             //  graph={graphics.graph}
-             graph={
+             graph=  {
             [
-               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100)}  , 
-               { amount : graphics.EffectiveEdge , precentage : Math.floor(graphics.EffectiveEdge / EffectiveEdgebase * 100)}, 
-               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100)},
-               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100)}
+               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "size"}  , 
+               { amount : graphics.EffectiveEdge , precentage : Math.floor(graphics.EffectiveEdge / EffectiveEdgebase * 100) , name : "EffectiveEdge"}, 
+               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase"},
+               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth"}
             ]}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth}
            
-             />
+             />    
         )
     })
 
+
+    const graphicsprofile = activeGraphics.map((graphics , i) => {
+        return (
+            <Productgraphics2 
+            color={colorSets[i]} 
+             key={graphics.id}
+             title={graphics.Title}
+             size={graphics.size}
+            //  graph={graphics.graph}
+            graph =  {
+                [
+                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "size"}  , 
+                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"}, 
+                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius"},
+                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback"}
+                ]}
+             canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
+           
+             />    
+        )
+    })
+
+
+    
 
 
 
@@ -280,16 +322,25 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
                         }   
                 </div>
-
-                <div className="canvas-text" data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
+                
+                        
+                <div className="canvas-text" data-active={!lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
                         {
-                        Array.isArray(activeGraphics) && activeGraphics.length ? graphicstext : null
+                        Array.isArray(activeGraphics) && activeGraphics.length ? graphicsoutline : null
+                        }   
+                </div>
+
+                <div className="canvas-text" data-active={lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
+                        {
+                        Array.isArray(activeGraphics) && activeGraphics.length ? graphicsprofile : null
                         }   
                 </div>
 
                 
 
-                <Completegraph activeGraphics={activeGraphics} activeBars={activebars} colorSets={colorSets}/>
+                <Completegraph activestatus={!lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"}  activeBars={activebars} colorSets={colorSets}/>
+
+                <Completegraph activestatus={lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"} activeBars={activebars2} colorSets={colorSets}/>
                
                 {/* <Productgraphics color="red"  url={productsGraphicsJSON[0]["img"]}/> */}
     

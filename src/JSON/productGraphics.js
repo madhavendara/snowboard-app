@@ -20,6 +20,9 @@ const productsGraphics = [
         "img" : productImg,
         "line" : productline,
         "graph" : [85,55,30],
+        "taper" : 8,
+        "Sidecut radius" : 6.4,
+        "Stance Setback" : 20
         
     },
 
@@ -34,6 +37,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1195,
         "TipWidth" : 294,
         "WaistWidth" : 242,
+        "taper" : 10,
+        "Sidecut radius" : 7.0,
+        "Stance Setback" : 20
     },
 
     {
@@ -47,6 +53,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1090,
         "TipWidth" : 300,
         "WaistWidth" : 242,
+        "taper" : 11,
+        "Sidecut radius" : 7.0,
+        "Stance Setback" : 51
     },
 
     {
@@ -60,6 +69,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1120,
         "TipWidth" : 314,
         "WaistWidth" : 200,
+        "taper" : 12,
+        "Sidecut radius" : 6.6,
+        "Stance Setback" : 51
     },
 
     {
@@ -73,6 +85,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1095,
         "TipWidth" : 290,
         "WaistWidth" : 232,
+        "taper" : 8,
+        "Sidecut radius" : 6.4,
+        "Stance Setback" : 64
     },
 
     {
@@ -86,6 +101,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1150,
         "TipWidth" : 290,
         "WaistWidth" : 274,
+        "taper" : 12,
+        "Sidecut radius" : 6.6,
+        "Stance Setback" : 51
     },
 
     {
@@ -99,6 +117,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1095,
         "TipWidth" : 318,
         "WaistWidth" : 264,
+        "taper" : 11,
+        "Sidecutradius" : 7.0,
+        "StanceSetback" : 20
     },
 
     {
@@ -112,6 +133,9 @@ const productsGraphics = [
         "EffectiveEdge" : 1095,
         "TipWidth" : 320,
         "WaistWidth" : 252,
+        "taper" : 12,
+        "Sidecut radius" : 6.6,
+        "Stance Setback" : 40
     },
 
 

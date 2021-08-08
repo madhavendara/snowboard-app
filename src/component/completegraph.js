@@ -22,7 +22,6 @@ const Completegraph = (props) => {
                     ctx.fillStyle = "black"
                     ctx.textAlign = "center"
                     ctx.fillText(bar[j].amount,(canvaswidth * bar[j].precentage / 100 - 20), (j*26 + 23))
-                    console.log(bar[j].precentage)
                 }
   
               }
@@ -74,7 +73,7 @@ const Completegraph = (props) => {
         //     ctx.textAlign = "center"
         //     ctx.fillText(bar[i] + '%',(props.width * bar[i] / 100 - 20), (i*26 + 23))
         //   }
-          
+          // console.log(props.activeBars)
   // eslint-disable-next-line
       }, [props.activeBars.length])
 
@@ -82,7 +81,7 @@ const Completegraph = (props) => {
 
     return (
 
-        <div className="complete-graph">
+        <div className="complete-graph" data-activestatus={props.activestatus} data-graph={props.graph} data-callpaseds={props.callpaseds} >
         <canvas className="fullgraph-canvas"
           ref={canvasfull}
           width={canvaswidth * (props.activeBars.length)}

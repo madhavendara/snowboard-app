@@ -73,61 +73,55 @@ function MouseOver(event) {
   useEffect(() => {
 
     if(canvas) {
-      const ctx = canvas.current.getContext("2d")
-      // "size" : 148,
-      //   "EffectiveEdge" : 1095,
-      //   "TipWidth" : 290,
-      //   "WaistWidth" : 242, 
+          const ctx = canvas.current.getContext("2d")
+          ctx.clearRect(0,0,props.width,bar.length * 20 + 40)
+
+          for(let i = 0; i < bar.length; i++)
+          {
+            for(let j = 0; j < (props.width / 4); j++)
+            {
+              ctx.fillStyle = props.color
+              ctx.fillRect(j*4,(i*26 + 10),0.5,15)
+            }
+
+            ctx.fillStyle = props.color
+            ctx.fillRect(0,(i*26 + 10),props.width * bar[i].precentage / 100,15)
+
+
       
-      let options = ["size" , "Effective Edge" , "Tip Width" , "Waist Width"]
 
-      ctx.clearRect(0,0,props.width,bar.length * 20 + 40)
+            if(barActive && i+1 === barActive)
+            {
+              ctx.font = "800 14px Poppins"
+              ctx.fillStyle = "black"
+              ctx.textAlign = "left"
+              ctx.fillText(bar[i].name ,5, (i+1) * 26 - 3)
 
-      for(let i = 0; i < bar.length; i++)
-      {
-        for(let j = 0; j < (props.width / 4); j++)
-        {
-          ctx.fillStyle = props.color
-          ctx.fillRect(j*4,(i*26 + 10),0.5,15)
-        }
+              ctx.fillStyle = "white"
+              ctx.fillRect((props.width * bar[i].precentage / 100 - 40), (i+1)*26 - 30, 50, 20);
 
-        ctx.fillStyle = props.color
-        ctx.fillRect(0,(i*26 + 10),props.width * bar[i].precentage / 100,15)
+              ctx.font = "14px Poppins"
+              ctx.fillStyle = "black"
+              ctx.textAlign = "center"
+              ctx.fillText(bar[i].amount ,(props.width * bar[i].precentage / 100 - 20), (i+1) *26 - 14)
 
+            }
 
-  
+            else
+            {
+              ctx.font = "400 14px Poppins"
+              ctx.fillStyle = "black"
+              ctx.textAlign = "left"
+              ctx.fillText(bar[i].name ,5, (i+1) * 26 - 3)
+            }
 
-        if(barActive && i+1 === barActive)
-        {
-          ctx.font = "800 14px Poppins"
-          ctx.fillStyle = "black"
-          ctx.textAlign = "left"
-          ctx.fillText(options[i] ,5, (i+1) * 26 - 3)
+            
+          }
 
-          ctx.fillStyle = "white"
-          ctx.fillRect((props.width * bar[i].precentage / 100 - 40), (i+1)*26 - 30, 50, 20);
-
-          ctx.font = "14px Poppins"
-          ctx.fillStyle = "black"
-          ctx.textAlign = "center"
-          ctx.fillText(bar[i].amount ,(props.width * bar[i].precentage / 100 - 20), (i+1) *26 - 14)
-
-        }
-
-        else
-        {
-          ctx.font = "400 14px Poppins"
-          ctx.fillStyle = "black"
-          ctx.textAlign = "left"
-          ctx.fillText(options[i] ,5, (i+1) * 26 - 3)
-        }
-
-        
-      }
       
     }
     // eslint-disable-next-line
-  }, [props.color , barActive])
+  }, [props.color , barActive , props.bar , props.lineview])
 
   return (
         <canvas className="graph-canvas"

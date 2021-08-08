@@ -746,10 +746,10 @@ path.cls-1 {
 .canvas-area [data-callpaseds=true] .graphic-text h5 {
   padding-bottom: 2rem;
 }
-.canvas-area [data-graph=true] .graph-canvas {
+.canvas-area [data-graph=true][data-active=true] .graph-canvas {
   display: block;
 }
-.canvas-area [data-callpaseds=true][data-graph=true] + .complete-graph {
+.canvas-area .complete-graph[data-activestatus=true][data-callpaseds=true][data-graph=true] {
   display: block;
 }
 .canvas-area .canvas-text {
@@ -760,6 +760,12 @@ path.cls-1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.canvas-area .canvas-text .graphic-text {
+  display: none;
+}
+.canvas-area .canvas-text[data-active=true] .graphic-text {
+  display: block;
 }
 .canvas-area .snowboard-graphics-container {
   display: -webkit-box;
