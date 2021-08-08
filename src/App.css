@@ -2018,15 +2018,28 @@ img {
   font-family: "Hansief";
   font-size: 20px;
   position: relative;
+  cursor: pointer;
+}
+.side-filteroption .accordion .mainAccordion .Accordion-label::before {
+  content: "+";
+  position: absolute;
+  top: 40%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 0;
+  color: white;
+  font-size: 35px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }
 .side-filteroption .accordion .mainAccordion .Accordion-content {
   color: white;
   margin: 5px 0;
   position: relative;
-  height: auto;
+  height: 0;
   overflow: hidden;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 .side-filteroption .accordion .mainAccordion .Accordion-content .middle .multi-range-slider input {
   width: 100%;
@@ -2057,6 +2070,14 @@ img {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   margin: 0 10px;
+}
+.side-filteroption .accordion .active-content .Accordion-content {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.side-filteroption .accordion .active-content .Accordion-label::before {
+  content: "-";
 }
 .side-filteroption::-webkit-scrollbar {
   width: 5px;

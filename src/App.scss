@@ -2352,32 +2352,35 @@ img
             .mainAccordion
         {
             padding: 10px 40px;
+           
             .Accordion-label
             {
                 color: white;
                 font-family: 'Hansief';
                 font-size: 20px;
                 position: relative;
+                cursor: pointer;
             }
-            // .Accordion-label::before
-            // {
-            //     content: "+";
-            //     position: absolute;
-            //     top: 40%;
-            //     transform: translateY(-50%);
-            //     right: 0;
-            //     color: white;
-            //     font-size: 35px;
-            //     font-weight: 400;
-            // }
+            .Accordion-label::before
+            {
+                content: "+";
+                position: absolute;
+                top: 40%;
+                transform: translateY(-50%);
+                right: 0;
+                color: white;
+                font-size: 35px;
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+            }
             .Accordion-content
             {
                 color: white;
                 margin: 5px 0;
                 position: relative;
-                height: auto;
+                height: 0;
                 overflow: hidden;
-                transition: 0.5s;
+                transition: all 0.5s;
                 .middle
                 {
                     .multi-range-slider input {
@@ -2415,8 +2418,22 @@ img
         }
               }
             }
-
         }
+
+        .active-content
+        {
+            .Accordion-content
+            {
+                height: max-content;
+            }
+
+            .Accordion-label::before
+            {
+                content: '-';
+            }
+        }
+
+
      }
 
      &::-webkit-scrollbar {

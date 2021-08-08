@@ -1,4 +1,6 @@
 import React , {useState}  from 'react'
+import Accordion from './accordion';
+
 
 const ProductFilter = () => {
     const [filteractive,setfilteractive] = useState(false) 
@@ -23,13 +25,10 @@ const ProductFilter = () => {
                                 <div className="top-title">
                                     <h1>Filter</h1>
                                     
-                                    <a href="validvalue" className="close-btn" onClick={() => setfilteractive(false)}>&times;</a>
+                                    <a href="validvalue" className="close-btn" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>&times;</a>
                                 </div>
                                 <div className="accordion">
-                                    <div className="mainAccordion active-content">
-                                        <div className="Accordion-label">
-                                            LENGTH
-                                        </div>
+                                    <Accordion title="LENGTH">
                                         <div className="Accordion-content">
                                             <p>Size</p>
                                             <div className="middle">
@@ -39,11 +38,24 @@ const ProductFilter = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                </div>
-                                <div className="mainAccordion">
-                                    <div className="Accordion-label">
-                                        SETBACK
-                                    </div>
+                                    </Accordion>
+                                    <Accordion title="SETBACK">
+                                        <div className="Accordion-content">
+                                            <div className="check-box">
+                                                <input type="checkbox" id="horns" name="horns"/>
+                                                <label >Camber</label>
+                                            </div>
+                                            <div className="check-box">
+                                                <input type="checkbox" id="horns" name="horns"/>
+                                                <label >Rocker</label>
+                                            </div>
+                                            <div className="check-box">
+                                                <input type="checkbox" id="horns" name="horns"/>
+                                                <label >Flat</label>
+                                            </div>
+                                        </div>
+                                </Accordion>
+                                <Accordion title="SURFACE AREA">
                                     <div className="Accordion-content">
                                         <div className="check-box">
                                             <input type="checkbox" id="horns" name="horns"/>
@@ -58,11 +70,69 @@ const ProductFilter = () => {
                                             <label >Flat</label>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="mainAccordion">
-                                <div className="Accordion-label">
-                                    SURFACE AREA
-                                </div>
+                                </Accordion>
+                                <Accordion title="PROFILE">
+                                    <div className="Accordion-content">
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Camber</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Rocker</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Flat</label>
+                                        </div>
+                                    </div>
+                                </Accordion>
+                                <Accordion title="BRAND">
+                                    <div className="Accordion-content">
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Camber</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Rocker</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Flat</label>
+                                        </div>
+                                    </div>
+                                </Accordion>
+                                <Accordion title="PRICE">
+                                    <div className="Accordion-content">
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Camber</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Rocker</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" name="horns"/>
+                                            <label >Flat</label>
+                                        </div>
+                                    </div>
+                               </Accordion>
+                               <Accordion title="GENDER">
+                                    <div className="Accordion-content">
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" value="male" name="gender"/>
+                                            <label >Male</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" value="female" name="gender"/>
+                                            <label >Female</label>
+                                        </div>
+                            
+                                    </div>
+                            </Accordion>
+                            <Accordion title="WIDTH">
                                 <div className="Accordion-content">
                                     <div className="check-box">
                                         <input type="checkbox" id="horns" name="horns"/>
@@ -77,117 +147,19 @@ const ProductFilter = () => {
                                         <label >Flat</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="mainAccordion">
-                            <div className="Accordion-label">
-                                PROFILE
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Camber</label>
+                            </Accordion>
+                            <Accordion title="ABILITY LEVEL">
+                                <div className="Accordion-content">
+                                    <div className="check-box">
+                                        <input type="checkbox" id="horns" name="horns"/>
+                                        <label >Beginner-Intermediate</label>
+                                    </div>
+                                    <div className="check-box">
+                                        <input type="checkbox" id="horns" name="horns"/>
+                                        <label >Intermediate-Advanced</label>
+                                    </div>
                                 </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Rocker</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Flat</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mainAccordion">
-                            <div className="Accordion-label">
-                                BRAND
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Camber</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Rocker</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Flat</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mainAccordion">
-                            <div className="Accordion-label">
-                                PRICE
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Camber</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Rocker</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Flat</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mainAccordion">
-                            <div className="Accordion-label">
-                                GENDER
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Camber</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Rocker</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Flat</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mainAccordion">
-                            <div className="Accordion-label">
-                                WIDTH
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Camber</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Rocker</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Flat</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mainAccordion active-content">
-                            <div className="Accordion-label">
-                                ABILITY LEVEL
-                            </div>
-                            <div className="Accordion-content">
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Beginner-Intermediate</label>
-                                </div>
-                                <div className="check-box">
-                                    <input type="checkbox" id="horns" name="horns"/>
-                                    <label >Intermediate-Advanced</label>
-                                </div>
-                            </div>
-                        </div>
+                            </Accordion>
                                 </div>
                             </div>
         </React.Fragment>
