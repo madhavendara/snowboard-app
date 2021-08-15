@@ -1,4 +1,4 @@
-export  class Product {
+export default class Product {
     static getProduct =  () =>{
         return new Promise(async (resolve, reject)=>{
             await fetch("http://extropysystems.com/public/airtable/api/list.php", {
@@ -17,9 +17,9 @@ export  class Product {
                             products.push({
                                 "id": data[i].id || '',
                                 "Title": data[i].fields.SKU,
-                                "type": data[i].fields["Ability Level (from SB Categorical Specs)"],
+                                "type": "small",
                                 "stars": 4,
-                                "Price": data[i].fields.Pricing,
+                                "Price": "$0",
                                 "img": data[i].fields.Image[0] || "https://spotlexdigital.com/compare/product-1.jpg"
                             });
                         }

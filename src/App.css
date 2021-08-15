@@ -129,6 +129,7 @@ canvas {
 #menu .login .close-btn {
   font-size: 50px;
   font-weight: 300;
+  cursor: pointer;
 }
 #menu .login img {
   width: 24px;
