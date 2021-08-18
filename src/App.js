@@ -12,6 +12,7 @@ import Chooseboard from './container/Education/chooseaboard'
 import About from './container/aboutus'
 import Invest from './container/invest'
 import Login from './container/login'
+import Admin from './container/useradmin'
 
 function App() {
   return (
@@ -55,6 +56,12 @@ function App() {
                   <Route path='/login' exact>
                         <Login />
                   </Route>
+
+                  <Route path='/dashboard' exact>
+                        <Admin />
+                  </Route>
+
+                  
                   
                   
             </Switch>

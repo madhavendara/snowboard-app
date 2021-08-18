@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
+import { Link } from 'react-router-dom'
 
 
 const Invest = () => {
@@ -46,7 +47,7 @@ const Invest = () => {
                                     <p>Forgot your password?</p>
                                 </div>
                                 <div className="contact-form">
-                                    <button ><img src="img/Vector.svg" alt=""/></button>
+                                    <Link to="/dashboard" className="login-submit">Submit</Link>
                                 </div>
                                 </div>
                             </div>

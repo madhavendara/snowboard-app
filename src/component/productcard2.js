@@ -1,5 +1,5 @@
 import React from 'react'
-
+import deleteimg from '../assest/delete.svg'
 const Productcard = (props) => {
 
     const active_type = () =>
@@ -25,10 +25,7 @@ const Productcard = (props) => {
                             </div>
                             <div className="price-container">
                                 <h3>{props.price}</h3>
-                                <button className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
-                                    onClick = {() => props.productadded(props.id)}
-                                >
-                                </button>
+                                <button class="selection-check delete-selection"></button>
                             </div>
 
                         </div>

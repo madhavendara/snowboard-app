@@ -33,6 +33,8 @@ const Comparison = () => {
     const [activebars , setActivebar] = useState([])
     const [activebars2 , setActivebar2] = useState([])
 
+
+
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
@@ -78,7 +80,8 @@ const Comparison = () => {
 
                 anotherCopy = [...products];
 
-                console.log(products)
+                console.log(anotherCopy)
+
 
                 setProducts(exampleCopy)
                 setCanvasHeight(canvas.current.offsetHeight)
@@ -103,7 +106,7 @@ const Comparison = () => {
 
     const productAdded = (key) => {
 
-           for(let i = 0; i < 8; i++)
+           for(let i = 0; i < products.length; i++)
             {
               
                 if(products[i].id === key)
@@ -135,11 +138,11 @@ const Comparison = () => {
                         activeproduct.push(products[i].id)
 
 
-                        for(let i = 0; i < productsGraphicsJSON.length; i++)
+                        for(let i = 0; i < products.length; i++)
                         {
-                            if(productsGraphicsJSON[i]["ref"] === key)
+                            if(products[i]["ref"] === key)
                             {
-                                activeGraphics.push(productsGraphicsJSON[i])
+                                activeGraphics.push(products[i])
                             }
                         }
 
@@ -160,99 +163,105 @@ const Comparison = () => {
 
 
      const barUpdate = (graphics) => {
-        let newOne = [];
-        let newOne2 = []; 
-        for (let i = 0; i < graphics.length; i++)
-            {
-               
-                    let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100)}  , 
-                    { amount : graphics[i].EffectiveEdge , precentage : Math.floor(graphics[i].EffectiveEdge / EffectiveEdgebase * 100)}, 
-                    { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
-                    { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
-                    ];
+            let newOne = [];
+            let newOne2 = []; 
+            for (let i = 0; i < graphics.length; i++)
+                {
+                   
+                        let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100)}  , 
+                        { amount : graphics[i].EffectiveEdge , precentage : Math.floor(graphics[i].EffectiveEdge / EffectiveEdgebase * 100)}, 
+                        { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
+                        { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
+                        ];
 
-                    let elements2 =  
-                        [
-                           { amount : graphics[i]["size"] , precentage : Math.floor(graphics[i]["size"] / sizebase * 100) }  , 
-                           { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100)}, 
-                           { amount : graphics[i]["Sidecut radius"] , precentage : Math.floor(graphics[i]["Sidecut radius"] / Sidecutradiusbase * 100) },
-                           { amount : graphics[i]["Stance Setback"] , precentage : Math.floor(graphics[i]["Stance Setback"] / StanceSetbackbase * 100) }
-                        ]
+                        let elements2 =  
+                            [
+                               { amount : graphics[i]["size"] , precentage : Math.floor(graphics[i]["size"] / sizebase * 100) }  , 
+                               { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100)}, 
+                               { amount : graphics[i]["Sidecut radius"] , precentage : Math.floor(graphics[i]["Sidecut radius"] / Sidecutradiusbase * 100) },
+                               { amount : graphics[i]["Stance Setback"] , precentage : Math.floor(graphics[i]["Stance Setback"] / StanceSetbackbase * 100) }
+                            ]
 
-                    newOne.push(elements)
-                    newOne2.push(elements2)
+                        newOne.push(elements)
+                        newOne2.push(elements2)
+                    
                 
+                }
             
-            }
-        
-            setActivebar(newOne)
-            setActivebar2(newOne2)
-        
-}
+                setActivebar(newOne)
+                setActivebar2(newOne2)
+            
+    }
 
-const Graphicsrender =  activeGraphics.map((graphics , i) => {
-    return (
-        <Productgraphics 
-        color={colorSets[i]} 
-         url={graphics["img"]}
-         url2={graphics["line"]}
-         lineview={lineview} 
-         key={graphics.id}
-         title={graphics.Title}
-         size={graphics.size}
-         canvasHeight={canvasHeight}
-         canvasWidth={canvasWidth}
+     const Graphicsrender =  activeGraphics.map((graphics , i) => {
+        return (
+            <Productgraphics 
+            color={colorSets[i]} 
+             url={graphics["outline"]}
+             url2={graphics["line"]}
+             lineview={lineview} 
+             key={graphics.id}
+             title={graphics.Title}
+             size={graphics.size}
+             canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
 
-         />
-    )
-})
+             />
+        )
+    })
 
-const graphicsoutline = activeGraphics.map((graphics , i) => {
-    return (
-        <Productgraphics2 
-        color={colorSets[i]} 
-         key={graphics.id}
-         title={graphics.Title}
-         size={graphics.size}
-        //  graph={graphics.graph}
-         graph=  {
-        [
-           { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "size"}  , 
-           { amount : graphics.EffectiveEdge , precentage : Math.floor(graphics.EffectiveEdge / EffectiveEdgebase * 100) , name : "EffectiveEdge"}, 
-           { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase"},
-           { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth"}
-        ]}
-         canvasHeight={canvasHeight}
-         canvasWidth={canvasWidth}
-       
-         />    
-    )
-})
-
-
-const graphicsprofile = activeGraphics.map((graphics , i) => {
-    return (
-        <Productgraphics2 
-        color={colorSets[i]} 
-         key={graphics.id}
-         title={graphics.Title}
-         size={graphics.size}
-        //  graph={graphics.graph}
-        graph =  {
+    const graphicsoutline = activeGraphics.map((graphics , i) => {
+        return (
+            <Productgraphics2 
+            color={colorSets[i]} 
+             key={graphics.id}
+             title={graphics.Title}
+             size={graphics.size}
+            //  graph={graphics.graph}
+             graph=  {
             [
-               { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "size"}  , 
-               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"}, 
-               { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius"},
-               { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback"}
+               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "size"}  , 
+               { amount : graphics.EffectiveEdge , precentage : Math.floor(graphics.EffectiveEdge / EffectiveEdgebase * 100) , name : "EffectiveEdge"}, 
+               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase"},
+               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth"}
             ]}
-         canvasHeight={canvasHeight}
-         canvasWidth={canvasWidth}
-       
-         />    
-    )
-})
+             canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
+           
+             />    
+        )
+    })
 
-  
+
+    const graphicsprofile = activeGraphics.map((graphics , i) => {
+        return (
+            <Productgraphics2 
+            color={colorSets[i]} 
+             key={graphics.id}
+             title={graphics.Title}
+             size={graphics.size}
+            //  graph={graphics.graph}
+            graph =  {
+                [
+                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "size"}  , 
+                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"}, 
+                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius"},
+                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback"}
+                ]}
+             canvasHeight={canvasHeight}
+             canvasWidth={canvasWidth}
+           
+             />    
+        )
+    })
+
+
+    
+
+
+
+
+
     const placeholder = <img className="image-center" src={placeholder_graphics} alt="placeholder"/>
 
     return (
@@ -326,8 +335,8 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
                         }   
                 </div>
-
-
+                
+                        
                 <div className="canvas-text" data-active={!lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
                         {
                         Array.isArray(activeGraphics) && activeGraphics.length ? graphicsoutline : null
@@ -342,7 +351,6 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
 
                 
 
-                
                 <Completegraph activestatus={!lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"}  activeBars={activebars} colorSets={colorSets}/>
 
                 <Completegraph activestatus={lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"} activeBars={activebars2} colorSets={colorSets}/>

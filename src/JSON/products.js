@@ -1,4 +1,6 @@
-export  class Product {
+import productline from "../assest/product-line-1.svg";
+
+export class Product {
     static getProduct =  () =>{
         return new Promise(async (resolve, reject)=>{
             await fetch("http://extropysystems.com/public/airtable/api/list.php", {
@@ -16,11 +18,21 @@ export  class Product {
                         for (var i = 0; i < data.length; i++) {
                             products.push({
                                 "id": data[i].id || '',
-                                "Title": data[i].fields.SKU,
-                                "type": data[i].fields["Ability Level (from SB Categorical Specs)"],
+                                "ref": data[i].id || '',
+                                "Title": data[i].fields.SKU || '',
+                                "type": data[i].fields.Width,
                                 "stars": 4,
-                                "Price": data[i].fields.Pricing,
-                                "img": data[i].fields.Image[0] || "https://spotlexdigital.com/compare/product-1.jpg"
+                                "Price": data[i].fields.Pricing || '$0',
+                                "img": data[i].fields.Image[0] || "https://spotlexdigital.com/compare/product-1.jpg",
+                                "outline" : data[i].fields.Outline[0]["url"],
+                                "size" : data[i].fields['Size (cm)'] || 0,
+                                "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,
+                                "TipWidth" : data[i].fields['Tip Width (mm)'] || 0,
+                                "WaistWidth" : data[i].fields['Waist Width (mm)'] || 0,
+                                "line" : productline,
+                                "taper" : data[i].fields['Taper (mm)'] || 0,
+                                "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
+                                "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || 0
                             });
                         }
                         resolve(products)
