@@ -3,7 +3,17 @@ import product from '../assest/product/product-1.jpg'
 import product2 from '../assest/product/product-1.jpg'
 const Groupcard = (props) => {
 
-const productlist = [product,product2,product2,product]    
+const productlist = [product,product2,product2,product]
+
+const ids = [
+    
+    ["recUbCjIVpHBBgqWa" , "recqo3n9kkU1L1omW"],
+    ["recUbCjIVpHBBgqWa" , "recqo3n9kkU1L1omW" , "recqo3n9kkU1L1omW" , "recSbyQtddYhRWpQ9"],
+    ["recUbCjIVpHBBgqWa" , "recqo3n9kkU1L1omW" , "recqo3n9kkU1L1omW"],
+    ["recUbCjIVpHBBgqWa" , "recqo3n9kkU1L1omW" ,"recSbyQtddYhRWpQ9"],
+]
+
+console.log(ids)
 
     return (
         <div className='group-card'>

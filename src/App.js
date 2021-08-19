@@ -12,6 +12,7 @@ import Chooseboard from './container/Education/chooseaboard'
 import About from './container/aboutus'
 import Invest from './container/invest'
 import Login from './container/login'
+import Register from './container/register'
 import Admin from './container/useradmin'
 
 function App() {
@@ -56,6 +57,12 @@ function App() {
                   <Route path='/login' exact>
                         <Login />
                   </Route>
+
+                  <Route path='/register' exact>
+                        <Register />
+                  </Route>
+
+                  
 
                   <Route path='/dashboard' exact>
                         <Admin />

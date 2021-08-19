@@ -169,7 +169,7 @@ const Comparison = () => {
                 {
                    
                         let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100)}  , 
-                        { amount : graphics[i].EffectiveEdge , precentage : Math.floor(graphics[i].EffectiveEdge / EffectiveEdgebase * 100)}, 
+                        { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100)}, 
                         { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
                         { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
                         ];
@@ -221,7 +221,7 @@ const Comparison = () => {
              graph=  {
             [
                { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "size"}  , 
-               { amount : graphics.EffectiveEdge , precentage : Math.floor(graphics.EffectiveEdge / EffectiveEdgebase * 100) , name : "EffectiveEdge"}, 
+               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"},
                { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase"},
                { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth"}
             ]}

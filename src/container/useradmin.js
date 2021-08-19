@@ -76,7 +76,7 @@ const Admin = () => {
                     </div>
 
                     <div className={activetab == "tab-2" ? "tabs tab-link-active" : "tabs"} onClick={() => setactivetab("tab-2")}>
-                    Save comparisons
+                   My Profile
                     </div>
                 </div>
 
@@ -102,9 +102,7 @@ const Admin = () => {
                 </div>
 
                 <div className={activetab == "tab-2" ? "tab-content tab-content-active" : "tab-content"}>
-                    <Groupcard numbers={4}/>
-                    <Groupcard numbers={2}/>
-                    <Groupcard numbers={3}/>
+                    user admin
                 </div>
             </div>
 

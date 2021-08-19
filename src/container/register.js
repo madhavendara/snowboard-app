@@ -20,32 +20,41 @@ const Invest = () => {
                         </div>
                         <div className="login-side">
                             <div className="login-uptext">
-                                <h1>LOG-IN</h1>
+                                <h1>Register now</h1>
                                 <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem </p>
                             </div>
-      
-                                <Link to="/register" className="login-facebook">
-                                <p>Register</p>
+
+                            <Link to="/login" className="login-facebook">
+                                <p>Log in</p>
+                                
                                 </Link>
+
                             <div className="wrapper">
                                 <div className="contact-form">
                                 <div className="input-fields">
+
                                 <div>
-                                    <p>EMAIL*</p>
+                                    <p>Your name</p>
+                                    <input type="text" className="input" placeholder="your name"/>
+                                </div>
+                                <div>
+                                    <p>Enter EMAIL*</p>
                                     <input type="text" className="input" placeholder="dummy@gmail.com"/>
                                 </div>
                                     <div>
-                                        <p>PASSWIRD*</p>
-                                        <input type="text" className="input"  placeholder="********"/>
+                                        <p> Choose PASSWIRD*</p>
+                                        <input type="password" className="input"  placeholder="********"/>
                                     </div>
-                                </div>
-                                <div className="check-btngroup">
-                                    <div className="check-item">
-                                        <input type="checkbox" id="check"/>
-                                        <label for="check">Remember me</label>
+
+                                    <div>
+                                        <p> Re enter PASSWIRD*</p>
+                                        <input type="text" className="input"/>
                                     </div>
-                                    <p>Forgot your password?</p>
+
+
+                                    
                                 </div>
+                            
                                 <div className="contact-form">
                                     <Link to="/dashboard" className="login-submit">Submit</Link>
                                 </div>
