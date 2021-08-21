@@ -755,16 +755,16 @@ path.cls-1 {
 .canvas-area .complete-graph {
   display: none;
 }
-.canvas-area [data-callpaseds=true] .graph-canvas {
-  display: none !important;
-}
-.canvas-area [data-callpaseds=true] .graphic-text h4 {
+.canvas-area .graphic-text h4 {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
   max-width: 151px;
   text-transform: capitalize;
+}
+.canvas-area [data-callpaseds=true] .graph-canvas {
+  display: none !important;
 }
 .canvas-area [data-callpaseds=true] .graphic-text h5 {
   padding-bottom: 2rem;

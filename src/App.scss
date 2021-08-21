@@ -905,6 +905,19 @@ path.cls-1 {
     display: none;
 }
 
+.graphic-text
+{
+    h4
+    {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        max-width: 151px;
+        text-transform: capitalize;
+    }
+}
+
         [data-callpaseds="true"]
         {
             .graph-canvas
@@ -914,15 +927,7 @@ path.cls-1 {
 
             .graphic-text
             {
-                h4
-                {
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    width: 100%;
-                    max-width: 151px;
-                    text-transform: capitalize;
-                }
+               
 
                 h5
                 {
