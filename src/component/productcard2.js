@@ -1,14 +1,5 @@
 import React from 'react'
-import deleteimg from '../assest/delete.svg'
 const Productcard = (props) => {
-
-    const active_type = () =>
-    {
-        if(props.added)
-        {
-            return props.class.indexOf(props.id) + 1;
-        }
-    }
 
     return (
         <div className='product-card'>
@@ -25,7 +16,7 @@ const Productcard = (props) => {
                             </div>
                             <div className="price-container">
                                 <h3>{props.price}</h3>
-                                <button class="selection-check delete-selection"></button>
+                                <button className="selection-check delete-selection"></button>
                             </div>
 
                         </div>

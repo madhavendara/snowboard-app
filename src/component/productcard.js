@@ -17,7 +17,9 @@ const Productcard = (props) => {
                         </div>
                         <div className="product-content">
                             <div className="title-content">
-                                <h1>{props.title}</h1>
+                              <a href={props.url} target="_blank" rel="noreferrer">
+                                    <h1>{props.title}</h1>    
+                                  </a>  
                                 <h5>{props.type}</h5>
                             </div>
                             <div className="star star-4">

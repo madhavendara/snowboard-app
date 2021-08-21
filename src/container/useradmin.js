@@ -1,9 +1,8 @@
-import React , { useState, useEffect,useRef} from 'react'
+import React , { useState, useEffect} from 'react'
 import Header from './header'
 import Footer from './footer'
 import Productcard from '../component/productcard2'
-import Groupcard from '../component/groupcard'
-
+import { Link } from 'react-router-dom'
 
 import  {Product} from '../JSON/products'
 import userjson from '../JSON/user'
@@ -27,7 +26,7 @@ const Admin = () => {
                 {
                     for(let j = 0; j < userjson.length; j++)
                     {
-                        if(products[i].id == userjson[j].ref)
+                        if(products[i].id === userjson[j].ref)
                         {
                             let use = products[i];
                             usercopy.push(use)
@@ -71,16 +70,16 @@ const Admin = () => {
             </div>
             <div className="user-docs div">
                 <div className="user-tabs">
-                    <div className={activetab == "tab-1" ? "tabs tab-link-active" : "tabs"} onClick={() => setactivetab("tab-1")}>
+                    <div className={activetab === "tab-1" ? "tabs tab-link-active" : "tabs"} onClick={() => setactivetab("tab-1")}>
                         Save products
                     </div>
 
-                    <div className={activetab == "tab-2" ? "tabs tab-link-active" : "tabs"} onClick={() => setactivetab("tab-2")}>
+                    <div className={activetab === "tab-2" ? "tabs tab-link-active" : "tabs"} onClick={() => setactivetab("tab-2")}>
                    My Profile
                     </div>
                 </div>
 
-                <div className={activetab == "tab-1" ? "tab-content tab-content-active" : "tab-content"}>
+                <div className={activetab === "tab-1" ? "tab-content tab-content-active" : "tab-content"}>
                 {
                     userproducts.map(product => {
                         return (
@@ -101,8 +100,35 @@ const Admin = () => {
                 }
                 </div>
 
-                <div className={activetab == "tab-2" ? "tab-content tab-content-active" : "tab-content"}>
-                    user admin
+                <div className={activetab === "tab-2" ? "tab-content tab-content-active" : "tab-content"}>
+                <div className="wrapper">
+                                <div className="contact-form">
+                                <div className="input-fields user-panel-profile">
+
+                                <div>
+                                    <p>Your name</p>
+                                    <input type="text" className="input" placeholder="your name"/>
+                                </div>
+                                <div>
+                                    <p>Enter EMAIL*</p>
+                                    <input type="text" className="input" placeholder="dummy@gmail.com"/>
+                                </div>
+                                    <div>
+                                        <p> Choose PASSWIRD*</p>
+                                        <input type="password" className="input"  placeholder="********"/>
+                                    </div>
+
+                                    <div>
+                                        <p> Re enter PASSWIRD*</p>
+                                        <input type="text" className="input"/>
+                                    </div>                                    
+                                </div>
+                            
+                                <div className="contact-form">
+                                    <Link to="/dashboard" className="login-submit">Submit</Link>
+                                </div>
+                                </div>
+                            </div>
                 </div>
             </div>
 

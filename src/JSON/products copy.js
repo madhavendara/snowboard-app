@@ -16,13 +16,10 @@ export class Product {
                     var products = [];
                     if (data) {
                         for (var i = 0; i < data.length; i++) {
-							
-							if((typeof data[i].fields.Image !=='undefined') || (typeof data[i].fields.Outline !=='undefined')){
                             products.push({
                                 "id": data[i].id || '',
                                 "ref": data[i].id || '',
-                                "Title": data[i].fields["Product title"] ?  data[i].fields["Product title"] :  data[i].fields.SKU,
-                                "url" : data[i].fields["Product href"] ?  data[i].fields["Product href"] :  "https://www.evo.com/shop/snowboard",
+                                "Title": data[i].fields.SKU || '',
                                 "type": data[i].fields.Width,
                                 "stars": 4,
                                 "Price": data[i].fields.Pricing || '$0',
@@ -38,7 +35,6 @@ export class Product {
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || 0
                             });
                         }
-						}
                         resolve(products)
                     }
                 })

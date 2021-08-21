@@ -21,7 +21,6 @@ import expandbtn from '../assest/expand-arrow.svg'
 
 // Json import
 import  {Product} from '../JSON/products'
-import productsGraphicsJSON from '../JSON/productGraphics'
 
 
 const Comparison = () => {
@@ -48,7 +47,7 @@ const Comparison = () => {
 
 
     const [products,setProducts] = useState([])
-    const [selectedProducts,setSelectedProducts] = useState([])
+
 
     // graphs base 
 
@@ -64,7 +63,6 @@ const Comparison = () => {
 
     const canvas = useRef(null)
     let anotherCopy = [];
-    let tempRight = []
   
 
     useEffect(() => {
@@ -77,8 +75,9 @@ const Comparison = () => {
                 {
                     exampleCopy[i]["added"] = false
                 }
-
+// eslint-disable-next-line
                 anotherCopy = [...products];
+
 
                 console.log(anotherCopy)
 
@@ -287,6 +286,7 @@ const Comparison = () => {
                             <Productcard
                     productimg={product["img"]} 
                     title={product["Title"]} 
+                    url={product["url"]}
                     type={product["type"]}
                     stars={product["stars"]}
                     price={product["Price"]}

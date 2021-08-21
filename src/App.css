@@ -508,6 +508,13 @@ nav #icon {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.product-card .product-content .title-content a {
+  color: #fff;
+  text-decoration: none;
+}
+.product-card .product-content .title-content a:hover {
+  text-decoration: underline;
+}
 .product-card .product-content .title-content h1 {
   font-size: 1.1rem;
   font-family: "Poppins", sans-serif;
@@ -515,6 +522,11 @@ nav #icon {
   font-weight: 600;
   margin: 0;
   padding-bottom: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 177px;
+  text-transform: capitalize;
 }
 .product-card .product-content .title-content h5 {
   color: #fff;
@@ -747,7 +759,12 @@ path.cls-1 {
   display: none !important;
 }
 .canvas-area [data-callpaseds=true] .graphic-text h4 {
-  padding-top: 2rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  max-width: 151px;
+  text-transform: capitalize;
 }
 .canvas-area [data-callpaseds=true] .graphic-text h5 {
   padding-bottom: 2rem;
@@ -2257,4 +2274,30 @@ a.login-submit {
   margin-bottom: 10px;
   font-size: 19px;
   font-weight: 400;
+}
+.dashboard-container .tab-content .wrapper {
+  width: 100%;
+}
+.dashboard-container .wrapper .user-panel-profile {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: unset;
+  -webkit-box-direction: unset;
+      -ms-flex-direction: unset;
+          flex-direction: unset;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.dashboard-container .wrapper .user-panel-profile > div {
+  -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
+  width: 45%;
+  color: #fff;
+}
+.dashboard-container .wrapper .user-panel-profile > div p {
+  color: #fff;
+}
+.dashboard-container .wrapper .user-panel-profile > div input {
+  color: #fff;
 }

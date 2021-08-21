@@ -590,14 +590,30 @@ nav #icon {
                 display: flex;
                 justify-content: space-between;
 
+                a
+                {
+                    color : #fff;
+                    text-decoration: none;
+
+                    &:hover
+                    {
+                        text-decoration: underline;
+                    }
+                }
+
                 h1
                 {
                     font-size: 1.1rem;
                     font-family: "Poppins", sans-serif;
-                    color : #fff;
+                    color: #fff;
                     font-weight: 600;
-                    margin : 0;
+                    margin: 0;
                     padding-bottom: 0px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    max-width: 177px;
+                    text-transform: capitalize;
                 }
 
                 h5
@@ -900,7 +916,12 @@ path.cls-1 {
             {
                 h4
                 {
-                    padding-top: 2rem;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
+                    max-width: 151px;
+                    text-transform: capitalize;
                 }
 
                 h5
@@ -2642,6 +2663,32 @@ a.login-submit {
         }
 
         
+    }
+
+    .tab-content .wrapper {
+        width: 100%;
+    }
+
+    .wrapper .user-panel-profile {
+        flex-wrap: wrap;
+        flex-direction: unset;
+        justify-content: space-between;
+    }
+
+    .wrapper .user-panel-profile > div {
+        flex-basis: 45%;
+        width: 45%;
+        color : #fff;
+
+        p
+        {
+            color: #fff;
+        }
+
+        input
+        {
+            color : #fff;
+        }
     }
 
    
