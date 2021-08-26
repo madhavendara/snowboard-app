@@ -297,6 +297,7 @@ const Comparison = () => {
                     key = {product["id"]}
                     id = {product["id"]}
                     productadded = {productAdded}
+                    bookmarkadd = {() => alert('testing')}
                     /> 
                         )
                     })
