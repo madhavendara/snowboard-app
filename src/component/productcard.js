@@ -1,4 +1,5 @@
 import React from 'react'
+import bookmark from '../assest/bookmark.svg'
 
 const Productcard = (props) => {
 
@@ -31,6 +32,9 @@ const Productcard = (props) => {
                                     onClick = {() => props.productadded(props.id)}
                                 >
                                 </button>
+
+                                <img src={bookmark} alt="save" className="bookmark"/>    
+
                             </div>
 
                         </div>

@@ -563,13 +563,19 @@ nav #icon {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  grid-gap: 9px;
   width: 100%;
 }
 .product-card .price-container h3 {
   color: #fff;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+.product-card .price-container .bookmark {
+  cursor: pointer;
 }
 .product-card .price-container .selection-check {
-  width: 30px;
+  width: 40px;
   height: 30px;
   -webkit-box-shadow: none;
           box-shadow: none;

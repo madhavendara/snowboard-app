@@ -1,9 +1,10 @@
 import productline from "../assest/product-line-1.svg";
 
 export class Product {
-    static getProduct =  () =>{
+    static getProduct =  (search) =>{
+        var searchData = (search !== undefined)?search:'';
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/list.php", {
+            await fetch("http://extropysystems.com/public/airtable/api/list.php?s="+searchData, {
                 "method": "GET",
                 "headers": {
                     "content-type": "application/json",

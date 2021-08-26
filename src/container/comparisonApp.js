@@ -31,7 +31,7 @@ const Comparison = () => {
     const [activeGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
     const [activebars2 , setActivebar2] = useState([])
-
+    const [search, setSearch] = useState("");
 
 
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
@@ -48,7 +48,9 @@ const Comparison = () => {
 
     const [products,setProducts] = useState([])
 
-
+    const handleSearchChange = ({ target }) => {
+        setSearch(target.value);
+    };
     // graphs base 
 
     const sizebase = 175;
@@ -67,7 +69,7 @@ const Comparison = () => {
 
     useEffect(() => {
         
-        Product.getProduct().then((products,err)=>{
+        Product.getProduct(search).then((products,err)=>{
             if(!err){
 
                 let exampleCopy = [...products];
@@ -90,7 +92,7 @@ const Comparison = () => {
         })
         //
 
-    }, [])
+    }, [search])
 
     useEffect(() => {
         if(graphactive)
@@ -273,7 +275,7 @@ const Comparison = () => {
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
                 <Header page="compare"/>
                 <div className="filter-container">
-                    <Searchbar />
+                    <Searchbar  onChange={handleSearchChange} value={search} />
                     <ProductFilter />
                 </div>
                 <div className="product-listing">

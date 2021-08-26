@@ -1,10 +1,39 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
-import { Link } from 'react-router-dom'
-
+import { Link, useHistory } from 'react-router-dom'
+import { useForm } from "react-hook-form";
+import { useSnackbar } from 'react-simple-snackbar'
 
 const Invest = () => {
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const [openSnackbar, closeSnackbar] = useSnackbar(); // show snackbar component
+    const history = useHistory(); // show history
+
+    const onSubmit = async (data) => {
+
+        let formData = new FormData();
+        formData.append('email', data.email);
+        formData.append('password', data.password);
+        await fetch("http://extropysystems.com/public/airtable/api/login.php", {
+            "method": "POST",
+            "body":formData,
+        }).then(response => response.json())
+            .then(response => {
+                if(response.success === true){
+                    history.push("/dashboard");
+                }
+                openSnackbar(response.msg)
+            })
+            .catch(err => {
+                console.log(err)
+                openSnackbar(err)
+            });
+
+    };
+
     return (
 <React.Fragment>
 <div className="wall-Login">
@@ -27,16 +56,19 @@ const Invest = () => {
                                 <Link to="/register" className="login-facebook">
                                 <p>Register</p>
                                 </Link>
+                            <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="wrapper">
                                 <div className="contact-form">
                                 <div className="input-fields">
                                 <div>
                                     <p>EMAIL*</p>
-                                    <input type="text" className="input" placeholder="dummy@gmail.com"/>
+                                    <input type="text" className="input" {...register("email", { required: 'This field is required' })} placeholder="dummy@gmail.com"/>
+                                    {errors.email && <span>{errors.email.message}</span>}
                                 </div>
                                     <div>
-                                        <p>PASSWIRD*</p>
-                                        <input type="text" className="input"  placeholder="********"/>
+                                        <p>PASSWORD*</p>
+                                        <input type="password" className="input" {...register("password", { required: 'This field is required' })}  placeholder="********"/>
+                                        {errors.password && <span>{errors.password.message}</span>}
                                     </div>
                                 </div>
                                 <div className="check-btngroup">
@@ -47,10 +79,11 @@ const Invest = () => {
                                     <p>Forgot your password?</p>
                                 </div>
                                 <div className="contact-form">
-                                    <Link to="/dashboard" className="login-submit">Submit</Link>
+                                    <button className="login-submit">Submit</button>
                                 </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

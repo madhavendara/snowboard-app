@@ -14,6 +14,7 @@ import Invest from './container/invest'
 import Login from './container/login'
 import Register from './container/register'
 import Admin from './container/useradmin'
+import SnackbarProvider from 'react-simple-snackbar'
 
 function App() {
   return (
@@ -55,11 +56,15 @@ function App() {
                   </Route>
 
                   <Route path='/login' exact>
-                        <Login />
+                        <SnackbarProvider>
+                              <Login />
+                        </SnackbarProvider>
                   </Route>
 
                   <Route path='/register' exact>
-                        <Register />
+                        <SnackbarProvider>
+                              <Register />
+                        </SnackbarProvider>
                   </Route>
 
                   
