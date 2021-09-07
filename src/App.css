@@ -573,6 +573,7 @@ nav #icon {
 }
 .product-card .price-container .bookmark {
   cursor: pointer;
+  width: 20px;
 }
 .product-card .price-container .selection-check {
   width: 40px;
