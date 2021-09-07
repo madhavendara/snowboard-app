@@ -33,7 +33,7 @@ const Productcard = (props) => {
                                 >
                                 </button>
 
-                                <img onClick={props.bookmarkadd} src={bookmark} alt="save" className="bookmark"/>    
+                                <img onClick={() => props.bookmarkadd(props.id)} src={bookmark} alt="save" className="bookmark"/>
 
                             </div>
 

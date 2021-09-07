@@ -29,9 +29,10 @@ const Invest = () => {
             "body":formData,
         }).then(response => response.json())
             .then(response => {
-                if(response.success === true){
+                /*if(response.success === true){
+                    localStorage.setItem('token',response.data.id);
                     history.push("/dashboard");
-                }
+                }*/
                 openSnackbar(response.msg)
             })
             .catch(err => {

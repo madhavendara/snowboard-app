@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from './header'
 import Footer from './footer'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import { useSnackbar } from 'react-simple-snackbar'
+import { useSnackbar } from 'react-simple-snackbar';
 
 const Invest = () => {
 
@@ -11,6 +11,7 @@ const Invest = () => {
 
     const [openSnackbar, closeSnackbar] = useSnackbar(); // show snackbar component
     const history = useHistory(); // show history
+
 
     const onSubmit = async (data) => {
 
@@ -21,8 +22,9 @@ const Invest = () => {
             "method": "POST",
             "body":formData,
         }).then(response => response.json())
-            .then(response => {
+            .then((response) => {
                 if(response.success === true){
+                    localStorage.setItem('token',response.data.id);
                     history.push("/dashboard");
                 }
                 openSnackbar(response.msg)
@@ -31,6 +33,7 @@ const Invest = () => {
                 console.log(err)
                 openSnackbar(err)
             });
+
 
     };
 

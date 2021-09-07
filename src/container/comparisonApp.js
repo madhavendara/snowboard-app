@@ -22,6 +22,8 @@ import expandbtn from '../assest/expand-arrow.svg'
 // Json import
 import  {Product} from '../JSON/products'
 
+import { useSnackbar } from 'react-simple-snackbar';
+
 
 const Comparison = () => {
 
@@ -47,6 +49,9 @@ const Comparison = () => {
 
 
     const [products,setProducts] = useState([])
+
+
+    const [openSnackbar, closeSnackbar] = useSnackbar(); // show snackbar component
 
     const handleSearchChange = ({ target }) => {
         setSearch(target.value);
@@ -104,6 +109,15 @@ const Comparison = () => {
             window.scrollTo(0, 0)
         }
     },[graphactive])
+
+    // save data in bookmark
+    const bookmarkAdded = (key) => {
+        Product.addProduct(key).then((res,err)=>{
+            if(!err){
+                openSnackbar(res.msg)
+            }
+        })
+    }
 
     const productAdded = (key) => {
 
@@ -297,7 +311,7 @@ const Comparison = () => {
                     key = {product["id"]}
                     id = {product["id"]}
                     productadded = {productAdded}
-                    bookmarkadd = {() => alert('testing')}
+                    bookmarkadd = {bookmarkAdded}
                     /> 
                         )
                     })

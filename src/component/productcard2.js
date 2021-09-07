@@ -16,7 +16,7 @@ const Productcard = (props) => {
                             </div>
                             <div className="price-container">
                                 <h3>{props.price}</h3>
-                                <button className="selection-check delete-selection"></button>
+                                <button onClick={() => props.deletebookmark(props.wishlistId)} className="selection-check delete-selection"></button>
                             </div>
 
                         </div>

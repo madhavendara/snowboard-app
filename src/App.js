@@ -16,16 +16,22 @@ import Register from './container/register'
 import Admin from './container/useradmin'
 import SnackbarProvider from 'react-simple-snackbar'
 
+// private route
+import PrivateRoute from './route/PrivateRoute';
+
 function App() {
+
+
   return (
     <React.Fragment>
-    
             <Switch>
                   <Route path='/' exact>
                         <Choice />
                   </Route>
                   <Route path='/comparisonapp' exact>
-                        <Comparison />
+                        <SnackbarProvider>
+                              <Comparison />
+                        </SnackbarProvider>
                   </Route>
                   <Route path='/snowboardeducation' exact>
                         <Education />
@@ -69,9 +75,11 @@ function App() {
 
                   
 
-                  <Route path='/dashboard' exact>
-                        <Admin />
-                  </Route>
+                  <PrivateRoute path='/dashboard' exact>
+                        <SnackbarProvider>
+                              <Admin />
+                        </SnackbarProvider>
+                  </PrivateRoute>
 
                   
                   

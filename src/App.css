@@ -147,6 +147,12 @@ canvas {
   font-size: 15px;
   font-family: "Poppins", sans-serif;
 }
+#menu .logout {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-column-gap: 10px;
+}
 #menu .in-item {
   position: absolute;
   background-color: blue;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 //images import
 import login from '../assest/login.png'
 import search from '../assest/search.svg'
-import usa from '../assest/usa.png'
+import logout from '../assest/logout.svg'
 import insta from '../assest/insta.svg'
 import facebook from '../assest/facebook.svg'
 import twitter from '../assest/twitter.svg'
@@ -18,7 +18,7 @@ const Navbar_linkbar = (props) => {
            <div className="close-btn" onClick={props.closenav}>&times;</div>
         </li>
         <li className="login">
-        <Link to="/login">LOGIN</Link>
+        <Link to="/dashboard">My Account</Link>
             <img src={login} alt="login"/>
         </li>
         
@@ -29,9 +29,9 @@ const Navbar_linkbar = (props) => {
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/invest">INVEST</Link></li>
         <li><a href="#feedback">REVIEW</a></li>
-        <div className="login">
-            <img src={usa} alt=""/>
-            <p>United State</p>
+        <div className="login logout">
+            <img src={logout} alt=""/>
+            <a href="logout">Log out</a>
         </div>
          <div className="in-item">
             <div className="social-icon">

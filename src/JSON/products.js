@@ -50,6 +50,91 @@ export class Product {
         })
 
     }
+
+
+    ///   add bookmark
+    static addProduct =  (data) =>{
+        let formData = new FormData();
+        formData.append('user_id', localStorage.getItem('token'));
+        formData.append('products_id', data);
+
+        return new Promise(async (resolve, reject)=>{
+            await fetch("http://extropysystems.com/public/airtable/api/wishlist.php", {
+                "method": "POST",
+                "body":formData,
+            }).then(response => response.json())
+                .then(response => {
+                    resolve(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                });
+        })
+
+    }
+
+    // get save product data
+    static getBookmarkProduct =  () =>{
+
+        return new Promise(async (resolve, reject)=>{
+            await fetch("http://extropysystems.com/public/airtable/api/get_wishlist.php?user_id="+localStorage.getItem('token'), {
+                "method": "GET"
+            }).then(response => response.json())
+                .then(response => {
+                    var data = response.data || '';
+                    var products = [];
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+
+                            if((typeof data[i].product_info.fields.Image !=='undefined') || (typeof data[i].product_info.fields.Outline !=='undefined')){
+                                products.push({
+                                    "id": data[i].product_info.id || '',
+                                    "wishlist_id": data[i].wishlist_id || '',
+                                    "Title": data[i].product_info.fields["Product title"] ?  data[i].product_info.fields["Product title"] :  data[i].product_info.fields.SKU,
+                                    "type": data[i].product_info.fields.Width,
+                                    "stars": 4,
+                                    "Price": data[i].product_info.fields.Pricing || '$0',
+                                    "img": data[i].product_info.fields.Image[0] || "https://spotlexdigital.com/compare/product-1.jpg",
+
+                                });
+                            }
+                        }
+                        resolve(products)
+                    }else {
+                        resolve(products)
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                });
+        })
+
+    }
+
+    ///   add bookmark
+    static deleteProduct =  (data) =>{
+        let formData = new FormData();
+        formData.append('user_id', localStorage.getItem('token'));
+        formData.append('id', data);
+
+        return new Promise(async (resolve, reject)=>{
+            await fetch("http://extropysystems.com/public/airtable/api/delete_wishlist.php", {
+                "method": "POST",
+                "body":formData,
+            }).then(response => response.json())
+                .then(response => {
+                    resolve(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                });
+        })
+
+    }
+
 }
 
 

@@ -188,6 +188,12 @@ canvas
          }
          
     }
+
+    .logout
+    {
+        justify-content: flex-start;
+        grid-column-gap:  10px;
+    }
     .in-item
     {
        position: absolute;
