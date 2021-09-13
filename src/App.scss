@@ -22,6 +22,7 @@ body
     padding : 0;
     margin : 0;
     font-family: 'Poppins', sans-serif;
+    background: rgb(27, 27, 27);
 
     &::-webkit-scrollbar {
         width: 10px;
@@ -193,6 +194,7 @@ canvas
     {
         justify-content: flex-start;
         grid-column-gap:  10px;
+        cursor: pointer;
     }
     .in-item
     {
@@ -477,9 +479,15 @@ nav #icon {
         display: flex;
         flex-direction: column;
         transition: all 0.6s;
+        max-width: 450px;
         @media(min-width: 2000px)
         {
             padding-bottom: 10px;
+        }
+
+        @media(min-width : 1800px)
+        {
+            max-width: 570px;
         }
 
         .expand-btn
@@ -566,6 +574,158 @@ nav #icon {
     
 }
 
+.product-box-container
+{
+    position: fixed;
+    z-index: 999999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top : 0;
+    left : 0;
+    right : 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    .product-box
+    {
+        width: 90%;
+        max-width: 600px;
+        background: #3a3a3a;
+        padding: 50px;
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+
+        
+
+        .product-box-row
+        {
+            display: flex;
+            box-sizing: border-box;
+            grid-column-gap: 20px;
+            .product-img-box
+            {
+                width: 148px;
+
+                img
+                {
+                    width: 100%;
+                }
+            }
+            .product-content-box
+            {
+                flex : 1;
+
+                h2
+                {
+                    font-family: "Hansief";
+                    font-weight: 500;
+                    font-size: 24px;
+                    color : #fff;
+                    line-height: 38px;
+                    text-transform: uppercase;
+                }
+
+                h5
+                {
+                    font-size: 15px;
+                    font-family: "Poppins", sans-serif;
+                    color : #fff;
+                    padding-top: 10px;
+                }
+            }
+        }
+
+        .product-box-3
+        {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #505050;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+
+        .product-box-2
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding : 25px 0px;
+
+            p
+            {
+                color : #fff;
+                cursor: pointer;
+                font-size: 15px;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .add-to-compare
+                {
+                    cursor: pointer;
+                }
+
+            img
+            {
+                width: 200px;
+            }    
+
+        }
+    }
+
+    h4
+    {
+        color : #fff;
+        font-size: 17px;
+        padding-bottom: 15px;
+    }
+
+    .size-container
+    {
+       
+
+        .size-list
+        {
+            display: flex;
+            justify-content: flex-start;
+            grid-column-gap: 20px;
+
+            .size-box
+            {
+                background: #484848;
+                padding : 10px;
+                box-sizing: border-box;
+                border : 1px solid #787878;
+                color : #fff;
+
+                h4
+                {
+                    padding : 0;
+                }
+            }
+        }
+    }
+
+    a.buy-btn {
+        background: #40AE32;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin-top: 1px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        grid-column-gap: 25px;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+
+    
+}
+
 .product-card
     {
         display: flex;
@@ -596,10 +756,11 @@ nav #icon {
                 display: flex;
                 justify-content: space-between;
 
-                a
+                .p
                 {
                     color : #fff;
                     text-decoration: none;
+                    cursor: pointer;
 
                     &:hover
                     {
@@ -752,9 +913,15 @@ nav #icon {
             width: 100%;
             transition: all 0.6s;
         }
+
+        
         
     }
 
+.mousepoint-off
+ {
+    cursor: zoom-out !important;
+ }
 .app-logo
 {
     max-height: 6.7rem;
@@ -791,7 +958,7 @@ path.cls-1 {
     flex-direction: column;
     padding-top: 3rem;
     margin-left: auto;
-    transition: all 0.6s;
+    cursor: zoom-in;
     
     > *
     {
@@ -1023,6 +1190,22 @@ path.cls-1 {
                 color : #fff;
             }
         }
+}
+
+.canvas-area-zoom
+{
+    position: fixed;
+    transform: scale(2,2);
+    right : 0;
+    top : 0;
+}
+
+.zoom-img
+{
+    position: fixed;
+    width: 80px; 
+    z-index: 99;
+    cursor: pointer;
 }
 
 .toolbar-container
@@ -1565,7 +1748,7 @@ img
 /*---------QUICK INVEST css start-----------*/
 .Qick-wall
 {
-    background-image: url(./assest/quick.png);
+    background: #fff url(./assest/quick.png);
     background-position: left;
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -1634,6 +1817,14 @@ img
              font-family: 'Poppins', sans-serif;
              padding: 0 15px;
           }
+
+          button
+          {
+            background: blue;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+          }
     }
       
 }
@@ -1651,7 +1842,7 @@ img
 
 /*=============================Third page Login-Page css start=============================*/
 .wall-Login {
-    background-image: url(./assest/login-wall.png);
+    background-image: url(./assest/login-wall.jpg);
     background-position: center;
     width: 100%;
     overflow: hidden;
@@ -1728,7 +1919,7 @@ img
             height: 20px;
             border: 1px solid white;
             background-color: transparent;
-            margin: 0 20px;
+            margin-right: 16px;
         }
         label 
         {
@@ -1738,7 +1929,31 @@ img
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        
     }
+
+    button.login-submit {
+        background: #2741CC;
+        padding: 10px 20px;
+        margin-top: 23px;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
     .wrapper {
         .contact-form 
         {
@@ -1749,9 +1964,35 @@ img
         }  
     }
 }
+
+img.loading-image {
+    filter: invert(1);
+    width: 70px;
+    display: block;
+    margin: 0 auto;
+}
+
+.loading-container
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    grid-row-gap: 20px;
+    min-height: 60vh;
+    justify-content: center;
+
+    h5
+    {
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+    }
+}
 /*============================wall-Education css start===============================*/
 .wall-Education {
-    background-image: url(./assest/education.png);
+    background-image: url(./assest/education.jpg);
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -1762,6 +2003,7 @@ img
 .left-right{
     margin-left: auto !important;
     margin: 20px;
+    display: flex;
     img 
     {
         width: 30px;
@@ -1772,6 +2014,11 @@ img
     {
         display: none;
     }
+}
+
+.left-right > div
+{
+    cursor: pointer;
 }
 .card-position{
     height: 90vh;
@@ -1885,6 +2132,7 @@ img
 {
     max-width: 1227px;
     margin-left: 9%;
+    background: #fff;
     .row 
     {
         padding: 10px 40px;
@@ -2363,6 +2611,16 @@ img
 .login-container
 {
     padding-top: 8rem;
+    max-width: 1160px;
+    margin : 0 auto;
+
+    .login-text
+    {
+        p
+        {
+            text-align: left;
+        }
+    }
 }
 
 
@@ -2387,6 +2645,9 @@ img
             h1 
             {
                 color: white;
+                font-size: 20px;
+                margin-bottom: 0px;
+                padding: 0px;
             }
             .close-btn
             {
@@ -2394,6 +2655,24 @@ img
                 font-size: 45px;
                 font-weight: 500;
                 text-decoration: none;
+            }
+
+            button.apply-filter {
+                padding: 11px 17px;
+                background: #005FCF;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                font-size: 17px;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .button-container-filter
+            {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                grid-column-gap: 10px;
             }
         }
      .accordion
@@ -2712,6 +2991,30 @@ a.login-submit {
 
    
 }
+
+.multi-range-slider
+{
+    margin-top: 20px;
+}
+
+.numbercontainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    h1
+    {
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+    }
+}
+
+.team-container
+{
+    background: #fff;
+    padding: 46px;
+}
+
 
 
 // @keyframes rotate {

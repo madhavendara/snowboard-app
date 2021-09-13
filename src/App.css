@@ -9,6 +9,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Poppins", sans-serif;
+  background: #1b1b1b;
 }
 body::-webkit-scrollbar {
   width: 10px;
@@ -152,6 +153,7 @@ canvas {
       -ms-flex-pack: start;
           justify-content: flex-start;
   grid-column-gap: 10px;
+  cursor: pointer;
 }
 #menu .in-item {
   position: absolute;
@@ -397,10 +399,16 @@ nav #icon {
           flex-direction: column;
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
+  max-width: 450px;
 }
 @media (min-width: 2000px) {
   #comparison-app .app-sidebar {
     padding-bottom: 10px;
+  }
+}
+@media (min-width: 1800px) {
+  #comparison-app .app-sidebar {
+    max-width: 570px;
   }
 }
 #comparison-app .app-sidebar .expand-btn {
@@ -482,6 +490,154 @@ nav #icon {
   outline: none;
 }
 
+.product-box-container {
+  position: fixed;
+  z-index: 999999999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.product-box-container .product-box {
+  width: 90%;
+  max-width: 600px;
+  background: #3a3a3a;
+  padding: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.product-box-container .product-box .product-box-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  grid-column-gap: 20px;
+}
+.product-box-container .product-box .product-box-row .product-img-box {
+  width: 148px;
+}
+.product-box-container .product-box .product-box-row .product-img-box img {
+  width: 100%;
+}
+.product-box-container .product-box .product-box-row .product-content-box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.product-box-container .product-box .product-box-row .product-content-box h2 {
+  font-family: "Hansief";
+  font-weight: 500;
+  font-size: 24px;
+  color: #fff;
+  line-height: 38px;
+  text-transform: uppercase;
+}
+.product-box-container .product-box .product-box-row .product-content-box h5 {
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  padding-top: 10px;
+}
+.product-box-container .product-box .product-box-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top: 1px solid #505050;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.product-box-container .product-box .product-box-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 25px 0px;
+}
+.product-box-container .product-box .product-box-2 p {
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.product-box-container .product-box .product-box-2 .add-to-compare {
+  cursor: pointer;
+}
+.product-box-container .product-box .product-box-2 img {
+  width: 200px;
+}
+.product-box-container h4 {
+  color: #fff;
+  font-size: 17px;
+  padding-bottom: 15px;
+}
+.product-box-container .size-container .size-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-column-gap: 20px;
+}
+.product-box-container .size-container .size-list .size-box {
+  background: #484848;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #787878;
+  color: #fff;
+}
+.product-box-container .size-container .size-list .size-box h4 {
+  padding: 0;
+}
+.product-box-container a.buy-btn {
+  background: #40AE32;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 1px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-column-gap: 25px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
 .product-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -514,11 +670,12 @@ nav #icon {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.product-card .product-content .title-content a {
+.product-card .product-content .title-content .p {
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
 }
-.product-card .product-content .title-content a:hover {
+.product-card .product-content .title-content .p:hover {
   text-decoration: underline;
 }
 .product-card .product-content .title-content h1 {
@@ -632,6 +789,11 @@ nav #icon {
   transition: all 0.6s;
 }
 
+.mousepoint-off {
+  cursor: -webkit-zoom-out !important;
+  cursor: zoom-out !important;
+}
+
 .app-logo {
   max-height: 6.7rem;
   height: auto;
@@ -673,8 +835,8 @@ path.cls-1 {
           flex-direction: column;
   padding-top: 3rem;
   margin-left: auto;
-  -webkit-transition: all 0.6s;
-  transition: all 0.6s;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 .canvas-area > * {
   width: 87%;
@@ -848,6 +1010,21 @@ path.cls-1 {
 }
 .canvas-area .snowboard-graphics-container h5 {
   color: #fff;
+}
+
+.canvas-area-zoom {
+  position: fixed;
+  -webkit-transform: scale(2, 2);
+          transform: scale(2, 2);
+  right: 0;
+  top: 0;
+}
+
+.zoom-img {
+  position: fixed;
+  width: 80px;
+  z-index: 99;
+  cursor: pointer;
 }
 
 .toolbar-container {
@@ -1307,7 +1484,7 @@ img {
 
 /*---------QUICK INVEST css start-----------*/
 .Qick-wall {
-  background-image: url(./assest/quick.png);
+  background: #fff url(./assest/quick.png);
   background-position: left;
   background-size: auto 100%;
   background-repeat: no-repeat;
@@ -1375,6 +1552,12 @@ img {
   font-family: "Poppins", sans-serif;
   padding: 0 15px;
 }
+.wrapper .contact-form button {
+  background: blue;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+}
 
 /*===============Second Mobile Responive css start===============*/
 @media (min-width: 320px) and (max-width: 1020px) {
@@ -1384,7 +1567,7 @@ img {
 }
 /*=============================Third page Login-Page css start=============================*/
 .wall-Login {
-  background-image: url(./assest/login-wall.png);
+  background-image: url(./assest/login-wall.jpg);
   background-position: center;
   width: 100%;
   overflow: hidden;
@@ -1463,7 +1646,7 @@ img {
   height: 20px;
   border: 1px solid white;
   background-color: transparent;
-  margin: 0 20px;
+  margin-right: 16px;
 }
 .login-side .check-btngroup label {
   color: white;
@@ -1472,13 +1655,72 @@ img {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
+.login-side .check-btngroup .check-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.login-side button.login-submit {
+  background: #2741CC;
+  padding: 10px 20px;
+  margin-top: 23px;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
 .login-side .wrapper .contact-form .button::before {
   content: "LOG IN";
 }
 
+img.loading-image {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  width: 70px;
+  display: block;
+  margin: 0 auto;
+}
+
+.loading-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-row-gap: 20px;
+  min-height: 60vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.loading-container h5 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+}
+
 /*============================wall-Education css start===============================*/
 .wall-Education {
-  background-image: url(./assest/education.png);
+  background-image: url(./assest/education.jpg);
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -1490,6 +1732,9 @@ img {
 .left-right {
   margin-left: auto !important;
   margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .left-right img {
   width: 30px;
@@ -1499,6 +1744,10 @@ img {
   .left-right {
     display: none;
   }
+}
+
+.left-right > div {
+  cursor: pointer;
 }
 
 .card-position {
@@ -1606,6 +1855,7 @@ img {
 .white-page {
   max-width: 1227px;
   margin-left: 9%;
+  background: #fff;
 }
 .white-page .row {
   padding: 10px 40px;
@@ -2012,6 +2262,11 @@ img {
 
 .login-container {
   padding-top: 8rem;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.login-container .login-text p {
+  text-align: left;
 }
 
 /*===---------------only side toggle page css small page------------===*/
@@ -2039,12 +2294,36 @@ img {
 }
 .side-filteroption .top-title h1 {
   color: white;
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 .side-filteroption .top-title .close-btn {
   color: white;
   font-size: 45px;
   font-weight: 500;
   text-decoration: none;
+}
+.side-filteroption .top-title button.apply-filter {
+  padding: 11px 17px;
+  background: #005FCF;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+}
+.side-filteroption .top-title .button-container-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-column-gap: 10px;
 }
 .side-filteroption .accordion .mainAccordion {
   padding: 10px 40px;
@@ -2313,4 +2592,27 @@ a.login-submit {
 }
 .dashboard-container .wrapper .user-panel-profile > div input {
   color: #fff;
+}
+
+.multi-range-slider {
+  margin-top: 20px;
+}
+
+.numbercontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.numbercontainer h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.team-container {
+  background: #fff;
+  padding: 46px;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 
 //images import
 import login from '../assest/login.png'
@@ -10,7 +10,22 @@ import facebook from '../assest/facebook.svg'
 import twitter from '../assest/twitter.svg'
 import linkedin from '../assest/linkedin.svg'
 
+
 const Navbar_linkbar = (props) => {
+    let button;
+    if (localStorage.getItem('token')) {
+        button = <div className="login logout"> <img src={logout} alt=""/> <a onClick={()=>logoutUser()}>Log out</a> </div>;
+    } else {
+        button = '';
+    }
+
+    const history = useHistory(); // show history
+
+    const logoutUser = ()=>{
+        localStorage.removeItem("token")
+        history.push("/login");
+    }
+
     return (
         <ul id="menu" className={props.classlist}>
         <li className="login">
@@ -29,10 +44,7 @@ const Navbar_linkbar = (props) => {
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/invest">INVEST</Link></li>
         <li><a href="#feedback">REVIEW</a></li>
-        <div className="login logout">
-            <img src={logout} alt=""/>
-            <a href="logout">Log out</a>
-        </div>
+            {button}
          <div className="in-item">
             <div className="social-icon">
                 <img src={insta} alt="insta"/>

@@ -1,5 +1,7 @@
 import React from 'react'
 import bookmark from '../assest/bookmark.svg'
+import Productbox from './productbox';
+
 
 const Productcard = (props) => {
 
@@ -12,15 +14,16 @@ const Productcard = (props) => {
     }
 
     return (
+
         <div className='product-card'>
                         <div className="product-img-container">
                            <img src={props.productimg} className="product-img" alt={props.title}/> 
                         </div>
                         <div className="product-content">
                             <div className="title-content">
-                              <a href={props.url} target="_blank" rel="noreferrer">
+                              <div className="p">
                                     <h1>{props.title}</h1>    
-                                  </a>  
+                                  </div>  
                                 <h5>{props.type}</h5>
                             </div>
                             <div className="star star-4">
@@ -38,7 +41,9 @@ const Productcard = (props) => {
                             </div>
 
                         </div>
-                    </div>  
+                    </div>
+
+                 
     )
 }
 

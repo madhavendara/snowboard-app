@@ -16,6 +16,9 @@ import Loading from '../component/loading'
 import placeholder_graphics from '../assest/placeholder-box.svg'
 import arrowline from '../assest/arrow-line.svg'
 import expandbtn from '../assest/expand-arrow.svg'
+import zoomImg from '../assest/zoom.svg'
+
+import loader from '../assest/Rhombus.gif'
 
 
 
@@ -39,6 +42,180 @@ const Comparison = () => {
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
+    const [windowWidth , setWindowWidth] = useState(null)
+    const [windowHeight , setWindowHeight] = useState(null)
+    const [MousePosition, setMousePosition] = useState({
+        left: 0,
+        top: 0
+    })
+
+    const [priceRange, setpriceRange] = useState({
+        start: 500,
+        end: 600
+    })
+
+    const [setbackRange, setsetbackRange] = useState({
+        start: 15,
+        end: 70
+    })
+
+    const [lengthRange, setlengthRange] = useState({
+        start: 140,
+        end: 200
+    })
+
+    const [RockerType , SetRockerType] = useState([])
+
+    const [widthType , SetwidthType] = useState([])
+
+
+
+
+    
+
+    const RockerTypeFunction = (ev) => {
+
+        const letRocker = [...RockerType]
+        if(letRocker.includes(ev))
+        {
+            const index = letRocker.indexOf(ev);
+            if (index > -1) {
+                letRocker.splice(index, 1);
+                SetRockerType(letRocker)
+            }
+        }
+
+        else
+        {
+            letRocker.push(ev)
+            SetRockerType(letRocker)
+        }
+        
+    }
+
+    const widthFunction = (ev) => {
+
+        const letWidth = [...widthType]
+        if(letWidth.includes(ev))
+        {
+            const index = letWidth.indexOf(ev);
+            if (index > -1) {
+                letWidth.splice(index, 1);
+                SetwidthType(letWidth)
+            }
+        }
+
+        else
+        {
+            letWidth.push(ev)
+            SetwidthType(letWidth)
+        }
+
+    }
+
+    const filterApply = (data) => {
+        if(data["Price"] > priceRange.start && data["Price"] < priceRange.end )
+        {
+            
+            if(data["size"] > lengthRange.start && data["size"] < lengthRange.end)
+            {
+                
+                if(data["Stance Setback"] > setbackRange.start && data["Stance Setback"] < setbackRange.end)
+                {
+                    if(RockerType.length !== 0)
+                    {   if(RockerType.indexOf(data["Ability Level"]) !== -1)
+                        {
+                            if(widthType.length !== 0)
+                            {
+                                if(widthType.indexOf(data["type"]) !== -1)
+                                {
+                                    return true
+                                }
+
+                                else
+                                {
+                                    return false
+                                }
+                            }
+
+                            else
+                            {
+                                return true
+                            }
+                        }
+
+                        else
+                        {
+                            return false
+                        }
+                        
+                    }
+
+                    else
+                    {
+                        if(widthType.length !== 0)
+                        {
+                            if(widthType.indexOf(data["type"]) !== -1)
+                            {
+                                return true
+                            }
+
+                            else
+                            {
+                                return false
+                            }
+                        }
+
+                        else
+                        {
+                            return true
+                        }
+                    }
+                }
+                else
+                {
+                    return false
+                }
+            }
+            else
+            {
+                return false
+            }
+        }
+
+        else
+        {
+            return false
+        }
+    }
+
+    
+
+    const lengthFunction = (start,end) => {
+        setlengthRange({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
+    }
+
+    const priceFunction = (start,end) => {
+        setpriceRange({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
+    }
+
+    const setbackFunction = (start,end) => {
+        setsetbackRange({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
+    }
+
+   
+
+
+    
 
     // toggle states
     const [collapsible , setcollapsible] = useState(false)
@@ -46,6 +223,8 @@ const Comparison = () => {
     const [graphactive , setgraphactive] = useState(false)
     const [lineview , setlineview] = useState(false)
     const [sidebarshow,setsidebarshow] = useState(false)
+    const [popupOpen , setpopOpen] = useState([])
+    const [zoom , setZoom] = useState(false)
 
 
     const [products,setProducts] = useState([])
@@ -97,6 +276,8 @@ const Comparison = () => {
         })
         //
 
+        console.log(search)
+
     }, [search])
 
     useEffect(() => {
@@ -110,6 +291,14 @@ const Comparison = () => {
         }
     },[graphactive])
 
+    useEffect(() => {
+        setWindowWidth(window.innerWidth)
+        setWindowHeight(window.innerHeight)
+    },[])
+
+
+
+
     // save data in bookmark
     const bookmarkAdded = (key) => {
         Product.addProduct(key).then((res,err)=>{
@@ -118,6 +307,22 @@ const Comparison = () => {
             }
         })
     }
+    function handleMouseMove(ev) { 
+        setMousePosition({left: ev.pageX, top: ev.pageY});
+     }
+
+     const zoomClick = () => {
+
+        if(MousePosition.left > windowWidth * 30/100 && MousePosition.left < windowWidth * 90/100)
+        {
+            if(MousePosition.top > windowHeight * 30/100 && MousePosition.top < windowWidth * 90/100)
+            {
+                setZoom(!zoom)
+            }
+            
+        }
+            
+     }
 
     const productAdded = (key) => {
 
@@ -290,31 +495,53 @@ const Comparison = () => {
                 <Header page="compare"/>
                 <div className="filter-container">
                     <Searchbar  onChange={handleSearchChange} value={search} />
-                    <ProductFilter />
+                    <ProductFilter 
+                    priceFunction={priceFunction} 
+                    priceRange={priceRange} 
+                    setbackRange={setbackRange}
+                    setbackFunction={setbackFunction}
+                    lengthFunction={lengthFunction}
+                    lengthRange={lengthRange}
+                    RockerTypeFunction={RockerTypeFunction}
+                    widthFunction={widthFunction}
+                    />
                 </div>
                 <div className="product-listing">
 
                 {/* product card start*/}
 
                 {
+                    copyJSON.length ? 
                     copyJSON.map(product => {
                         return (
+                            filterApply(product) ? 
                             <Productcard
-                    productimg={product["img"]} 
-                    title={product["Title"]} 
-                    url={product["url"]}
-                    type={product["type"]}
-                    stars={product["stars"]}
-                    price={product["Price"]}
-                    added={product["added"]}
-                    class={activeproduct}
-                    key = {product["id"]}
-                    id = {product["id"]}
-                    productadded = {productAdded}
-                    bookmarkadd = {bookmarkAdded}
-                    /> 
+                                productimg={product["img"]} 
+                                title={product["Title"]} 
+                                url={product["url"]}
+                                type={product["type"]}
+                                stars={product["stars"]}
+                                price={product["Price"]}
+                                size={product["size"]}
+                                added={product["added"]}
+                                class={activeproduct}
+                                key = {product["id"]}
+                                id = {product["id"]}
+                                productBoxactive={popupOpen === product["id"] ? true : false}
+                                productadded = {productAdded}
+                                popupOne = {() => setpopOpen(product["id"]) }
+                                closePopup = {() => setpopOpen("") }
+                                bookmarkadd = {bookmarkAdded}
+
+                    />  : null
                         )
                     })
+
+                    : <div className="loading-container">
+                    <img src={loader} alt="loading.." className="loading-image"/>
+                    <h5>Loading...</h5>
+                   </div> 
+                       
                 }
 
                     
@@ -325,7 +552,13 @@ const Comparison = () => {
                 </div>
             </div>
 
-            <div className='canvas-area'>
+            <div 
+            className={!zoom ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
+            onMouseMove={(ev) => handleMouseMove(ev)} 
+            onClick={zoomClick}
+            style={zoom ? {right : (-(windowWidth * 1/2) + MousePosition.left * 80/100) , marginTop : -(MousePosition.top * 60/100) } : null}
+            >
+
                     <Toolbar 
                     collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
                     base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}

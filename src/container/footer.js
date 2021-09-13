@@ -1,11 +1,11 @@
 import React from 'react'
 
 // images 
-
 import facebook from '../assest/facebook.svg'
 import twitter from '../assest/twitter.svg'
 import linkedin from '../assest/linkedin.svg'
 import insta from '../assest/insta.svg'
+import { Link } from 'react-router-dom'
 
 
 const footer = () => {
@@ -18,10 +18,9 @@ const footer = () => {
                     </div>
                     <div className="contact-menu">
                         <ul>
-                            <li><a href="#about">About US</a></li>
-                            <li><a href="#service">INVEST</a></li>
-                            <li><a href="#contact">REVIEW</a></li>
-                            <li><a href="#feedback">MORE PAGES</a></li>
+                        <li><Link to="/about">About us</Link></li>
+                        <li><Link to="/invest">INVEST</Link></li>
+                        <li><a href="#feedback">REVIEW</a></li>
                         </ul>  
                     </div>
                 </div>

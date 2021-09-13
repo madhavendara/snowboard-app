@@ -36,7 +36,11 @@ export class Product {
                                 "line" : productline,
                                 "taper" : data[i].fields['Taper (mm)'] || 0,
                                 "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
-                                "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || 0
+                                "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || 0,
+                                "Ability Level" : data[i].fields['Ability Level (from SB Categorical Specs)'][0] || 0,
+                                "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'][0] || 0
+
+                                
                             });
                         }
 						}

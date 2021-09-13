@@ -1,8 +1,10 @@
-import React , {useState}  from 'react'
+import React , {useState , useRef , useEffect}  from 'react'
+import Nouislider from "nouislider-react";
+import "../nouislider.css";
 import Accordion from './accordion';
 
 
-const ProductFilter = () => {
+const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunction , lengthFunction , lengthRange , RockerTypeFunction , widthFunction}) => {
     const [filteractive,setfilteractive] = useState(false) 
 
     return (
@@ -24,38 +26,62 @@ const ProductFilter = () => {
                                 </div>
                                 <div className="top-title">
                                     <h1>Filter</h1>
-                                    
-                                    <a href="validvalue" className="close-btn" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>&times;</a>
+                                    <div className="button-container-filter">
+                                    <button className="apply-filter" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>
+                                        Close & Apply
+                                    </button>    
+                                    {/* <a href="validvalue" className="close-btn" >&times;</a> */}
+                                    </div>
                                 </div>
                                 <div className="accordion">
-                                    <Accordion title="LENGTH">
+                                    <Accordion title="Price">
                                         <div className="Accordion-content">
-                                            <p>Size</p>
+                                      
                                             <div className="middle">
                                                 <div className="multi-range-slider">
-                                                    <input type="range" id="input-left" min="0" max="100" />
-        
+                                                    {/* <input type="range" id="input-left" min="0" max="100" /> */}
+                                                    <Nouislider range={{ min: 500, max: 600 }} start={[500, 600]} connect onUpdate={(ev) => priceFunction(ev[0],ev[1])} />
+                                                    <div className="numbercontainer">
+                                                        <h1>${Math.floor(priceRange.start)}</h1>
+                                                        <h1>${Math.floor(priceRange.end)}</h1>
+                                                    </div>    
                                                 </div>
                                             </div>
                                         </div>
                                     </Accordion>
                                     <Accordion title="SETBACK">
                                         <div className="Accordion-content">
-                                            <div className="check-box">
-                                                <input type="checkbox" id="horns" name="horns"/>
-                                                <label >Camber</label>
-                                            </div>
-                                            <div className="check-box">
-                                                <input type="checkbox" id="horns" name="horns"/>
-                                                <label >Rocker</label>
-                                            </div>
-                                            <div className="check-box">
-                                                <input type="checkbox" id="horns" name="horns"/>
-                                                <label >Flat</label>
-                                            </div>
+                                            <div className="middle">
+                                                <div className="multi-range-slider">
+                                                    <Nouislider 
+                                                    range={{ min: 15, max: 70 }} 
+                                                    start={[15, 70]} 
+                                                    connect 
+                                                    onUpdate={(ev) => setbackFunction(ev[0],ev[1])} 
+                                                    />
+
+                                                    <div className="numbercontainer">
+                                                        <h1>{Math.floor(setbackRange.start)}</h1>
+                                                        <h1>{Math.floor(setbackRange.end)}</h1>
+                                                    </div> 
+                                                </div>
+                                            </div>        
                                         </div>
                                 </Accordion>
-                                <Accordion title="SURFACE AREA">
+                                <Accordion title="Ability Level">
+                                    <div className="Accordion-content">
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" value="Intermediate-Advanced" name="ability-level" onChange={(e) => RockerTypeFunction(e.target.value)}/>
+                                            <label>intermediate-Advanced</label>
+                                        </div>
+                                        <div className="check-box">
+                                            <input type="checkbox" id="horns" value="Advanced-Expert" name="ability-level"  onChange={(e) => RockerTypeFunction(e.target.value)}/>
+                                            <label >Advanced-Expert</label>
+                                        </div>
+
+                                    </div>
+                                </Accordion>
+                                {/* <Accordion title="BRAND">
                                     <div className="Accordion-content">
                                         <div className="check-box">
                                             <input type="checkbox" id="horns" name="horns"/>
@@ -70,56 +96,29 @@ const ProductFilter = () => {
                                             <label >Flat</label>
                                         </div>
                                     </div>
-                                </Accordion>
-                                <Accordion title="PROFILE">
+                                </Accordion> */}
+
+                                <Accordion title="LENGTH">
                                     <div className="Accordion-content">
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Camber</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Rocker</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Flat</label>
-                                        </div>
-                                    </div>
-                                </Accordion>
-                                <Accordion title="BRAND">
-                                    <div className="Accordion-content">
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Camber</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Rocker</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Flat</label>
-                                        </div>
-                                    </div>
-                                </Accordion>
-                                <Accordion title="PRICE">
-                                    <div className="Accordion-content">
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Camber</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Rocker</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Flat</label>
-                                        </div>
+                                    <div className="middle">
+                                                <div className="multi-range-slider">
+                                                    <Nouislider 
+                                                    range={{ min: 140, max: 200 }} 
+                                                    start={[140, 200]} 
+                                                    connect 
+                                                    onUpdate={(ev) => lengthFunction(ev[0],ev[1])} 
+                                                    />
+
+                                                    <div className="numbercontainer">
+                                                        <h1>{Math.floor(lengthRange.start)}cm</h1>
+                                                        <h1>{Math.floor(lengthRange.end)}cm</h1>
+                                                    </div> 
+                                                </div>
+                                    </div> 
                                     </div>
                                </Accordion>
-                               <Accordion title="GENDER">
+
+                            {/* <Accordion title="GENDER">
                                     <div className="Accordion-content">
                                         <div className="check-box">
                                             <input type="checkbox" id="horns" value="male" name="gender"/>
@@ -131,35 +130,25 @@ const ProductFilter = () => {
                                         </div>
                             
                                     </div>
-                            </Accordion>
+                            </Accordion> */}
+
                             <Accordion title="WIDTH">
                                 <div className="Accordion-content">
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label >Camber</label>
+                                        <input type="checkbox" id="horns" name="horns" value="Mid-wide" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <label >Mid-wide</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label >Rocker</label>
+                                        <input type="checkbox" id="horns" name="horns" value="Regular" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <label >Regular</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label >Flat</label>
+                                        <input type="checkbox" id="horns" name="horns" value="Wide" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <label >Wide</label>
                                     </div>
                                 </div>
                             </Accordion>
-                            <Accordion title="ABILITY LEVEL">
-                                <div className="Accordion-content">
-                                    <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label >Beginner-Intermediate</label>
-                                    </div>
-                                    <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label >Intermediate-Advanced</label>
-                                    </div>
-                                </div>
-                            </Accordion>
+                            
                                 </div>
                             </div>
         </React.Fragment>

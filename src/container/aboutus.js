@@ -47,7 +47,7 @@ const Aboutus = () => {
             </div>
         </div> 
 
-        <div className="container">
+        <div className="container team-container">
             <div className="row">
                 <div className="member-group">
                     <div className="row">
