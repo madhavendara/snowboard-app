@@ -4,8 +4,59 @@ import "../nouislider.css";
 import Accordion from './accordion';
 
 
-const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunction , lengthFunction , lengthRange , RockerTypeFunction , widthFunction}) => {
+
+
+
+
+const ProductFilter = (
+    {
+    priceFunction , 
+    priceRange , 
+    setbackRange , 
+    setbackFunction ,
+    lengthFunction , 
+    lengthRange , 
+    RockerTypeFunction ,
+    widthFunction,
+    RockerType,
+    widthType,
+    RockerTypeClear,
+    WidthTypeClear
+    }
+    
+    ) => {
     const [filteractive,setfilteractive] = useState(false) 
+
+    const [price] = useState({
+        start: 500,
+        end: 600
+    })
+
+    const [setback] = useState({
+        start: 15,
+        end: 70
+    })
+
+    const [length] = useState({
+        start: 140,
+        end: 180
+    })
+
+
+
+    const ClearAll = () => {
+        priceFunction(price.start , price.end)
+        setbackFunction(setback.start,setback.end)
+        lengthFunction(length.start,length.end)
+        RockerTypeClear()
+        WidthTypeClear()
+    }
+
+    const ChangeCheck = (e) => {
+        RockerTypeFunction(e.target.value)
+    }
+
+  
 
     return (
 
@@ -26,12 +77,6 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                                 </div>
                                 <div className="top-title">
                                     <h1>Filter</h1>
-                                    <div className="button-container-filter">
-                                    <button className="apply-filter" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>
-                                        Close & Apply
-                                    </button>    
-                                    {/* <a href="validvalue" className="close-btn" >&times;</a> */}
-                                    </div>
                                 </div>
                                 <div className="accordion">
                                     <Accordion title="Price">
@@ -40,7 +85,14 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                                             <div className="middle">
                                                 <div className="multi-range-slider">
                                                     {/* <input type="range" id="input-left" min="0" max="100" /> */}
-                                                    <Nouislider range={{ min: 500, max: 600 }} start={[500, 600]} connect onUpdate={(ev) => priceFunction(ev[0],ev[1])} />
+                                                    <Nouislider 
+                                                    range={{ min: price.start, max: price.end }} 
+                                                    start={[Math.floor(priceRange.start), Math.floor(priceRange.end)]} 
+                                                    connect 
+                                                    onUpdate={(ev) => priceFunction(ev[0],ev[1])} 
+                                                    set={[Math.floor(priceRange.start),Math.floor(priceRange.end)]}
+
+                                                    />
                                                     <div className="numbercontainer">
                                                         <h1>${Math.floor(priceRange.start)}</h1>
                                                         <h1>${Math.floor(priceRange.end)}</h1>
@@ -54,9 +106,9 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                                             <div className="middle">
                                                 <div className="multi-range-slider">
                                                     <Nouislider 
-                                                    range={{ min: 15, max: 70 }} 
-                                                    start={[15, 70]} 
-                                                    connect 
+                                                    range={{ min: setback.start, max: setback.end }} 
+                                                    start={[setbackRange.start, setbackRange.end]} 
+                                                    connect
                                                     onUpdate={(ev) => setbackFunction(ev[0],ev[1])} 
                                                     />
 
@@ -71,11 +123,11 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                                 <Accordion title="Ability Level">
                                     <div className="Accordion-content">
                                         <div className="check-box">
-                                            <input type="checkbox" id="horns" value="Intermediate-Advanced" name="ability-level" onChange={(e) => RockerTypeFunction(e.target.value)}/>
+                                            <input type="checkbox" id="horns" value="Intermediate-Advanced" name="ability-level" onChange={(e) => RockerTypeFunction(e.target.value)} checked={RockerType.indexOf("Intermediate-Advanced") !== -1 }/>
                                             <label>intermediate-Advanced</label>
                                         </div>
                                         <div className="check-box">
-                                            <input type="checkbox" id="horns" value="Advanced-Expert" name="ability-level"  onChange={(e) => RockerTypeFunction(e.target.value)}/>
+                                            <input type="checkbox" id="horns" value="Advanced-Expert" name="ability-level"  onChange={(e) => RockerTypeFunction(e.target.value)} checked={RockerType.indexOf("Advanced-Expert") !== -1}/>
                                             <label >Advanced-Expert</label>
                                         </div>
 
@@ -103,8 +155,8 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                                     <div className="middle">
                                                 <div className="multi-range-slider">
                                                     <Nouislider 
-                                                    range={{ min: 140, max: 200 }} 
-                                                    start={[140, 200]} 
+                                                    range={{ min: 140, max: 180 }} 
+                                                    start={[lengthRange.start, lengthRange.end]} 
                                                     connect 
                                                     onUpdate={(ev) => lengthFunction(ev[0],ev[1])} 
                                                     />
@@ -150,6 +202,18 @@ const ProductFilter = ({priceFunction , priceRange , setbackRange , setbackFunct
                             </Accordion>
                             
                                 </div>
+
+                               <div className="button-bottom-container">
+                                    <button className="apply-filter" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>
+                                        Close & Apply
+                                    </button>   
+
+                                    <button className="clear-filter"  onClick={(e) => ClearAll(e)}>
+                                        Clear All
+                                    </button>
+                                </div>     
+                                    {/* <a href="validvalue" className="close-btn" >&times;</a> */}
+                         
                             </div>
         </React.Fragment>
 

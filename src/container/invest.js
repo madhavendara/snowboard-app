@@ -1,13 +1,33 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
+import { useForm } from "react-hook-form";
+import { useSnackbar } from 'react-simple-snackbar';
 
 // images 
 import fly from '../assest/fly.png'
 import cloud from '../assest/cloud.png'
 import vector from '../assest/Vector.svg'
 
+import {User} from '../JSON/user'
+import {Product} from "../JSON/products";
+
 const Invest = () => {
+
+    const { register, handleSubmit, watch,reset, formState: { errors } } = useForm();
+
+    const [openSnackbar, closeSnackbar] = useSnackbar(); // show snackbar component
+
+    const onSubmit = async (data) => {
+        User.contact(data).then((res,err)=>{
+            if(!err) {
+                reset();
+                openSnackbar(res.msg)
+            }
+        })
+
+    };
+
     return (
 <React.Fragment>
 <div className="wall-Invest">
@@ -84,20 +104,29 @@ const Invest = () => {
            </div>
            <div className="QUICK-Login">
                <h1>QUICK INVEST</h1>
+               <form onSubmit={handleSubmit(onSubmit)}>
                <div className="wrapper">
                 <div className="contact-form">
                   <div className="input-fields">
                    <div>
                     <p>YOUR NAME*</p>
-                    <input type="text" className="input" placeholder="Type your name"/>
+                    <input type="text" className="input" {...register("name", { required: 'This field is required' })} placeholder="Type your name"/>
+                       {errors.name && <span>{errors.name.message}</span>}
                    </div>
                    <div>
                        <p>YOUR EMAIL ADDRESS*</p>
-                       <input type="text" className="input" placeholder="dummy@gmail.com"/>
+                       <input type="text" className="input" {...register("email", {
+                           required: "This field is required",
+                           pattern: {
+                               value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                               message: 'Please enter a valid email',
+                           } })} placeholder="dummy@gmail.com"/>
+                       {errors.email && <span>{errors.email.message}</span>}
                    </div>
                     <div>
                         <p>INVESTMENT AMOUNT*</p>
-                        <input type="text" className="input"  placeholder="$250"/>
+                        <input type="number" {...register("price", { required: 'This field is required' })} className="input"  placeholder="$250"/>
+                        {errors.price && <span>{errors.price.message}</span>}
                     </div>
                    </div>
                    <div className="contact-form">
@@ -105,6 +134,7 @@ const Invest = () => {
                    </div>
                  </div>
               </div>
+           </form>
           </div>
        </div>
    </div>

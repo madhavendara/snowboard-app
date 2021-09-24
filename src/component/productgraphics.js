@@ -39,6 +39,8 @@ const Productgraphics = (props) => {
                 {
                   const ratio = this.height / this.width
                   properties = {width : 70 , height : 70 * ratio}
+
+                  console.log(props.canvasHeight)
                 }
 
                 setdeminition(properties);
@@ -51,7 +53,7 @@ const Productgraphics = (props) => {
   
                 if(props.lineview)
                 {
-                  const widthratio = this.width / 400
+                  const widthratio = this.width / 700
                   const actuallwidth = props.canvasWidth * widthratio
                   const ratio = this.height / this.width
                   properties = {width : actuallwidth , height : ratio * actuallwidth}

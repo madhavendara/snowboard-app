@@ -1,0 +1,2 @@
+Please check with the nameservers you need to update the nameservers in the domain DNS by contacting the domain provider ns21.domaincontrol.com and
+ns22.domaincontrol.com

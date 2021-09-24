@@ -120,7 +120,7 @@ canvas
 {
     :root
     {
-        font-size: 21px;
+        font-size: 18px;
     }
 }
 
@@ -128,7 +128,7 @@ canvas
 {
     :root
     {
-        font-size: 27px;
+        font-size: 20px;
     }
 }
 .container
@@ -467,7 +467,7 @@ nav #icon {
     .app-sidebar
     {
         width: 30%;
-        background: #000000;
+        background: #1b1b1b;
         box-shadow: 0px 4px 60px rgb(36 33 40 / 68%);
         padding: 2.8rem 1.75rem;
         position: fixed;
@@ -479,7 +479,6 @@ nav #icon {
         display: flex;
         flex-direction: column;
         transition: all 0.6s;
-        max-width: 450px;
         @media(min-width: 2000px)
         {
             padding-bottom: 10px;
@@ -731,7 +730,6 @@ nav #icon {
         display: flex;
         grid-gap: 20px;
         background: rgba(91,90,96,.48);
-        border: 1px solid rgba(255,255,255,0.7);
         box-sizing: border-box;
         padding : 9.5px;
         margin-bottom: 10px;
@@ -744,6 +742,16 @@ nav #icon {
             .product-img
             {
                 width: 100%;
+            }
+        }
+
+        .left
+        {
+            text-align: right;
+            
+            p
+            {
+                margin-top: 5px;
             }
         }
 
@@ -776,11 +784,12 @@ nav #icon {
                     font-weight: 600;
                     margin: 0;
                     padding-bottom: 0px;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
                     overflow: hidden;
-                    max-width: 177px;
+                    max-width: calc(100px + 40%);
                     text-transform: capitalize;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
                 }
 
                 h5
@@ -911,7 +920,7 @@ nav #icon {
         .canvas-area
         {
             width: 100%;
-            transition: all 0.6s;
+            transition: width 0.6s;
         }
 
         
@@ -959,6 +968,11 @@ path.cls-1 {
     padding-top: 3rem;
     margin-left: auto;
     cursor: zoom-in;
+
+    @media(min-width: 2000px)
+    {
+        width: 80%;
+    }
     
     > *
     {
@@ -1192,10 +1206,13 @@ path.cls-1 {
         }
 }
 
+
+
+
 .canvas-area-zoom
 {
     position: fixed;
-    transform: scale(2,2);
+    transform: scale(4,4);
     right : 0;
     top : 0;
 }
@@ -1981,6 +1998,7 @@ img.loading-image {
     grid-row-gap: 20px;
     min-height: 60vh;
     justify-content: center;
+    mix-blend-mode: screen;
 
     h5
     {
@@ -2628,7 +2646,7 @@ img.loading-image {
 
     .side-filteroption
     {
-        background-color: black;
+        background-color: #1b1b1b;
         width: 30vw;
         height: 100%;
         display: none;
@@ -2657,23 +2675,7 @@ img.loading-image {
                 text-decoration: none;
             }
 
-            button.apply-filter {
-                padding: 11px 17px;
-                background: #005FCF;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                font-size: 17px;
-                font-family: "Poppins", sans-serif;
-            }
-
-            .button-container-filter
-            {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                grid-column-gap: 10px;
-            }
+           
         }
      .accordion
      {
@@ -2778,7 +2780,32 @@ img.loading-image {
         outline: none;
       }
 
-     
+      .button-bottom-container {
+        padding : 1.5rem 2.8rem;
+        display:flex;
+        justify-content: space-between;
+      }
+      button.apply-filter {
+        padding: 11px 17px;
+        background: #005FCF;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 17px;
+        font-family: "Poppins", sans-serif;
+       
+    }
+
+    button.clear-filter {
+        padding: 0px 20px;
+        font-size: 17px;
+        color: #fff;
+        background: transparent;
+        border: 1px solid white;
+        cursor: pointer;
+    }
+
+ 
     }
 
     .side-filteroption[data-active="true"]
@@ -3015,7 +3042,62 @@ a.login-submit {
     padding: 46px;
 }
 
+.under-construction
+{
+    width: 100%;
+    height: 100vh;
+    background : url(../src/assest/undercontruction.svg) #353848;
+    background-size: 100% 100%;
+    display: flex;
 
+    .center-content
+    {
+        margin : auto;
+
+        *
+        {
+            color : #fff;
+            text-align: center;
+        }
+
+        h1,h4
+        {
+            text-transform: uppercase;
+            padding : 0;
+            margin : 0;
+        }
+
+        h4
+        {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .subscribe-box
+    {
+        width : 100%;
+        display : flex;
+        margin-top: 20px;
+
+        .type-text
+        {
+            padding : 16px;
+            flex : 1;
+            color : #000000;
+            text-align: left;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .type-submit
+        {
+            background: #2741CC;
+            border : none;
+            width: 70px;
+            font-family: "Poppins", sans-serif;
+        }
+    }
+}
 
 // @keyframes rotate {
 //     from { -webkit-transform: rotateY(0deg)}

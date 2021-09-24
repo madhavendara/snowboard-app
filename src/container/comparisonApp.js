@@ -61,7 +61,7 @@ const Comparison = () => {
 
     const [lengthRange, setlengthRange] = useState({
         start: 140,
-        end: 200
+        end: 180
     })
 
     const [RockerType , SetRockerType] = useState([])
@@ -93,6 +93,10 @@ const Comparison = () => {
         
     }
 
+    const RockerTypeClear = () => {
+        SetRockerType([])
+    }
+
     const widthFunction = (ev) => {
 
         const letWidth = [...widthType]
@@ -111,6 +115,10 @@ const Comparison = () => {
             SetwidthType(letWidth)
         }
 
+    }
+
+    const WidthTypeClear = () => {
+        SetwidthType([])
     }
 
     const filterApply = (data) => {
@@ -225,6 +233,7 @@ const Comparison = () => {
     const [sidebarshow,setsidebarshow] = useState(false)
     const [popupOpen , setpopOpen] = useState([])
     const [zoom , setZoom] = useState(false)
+    const [sidebarSize , setsidebarSize] = useState()
 
 
     const [products,setProducts] = useState([])
@@ -269,15 +278,14 @@ const Comparison = () => {
 
 
                 setProducts(exampleCopy)
-                setCanvasHeight(canvas.current.offsetHeight)
-                setCanvasWidth(canvas.current.offsetWidth)
                 changecopy(exampleCopy)
             }
         })
         //
 
         console.log(search)
-
+        setCanvasHeight(window.innerHeight)
+        setCanvasWidth(window.innerWidth)
     }, [search])
 
     useEffect(() => {
@@ -289,9 +297,15 @@ const Comparison = () => {
         {
             window.scrollTo(0, 0)
         }
+
     },[graphactive])
 
     useEffect(() => {
+        let size = window.innerWidth * 30 /100
+
+        size < 570 ? setsidebarSize(size) : setsidebarSize(570)
+       
+        
         setWindowWidth(window.innerWidth)
         setWindowHeight(window.innerHeight)
     },[])
@@ -308,19 +322,45 @@ const Comparison = () => {
         })
     }
     function handleMouseMove(ev) { 
-        setMousePosition({left: ev.pageX, top: ev.pageY});
+        let new_left
+        let new_top
+        if(!sidebarshow)
+        {
+            new_left = ev.pageX - (sidebarSize + window.innerWidth * 0.109809663)
+            new_top = ev.pageY - window.innerHeight * 0.1953125
+        }
+
+        else
+        {
+            new_left = ev.pageX - (window.innerWidth * 0.209809663)
+            new_top = ev.pageY - window.innerHeight * 0.1953125
+        }
+        
+
+        setMousePosition({left: new_left, top: new_top});
+console.log(MousePosition.left * 3 , MousePosition.top)
+
      }
 
      const zoomClick = () => {
 
-        if(MousePosition.left > windowWidth * 30/100 && MousePosition.left < windowWidth * 90/100)
+        if(!sidebarshow)
         {
-            if(MousePosition.top > windowHeight * 30/100 && MousePosition.top < windowWidth * 90/100)
+            if(MousePosition.left > windowWidth * 1/100 && MousePosition.left < windowWidth * 50/100)
             {
-                setZoom(!zoom)
+                if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                {
+                    setZoom(!zoom)
+                }
+                
             }
-            
         }
+
+        else
+        {
+            setZoom(!zoom)
+        }
+        
             
      }
 
@@ -440,13 +480,13 @@ const Comparison = () => {
             //  graph={graphics.graph}
              graph=  {
             [
-               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "size"}  , 
-               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"},
-               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase"},
-               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth"}
+               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "Size(cm)"}  , 
+               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "Taper(mm)"},
+               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase(mm)"},
+               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth(mm)"}
             ]}
              canvasHeight={canvasHeight}
-             canvasWidth={canvasWidth}
+             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 570 ? canvasWidth * 30/100 : 570)}
            
              />    
         )
@@ -463,10 +503,10 @@ const Comparison = () => {
             //  graph={graphics.graph}
             graph =  {
                 [
-                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "size"}  , 
-                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "taper"}, 
-                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius"},
-                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback"}
+                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "Size(cm)"}  , 
+                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "Taper(mm)"}, 
+                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius(m)"},
+                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback(mm)"}
                 ]}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth}
@@ -503,7 +543,11 @@ const Comparison = () => {
                     lengthFunction={lengthFunction}
                     lengthRange={lengthRange}
                     RockerTypeFunction={RockerTypeFunction}
+                    RockerType={RockerType}
+                    RockerTypeClear={RockerTypeClear}
                     widthFunction={widthFunction}
+                    widthType={widthType}
+                    WidthTypeClear={WidthTypeClear}
                     />
                 </div>
                 <div className="product-listing">
@@ -514,7 +558,7 @@ const Comparison = () => {
                     copyJSON.length ? 
                     copyJSON.map(product => {
                         return (
-                            filterApply(product) ? 
+                            filterApply(product) || product["added"] ? 
                             <Productcard
                                 productimg={product["img"]} 
                                 title={product["Title"]} 
@@ -556,7 +600,7 @@ const Comparison = () => {
             className={!zoom ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
             onMouseMove={(ev) => handleMouseMove(ev)} 
             onClick={zoomClick}
-            style={zoom ? {right : (-(windowWidth * 1/2) + MousePosition.left * 80/100) , marginTop : -(MousePosition.top * 60/100) } : null}
+            style={zoom ? {right : (-(windowWidth * 1/2) + MousePosition.left * 2) , marginTop : -(MousePosition.top * 2) } : null}
             >
 
                     <Toolbar 

@@ -22,15 +22,19 @@ const Productcard = (props) => {
                         <div className="product-content">
                             <div className="title-content">
                               <div className="p">
-                                    <h1>{props.title}</h1>    
+                                    <h1>{props.title}</h1> 
                                   </div>  
-                                <h5>{props.type}</h5>
+                                <div className="left">
+                                <h5>{props.size}cm</h5>
+                                <p>{props.type}</p>   
+                                </div>  
+                                
                             </div>
                             <div className="star star-4">
 
                             </div>
                             <div className="price-container">
-                                <h3>{props.price}</h3>
+                                <h3>${props.price}</h3>
                                 <button className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
                                     onClick = {() => props.productadded(props.id)}
                                 >

@@ -3,7 +3,7 @@ import productline from "../assest/product-line-1.svg";
 export class Product {
     static getProduct =  () =>{
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/list.php", {
+            await fetch("http://shredmetrix.com/airtable/api/list.php", {
                 "method": "GET",
                 "headers": {
                     "content-type": "application/json",

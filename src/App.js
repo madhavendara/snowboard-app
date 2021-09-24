@@ -24,6 +24,8 @@ function App() {
 
   return (
     <React.Fragment>
+
+          {window.innerWidth > 800 ?
             <Switch>
                   <Route path='/' exact>
                         <Choice />
@@ -58,7 +60,9 @@ function App() {
                   </Route>
 
                   <Route path='/invest' exact>
-                        <Invest />
+                        <SnackbarProvider>
+                              <Invest />
+                        </SnackbarProvider>
                   </Route>
 
                   <Route path='/login' exact>
@@ -80,11 +84,22 @@ function App() {
                               <Admin />
                         </SnackbarProvider>
                   </PrivateRoute>
-
-                  
-                  
-                  
             </Switch>
+
+            : <div className="under-construction">
+                  <div className="center-content">
+                        <h1>Mobile App</h1>
+                        <h4>Under construction</h4>
+                        <p>Get notification on phone when it launch</p>
+                        <div className="subscribe-box">
+                              
+                              <input type="email" className="type-text" placeholder="Enter the email address"/>
+                              <input type="submit" value="Submit" className="type-submit"/>
+                        </div>
+                  </div>
+            </div>
+
+}
     </React.Fragment>
     
   );

@@ -24,7 +24,7 @@ const Invest = () => {
         formData.append('name', data.name);
         formData.append('email', data.email);
         formData.append('password', data.password);
-        await fetch("http://extropysystems.com/public/airtable/api/register.php", {
+        await fetch("http://shredmetrix.com/airtable/api/register.php", {
             "method": "POST",
             "body":formData,
         }).then(response => response.json())

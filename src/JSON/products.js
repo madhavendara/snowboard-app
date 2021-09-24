@@ -4,7 +4,7 @@ export class Product {
     static getProduct =  (search) =>{
         var searchData = (search !== undefined)?search:'';
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/list.php?s="+searchData, {
+            await fetch("http://shredmetrix.com/airtable/api/list.php?s="+searchData, {
                 "method": "GET",
                 "headers": {
                     "content-type": "application/json",
@@ -63,7 +63,7 @@ export class Product {
         formData.append('products_id', data);
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/wishlist.php", {
+            await fetch("http://shredmetrix.com/airtable/api/wishlist.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())
@@ -82,7 +82,7 @@ export class Product {
     static getBookmarkProduct =  () =>{
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/get_wishlist.php?user_id="+localStorage.getItem('token'), {
+            await fetch("http://shredmetrix.com/airtable/api/get_wishlist.php?user_id="+localStorage.getItem('token'), {
                 "method": "GET"
             }).then(response => response.json())
                 .then(response => {
@@ -124,7 +124,7 @@ export class Product {
         formData.append('id', data);
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://extropysystems.com/public/airtable/api/delete_wishlist.php", {
+            await fetch("http://shredmetrix.com/airtable/api/delete_wishlist.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())
