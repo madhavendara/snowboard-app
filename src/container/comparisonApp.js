@@ -602,10 +602,10 @@ const Comparison = () => {
                     WidthTypeClear={WidthTypeClear}
                     walkfunction={() => Setwalkthrough(2)}
                     walkthrough={walkthrough}
-                    length={copyJSON.length}
+                    amount={copyJSON.length}
                     />
                 </div>
-                <div className="product-listing">
+                <div className={!walkthrough ? "product-listing product-listing-active" : "product-listing"}>
 
                 {/* product card start*/}
 

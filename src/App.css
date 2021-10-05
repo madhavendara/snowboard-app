@@ -2363,6 +2363,7 @@ img.loading-image {
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 9;
   overflow-y: scroll;
 }
 .side-filteroption .top-title {

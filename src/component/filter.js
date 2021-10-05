@@ -18,7 +18,8 @@ const ProductFilter = (
     RockerTypeClear,
     WidthTypeClear,
     walkthrough,
-    walkfunction
+    walkfunction,
+    amount
     }
     
     ) => {
@@ -64,7 +65,10 @@ const ProductFilter = (
                                 walkthrough === 1 ? <>
                                     <div className="blue-box-1">
                                         <h2>Refine your options</h2>
-                                        <button className="gotit-btn" onClick={walkfunction}>Got it</button>  
+                                        {  amount > 0 ?
+                                            <button className="gotit-btn" onClick={walkfunction}>Got it</button> : null 
+                                        }
+                                        
                                     </div> 
                                     <div className="backdrop">
                                     </div> 
