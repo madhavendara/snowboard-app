@@ -13,6 +13,8 @@ const Productcard = (props) => {
         }
     }
 
+    
+
     return (
 
         <div className='product-card'>
@@ -23,6 +25,7 @@ const Productcard = (props) => {
                             <div className="title-content">
                               <div className="p">
                                     <h1>{props.title}</h1> 
+                                    <p>{props.Brand}</p>
                                   </div>  
                                 <div className="left">
                                 <h5>{props.size}cm</h5>
@@ -35,9 +38,21 @@ const Productcard = (props) => {
                             </div>
                             <div className="price-container">
                                 <h3>${props.price}</h3>
-                                <button className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
-                                    onClick = {() => props.productadded(props.id)}
+                                <button 
+                                className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
+                                onClick = {() => props.productadded(props.id)}
                                 >
+                                {
+                                    props.i === 0 && props.walkthrough === 2 ? <>
+                                    <div className="blue-box-1">
+                                    <h2>Select 2-4 Boards</h2>
+                                    <button className="gotit-btn" onClick={props.walkfunction}>Got it</button>  
+                                    </div>    
+                                    <div className="backdrop">
+                                    </div>  
+                                    </> : null
+                                }    
+                                
                                 </button>
 
                                 <img onClick={() => props.bookmarkadd(props.id)} src={bookmark} alt="save" className="bookmark"/>

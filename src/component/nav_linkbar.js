@@ -43,6 +43,7 @@ const Navbar_linkbar = (props) => {
         </li>
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/invest">INVEST</Link></li>
+        <li><Link to="/snowboardeducation">Snowboard Education</Link></li>
         <li><a href="#feedback">REVIEW</a></li>
             {button}
          <div className="in-item">

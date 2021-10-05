@@ -23,6 +23,8 @@ export class Product {
                                 "id": data[i].id || '',
                                 "ref": data[i].id || '',
                                 "Title": data[i].fields["Product title"] ?  data[i].fields["Product title"] :  data[i].fields.SKU,
+                                "Model" : data[i].fields["Model"],
+                                "Brand" : data[i].fields["Brand"],
                                 "url" : data[i].fields["Product href"] ?  data[i].fields["Product href"] :  "https://www.evo.com/shop/snowboard",
                                 "type": data[i].fields.Width,
                                 "stars": 4,

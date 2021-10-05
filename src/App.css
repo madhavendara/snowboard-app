@@ -425,6 +425,61 @@ nav #icon {
   grid-gap: 25px;
   margin-top: 8vh;
 }
+#comparison-app .filter-bar-container {
+  position: relative;
+}
+#comparison-app .blue-box-1 {
+  padding: 35px;
+  background: #2741CC;
+  position: absolute;
+  width: 16vw;
+  left: 45px;
+  z-index: 9999;
+  text-align: left;
+  top: -11px;
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 600;
+}
+#comparison-app .blue-box-1::after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background: url(./assest/arrow.png);
+  background-size: 100% auto;
+  background-position: center center;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  background-repeat: no-repeat;
+}
+#comparison-app .blue-box-1 h2 {
+  color: #fff;
+}
+#comparison-app .blue-box-1 .gotit-btn {
+  padding: 10px 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  margin-top: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#comparison-app .blue-box-1 .list-blue-box-1 li {
+  padding: 8px 0px;
+}
+#comparison-app .backdrop {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
 #comparison-app .search-bar-container {
   width: 100%;
   display: -webkit-box;
@@ -475,7 +530,6 @@ nav #icon {
 }
 #comparison-app .product-listing {
   margin-top: 30px;
-  overflow-y: scroll;
 }
 #comparison-app .product-listing::-webkit-scrollbar {
   width: 5px;
@@ -487,6 +541,9 @@ nav #icon {
 #comparison-app .product-listing::-webkit-scrollbar-thumb {
   background-color: #2741CC;
   outline: none;
+}
+#comparison-app .product-listing-active {
+  overflow-y: scroll;
 }
 
 .product-box-container {
@@ -676,11 +733,6 @@ nav #icon {
 }
 .product-card .product-content .title-content .p {
   color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-.product-card .product-content .title-content .p:hover {
-  text-decoration: underline;
 }
 .product-card .product-content .title-content h1 {
   font-size: 1.1rem;
@@ -750,6 +802,7 @@ nav #icon {
           box-shadow: none;
   border: none;
   cursor: pointer;
+  position: relative;
 }
 .product-card .price-container .no-active-selection {
   background: url(./assest/plus.svg);
@@ -859,20 +912,20 @@ path.cls-1 {
           box-shadow: none;
   outline: none;
   border: none;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.5);
   font-family: "Hansief";
   font-size: 1.1rem;
-  opacity: 0.5;
   font-weight: 400;
   letter-spacing: 0.1rem;
   cursor: pointer;
+  position: relative;
 }
 .canvas-area .canvas-header h1 {
   color: #fff;
   font-size: 3rem;
 }
 .canvas-area .canvas-header .button[data-active=true] {
-  opacity: 1;
+  color: white;
   cursor: default;
 }
 .canvas-area .canvas-header .outline-profile-switch {
@@ -968,9 +1021,30 @@ path.cls-1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
+}
+.canvas-area .canvas-text .unit-text {
+  position: absolute;
+  left: -33px;
+  bottom: 14px;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  grid-row-gap: 5px;
+}
+.canvas-area .canvas-text .unit-text .unit-row h4 {
+  color: #fff;
+  font-size: 14px;
 }
 .canvas-area .canvas-text .graphic-text {
   display: none;
+}
+.canvas-area .canvas-text[data-graph=true] .unit-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .canvas-area .canvas-text[data-active=true] .graphic-text {
   display: block;
@@ -2283,7 +2357,7 @@ img.loading-image {
 /*===---------------only side toggle page css small page------------===*/
 .side-filteroption {
   background-color: #1b1b1b;
-  width: 30vw;
+  width: 100%;
   height: 100%;
   display: none;
   position: absolute;
@@ -2659,11 +2733,13 @@ a.login-submit {
   margin-bottom: 20px;
 }
 .under-construction .subscribe-box {
-  width: 100%;
+  width: 93%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .under-construction .subscribe-box .type-text {
   padding: 16px;

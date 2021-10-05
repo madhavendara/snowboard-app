@@ -1,0 +1,3 @@
+[06:40, 26/09/2021] Ajjeet Pay: method post
+[06:41, 26/09/2021] Ajjeet Pay: input name : email
+[06:46, 26/09/2021] Ajjeet Pay: http://shredmetrix.com/airtable/api/subscribe.php

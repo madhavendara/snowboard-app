@@ -95,15 +95,15 @@ function MouseOver(event) {
               ctx.font = "800 14px Poppins"
               ctx.fillStyle = "black"
               ctx.textAlign = "left"
-              ctx.fillText(bar[i].name ,5, (i+1) * 26 - 3)
+              ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
 
-              ctx.fillStyle = "white"
-              ctx.fillRect((props.width * bar[i].precentage / 100 - 40), (i+1)*26 - 30, 50, 20);
+              // ctx.fillStyle = "transparent"
+              // ctx.fillRect((props.width * bar[i].precentage / 100 - 20), (i+1)*26 - 30, 50, 20);
 
-              ctx.font = "14px Poppins"
-              ctx.fillStyle = "black"
-              ctx.textAlign = "center"
-              ctx.fillText(bar[i].amount ,(props.width * bar[i].precentage / 100 - 20), (i+1) *26 - 14)
+              // ctx.font = "14px Poppins"
+              // ctx.fillStyle = "black"
+              // ctx.textAlign = "center"
+              // ctx.fillText(bar[i].amount  ,(props.width * bar[i].precentage / 100 - 20), (i+1) *26 - 14)
 
             }
 
@@ -112,7 +112,7 @@ function MouseOver(event) {
               ctx.font = "400 14px Poppins"
               ctx.fillStyle = "black"
               ctx.textAlign = "left"
-              ctx.fillText(bar[i].name ,5, (i+1) * 26 - 3)
+              ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
             }
 
             

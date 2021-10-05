@@ -12,6 +12,9 @@ import Productgraphics from '../component/productgraphics'
 import Productgraphics2 from '../component/productgraphics_text'
 import Loading from '../component/loading'
 
+// function import 
+import PositionCalculator from '../functions/positionCalculator'
+
 // images import
 import placeholder_graphics from '../assest/placeholder-box.svg'
 import arrowline from '../assest/arrow-line.svg'
@@ -63,10 +66,9 @@ const Comparison = () => {
         start: 140,
         end: 180
     })
-
     const [RockerType , SetRockerType] = useState([])
-
     const [widthType , SetwidthType] = useState([])
+    const [walkthrough ,Setwalkthrough] = useState(1)
 
 
 
@@ -258,6 +260,22 @@ const Comparison = () => {
 
     const canvas = useRef(null)
     let anotherCopy = [];
+
+
+    const outlineUnit = <div className="unit-text">
+    <div className="unit-row">
+        <h4>Size</h4>
+    </div>  
+    <div className="unit-row">
+        <h4>Taper</h4>
+    </div>
+    <div className="unit-row">
+        <h4>Sidecut</h4>
+    </div> 
+    <div className="unit-row">
+        <h4>Stance</h4>
+    </div>   
+</div> 
   
 
     useEffect(() => {
@@ -338,31 +356,65 @@ const Comparison = () => {
         
 
         setMousePosition({left: new_left, top: new_top});
-console.log(MousePosition.left * 3 , MousePosition.top)
+     
 
      }
 
      const zoomClick = () => {
+         if(walkthrough > 0)
+         return false
 
-        if(!sidebarshow)
+        if(window.innerWidth < 2400)
         {
-            if(MousePosition.left > windowWidth * 1/100 && MousePosition.left < windowWidth * 50/100)
+            if(!sidebarshow)
             {
-                if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                if(MousePosition.left > windowWidth * 1/100 && MousePosition.left < windowWidth * 50/100)
                 {
-                    setZoom(!zoom)
+                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                    {
+                        setZoom(!zoom)
+                    }
+                    
                 }
-                
+            }
+
+            else
+            {
+                // setZoom(!zoom)
+                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 60/100)
+                {
+                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                    {
+                        setZoom(!zoom)
+                    }
+                    
+                }
             }
         }
 
         else
         {
-            setZoom(!zoom)
+            if(!sidebarshow)
+            {
+                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 70/100)
+                {
+                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 80/100)
+                    {
+                        setZoom(!zoom)
+                    }
+                    
+                }
+            }
+
+            else
+            {
+                setZoom(!zoom)
+            }
         }
-        
             
      }
+
+    
 
     const productAdded = (key) => {
 
@@ -428,10 +480,10 @@ console.log(MousePosition.left * 3 , MousePosition.top)
             for (let i = 0; i < graphics.length; i++)
                 {
                    
-                        let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100)}  , 
-                        { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100)}, 
-                        { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100)},
-                        { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100)}
+                        let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100) , unit : 'cm'}  , 
+                        { amount : graphics[i]["taper"] , precentage : Math.floor(graphics[i]["taper"] / taperbase * 100) , unit : 'mm'}, 
+                        { amount : graphics[i].TipWidth , precentage : Math.floor(graphics[i].TipWidth / TipWidthbase * 100) , unit : 'mm'},
+                        { amount : graphics[i].WaistWidth , precentage : Math.floor(graphics[i].WaistWidth / WaistWidthbase * 100) , unit : 'mm'}
                         ];
 
                         let elements2 =  
@@ -461,7 +513,7 @@ console.log(MousePosition.left * 3 , MousePosition.top)
              url2={graphics["line"]}
              lineview={lineview} 
              key={graphics.id}
-             title={graphics.Title}
+             title={graphics.Model}
              size={graphics.size}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth}
@@ -475,15 +527,15 @@ console.log(MousePosition.left * 3 , MousePosition.top)
             <Productgraphics2 
             color={colorSets[i]} 
              key={graphics.id}
-             title={graphics.Title}
+             title={graphics.Model}
              size={graphics.size}
             //  graph={graphics.graph}
              graph=  {
             [
-               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "Size(cm)"}  , 
-               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "Taper(mm)"},
-               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "TipWidthbase(mm)"},
-               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "WaistWidth(mm)"}
+               { amount : graphics.size , precentage : Math.floor(graphics.size / sizebase * 100) , name : "cm"}  , 
+               { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "mm"},
+               { amount : graphics.TipWidth , precentage : Math.floor(graphics.TipWidth / TipWidthbase * 100) , name : "mm"},
+               { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "mm"}
             ]}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth - (canvasWidth * 30/100 < 570 ? canvasWidth * 30/100 : 570)}
@@ -509,7 +561,7 @@ console.log(MousePosition.left * 3 , MousePosition.top)
                    { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback(mm)"}
                 ]}
              canvasHeight={canvasHeight}
-             canvasWidth={canvasWidth}
+             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 570 ? canvasWidth * 30/100 : 570)}
            
              />    
         )
@@ -548,6 +600,9 @@ console.log(MousePosition.left * 3 , MousePosition.top)
                     widthFunction={widthFunction}
                     widthType={widthType}
                     WidthTypeClear={WidthTypeClear}
+                    walkfunction={() => Setwalkthrough(2)}
+                    walkthrough={walkthrough}
+                    length={copyJSON.length}
                     />
                 </div>
                 <div className="product-listing">
@@ -556,12 +611,13 @@ console.log(MousePosition.left * 3 , MousePosition.top)
 
                 {
                     copyJSON.length ? 
-                    copyJSON.map(product => {
+                    copyJSON.map((product , i) => {
                         return (
                             filterApply(product) || product["added"] ? 
                             <Productcard
                                 productimg={product["img"]} 
-                                title={product["Title"]} 
+                                title={product["Model"]}
+                                Brand={product["Brand"]} 
                                 url={product["url"]}
                                 type={product["type"]}
                                 stars={product["stars"]}
@@ -571,6 +627,9 @@ console.log(MousePosition.left * 3 , MousePosition.top)
                                 class={activeproduct}
                                 key = {product["id"]}
                                 id = {product["id"]}
+                                i={i}
+                                walkfunction={() => Setwalkthrough(3)}
+                                walkthrough={walkthrough}
                                 productBoxactive={popupOpen === product["id"] ? true : false}
                                 productadded = {productAdded}
                                 popupOne = {() => setpopOpen(product["id"]) }
@@ -600,7 +659,7 @@ console.log(MousePosition.left * 3 , MousePosition.top)
             className={!zoom ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
             onMouseMove={(ev) => handleMouseMove(ev)} 
             onClick={zoomClick}
-            style={zoom ? {right : (-(windowWidth * 1/2) + MousePosition.left * 2) , marginTop : -(MousePosition.top * 2) } : null}
+            style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth) , marginTop : -(MousePosition.top * 2) } : null}
             >
 
                     <Toolbar 
@@ -617,7 +676,22 @@ console.log(MousePosition.left * 3 , MousePosition.top)
                     <div className="outline-profile-switch">
                         <button className="switch-button button" data-active={!lineview} onClick={()=> setlineview(false)}>OUTLINE</button>
                         <img src={arrowline} alt="arrow-line"/>    
-                        <button className="switch-button button" data-active={lineview} onClick={ ()=> setlineview(true)}>PROFILE</button>
+                        <button className="switch-button button" data-active={lineview} onClick={ ()=> setlineview(true)}>
+                            PROFILE
+                        {
+                            walkthrough === 3 ? <>
+                            <div className="blue-box-1">
+                            <ol className="list-blue-box-1">    
+                                <li>Change buttons to “Outline View” and “Profile View”</li>
+                                <li>Arrow should change direction based on which option is selected</li>
+                            </ol>
+                            <button className="gotit-btn" onClick={() => Setwalkthrough(null)}>Got it</button>  
+                            </div>    
+                            <div className="backdrop">
+                            </div>  
+                            </> : null
+                        }    
+                        </button>
                     </div>
                 </div>
                 <div className="canvas-content"
@@ -632,8 +706,12 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                 
                         
                 <div className="canvas-text" data-active={!lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
+                       
                         {
-                        Array.isArray(activeGraphics) && activeGraphics.length ? graphicsoutline : null
+                        Array.isArray(activeGraphics) && activeGraphics.length ?   outlineUnit : null
+                        } 
+                        {
+                        Array.isArray(activeGraphics) && activeGraphics.length ?   graphicsoutline : null
                         }   
                 </div>
 

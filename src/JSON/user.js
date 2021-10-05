@@ -39,5 +39,47 @@ export class User {
 
     }
 
+    static contact =  (data) =>{
+        let formData = new FormData();
+        formData.append('name', data.name || '');
+        formData.append('email', data.email || '');
+        formData.append('price', data.price || '');
+
+        return new Promise(async (resolve, reject)=>{
+            await fetch("http://shredmetrix.com/airtable/api/invest.php", {
+                "method": "POST",
+                "body":formData,
+            }).then(response => response.json())
+                .then(response => {
+                    resolve(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                });
+        })
+
+    }
+
+
+    static Subscribe =  (data) =>{
+        let formData = new FormData();
+        formData.append('email', data.email || '');
+        return new Promise(async (resolve, reject)=>{
+            await fetch("http://shredmetrix.com/airtable/api/subscribe.php", {
+                "method": "POST",
+                "body":formData,
+            }).then(response => response.json())
+                .then(response => {
+                    resolve(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err)
+                });
+        })
+
+    }
+
 }
  

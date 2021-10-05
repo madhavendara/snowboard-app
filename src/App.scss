@@ -509,6 +509,83 @@ nav #icon {
         margin-top: 8vh;
     }
 
+    .filter-bar-container
+    {
+        position: relative;
+    }
+
+    .blue-box-1
+    {
+        padding: 35px;
+        background: #2741CC;
+        position: absolute;
+        width: 16vw;
+        left: 45px;
+        z-index: 9999;
+        text-align: left;
+        top: -11px;
+        font-size: 13px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        font-weight: 600;
+
+        &::after
+        {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(./assest/arrow.png);
+            background-size: 100% auto;
+            background-position: center center;
+            transform: rotate(
+        -90deg);
+            background-repeat: no-repeat;
+
+        }
+
+        h2
+        {
+            color : #fff;
+        }
+
+        .gotit-btn
+        {
+            padding : 10px 15px;
+            border : 1px solid #fff;
+            color : #fff;
+            background: transparent;
+            margin-top: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .list-blue-box-1
+        {
+            li
+            {
+                padding : 8px 0px;
+            }
+        }
+
+        
+    }
+
+    .backdrop
+    {
+        position: fixed;
+        z-index: 999;
+        width: 100vw;
+        height: 100vh;
+        top : 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+
+
     .search-bar-container
     {
         width: 100%;
@@ -553,7 +630,7 @@ nav #icon {
     .product-listing
     {
         margin-top: 30px;
-        overflow-y: scroll;
+        
 
         &::-webkit-scrollbar {
             width: 5px;
@@ -568,6 +645,11 @@ nav #icon {
             background-color: $primary;
             outline: none;
           }
+    }
+
+    .product-listing-active
+    {
+        overflow-y: scroll;
     }
 
     
@@ -767,13 +849,6 @@ nav #icon {
                 .p
                 {
                     color : #fff;
-                    text-decoration: none;
-                    cursor: pointer;
-
-                    &:hover
-                    {
-                        text-decoration: underline;
-                    }
                 }
 
                 h1
@@ -861,6 +936,7 @@ nav #icon {
                 box-shadow: none;
                 border : none; 
                 cursor: pointer; 
+                position: relative;
             }
 
             .no-active-selection
@@ -988,13 +1064,14 @@ path.cls-1 {
             box-shadow: none;
             outline: none;
             border: none;
-            color: #fff;
+            color: rgba(255,255,255,0.5);
             font-family: "Hansief";
             font-size: 1.1rem;
-            opacity: .5;
+            
             font-weight: 400;
             letter-spacing: 0.1rem;
             cursor: pointer;
+            position: relative;
         }
 
         h1
@@ -1004,7 +1081,7 @@ path.cls-1 {
         }
         .button[data-active = "true"]
         {
-            opacity: 1;
+            color: rgba(255,255,255,1);
             cursor: default;
         }
 
@@ -1152,10 +1229,38 @@ path.cls-1 {
             display: flex;
             grid-gap: 2.3rem;
             justify-content: center;
+            position: relative;
+
+            .unit-text
+            {
+                position: absolute;
+                left: -33px;
+                bottom: 14px;
+                display: none;
+                flex-direction: column;
+                grid-row-gap: 5px;
+
+                .unit-row
+                {
+                    h4
+                    {
+                        color : #fff;
+                        font-size: 14px;
+                    }
+                }
+            }
 
             .graphic-text
             {
                 display: none;
+            }
+        }
+
+        .canvas-text[data-graph="true"]
+        {
+            .unit-text
+            {
+                display: flex;
             }
         }
 
@@ -2647,7 +2752,7 @@ img.loading-image {
     .side-filteroption
     {
         background-color: #1b1b1b;
-        width: 30vw;
+        width: 100%;
         height: 100%;
         display: none;
         position: absolute;
@@ -3076,9 +3181,11 @@ a.login-submit {
 
     .subscribe-box
     {
-        width : 100%;
-        display : flex;
+        width: 93%;
+        display: flex;
         margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
 
         .type-text
         {

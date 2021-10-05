@@ -18,6 +18,7 @@ import SnackbarProvider from 'react-simple-snackbar'
 
 // private route
 import PrivateRoute from './route/PrivateRoute';
+import Comingsoon from './container/comingsoon';
 
 function App() {
 
@@ -28,13 +29,11 @@ function App() {
           {window.innerWidth > 800 ?
             <Switch>
                   <Route path='/' exact>
-                        <Choice />
-                  </Route>
-                  <Route path='/comparisonapp' exact>
                         <SnackbarProvider>
                               <Comparison />
                         </SnackbarProvider>
                   </Route>
+            
                   <Route path='/snowboardeducation' exact>
                         <Education />
                   </Route>
@@ -86,18 +85,7 @@ function App() {
                   </PrivateRoute>
             </Switch>
 
-            : <div className="under-construction">
-                  <div className="center-content">
-                        <h1>Mobile App</h1>
-                        <h4>Under construction</h4>
-                        <p>Get notification on phone when it launch</p>
-                        <div className="subscribe-box">
-                              
-                              <input type="email" className="type-text" placeholder="Enter the email address"/>
-                              <input type="submit" value="Submit" className="type-submit"/>
-                        </div>
-                  </div>
-            </div>
+            : <Comingsoon/>
 
 }
     </React.Fragment>

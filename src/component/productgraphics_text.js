@@ -17,10 +17,10 @@ const Productgraphics2 = (props) => {
       <div className="snowboard-graphics-container">
            <div className="graphic-text">
             <h4 style={{color : props.color}}>{props.title}</h4> 
-            <h5>{props.size}</h5>
+            <h5>{props.size}cm</h5>
          </div>
 
-         <Graph color={props.color} width={props.canvasWidth / 5.3} graph={props.graph} />
+         <Graph color={props.color} width={props.canvasWidth / 6} graph={props.graph} />
       </div>
        
     )
