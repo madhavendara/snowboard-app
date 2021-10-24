@@ -17,20 +17,27 @@ const Productcard = (props) => {
 
     return (
 
-        <div className='product-card-2'>
-                        <div className="product-img-col">
+        <div className='product-card'>
+                        <div className="product-img-container">
                            <img src={props.productimg} className="product-img" alt={props.title}/> 
                         </div>
-                        <div className="product-content-col">
+                        <div className="product-content">
+                            <div className="title-content">
+                              <div className="p">
                                     <h1>{props.title}</h1> 
                                     <p>{props.Brand}</p>
-                                    <h5>{props.size}cm</h5>
-                                    <p>{props.type}</p> 
-                                    <h3>${props.price}</h3>
-                                    <div className="star star-4"></div>
-                        </div>
-                        
-                        <button 
+                                  </div>  
+                                <div className="left">
+                                <h5>{props.size}cm</h5>
+                                <p>{props.type}</p>   
+                                </div>  
+                                
+                            </div>
+                            <div className="star star-4">
+                            </div>
+                            <div className="price-container">
+                                <h3>${props.price}</h3>
+                                <button 
                                 className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
                                 onClick = {() => props.productadded(props.id)}
                                 >
@@ -46,6 +53,12 @@ const Productcard = (props) => {
                                 }    
                                 
                                 </button>
+
+                                <img onClick={() => props.bookmarkadd(props.id)} src={bookmark} alt="save" className="bookmark"/>
+
+                            </div>
+
+                        </div>
                     </div>
 
                  

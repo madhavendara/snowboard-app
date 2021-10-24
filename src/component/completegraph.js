@@ -82,6 +82,7 @@ const Completegraph = (props) => {
     return (
 
         <div className="complete-graph" data-activestatus={props.activestatus} data-graph={props.graph} data-callpaseds={props.callpaseds} >
+          {props.names}
         <canvas className="fullgraph-canvas"
           ref={canvasfull}
           width={canvaswidth * (props.activeBars.length)}

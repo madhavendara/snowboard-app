@@ -30,12 +30,12 @@ body
       }
        
       &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background: $secondry;
+        box-shadow: transparent;
+        background: transparent;
       }
        
       &::-webkit-scrollbar-thumb {
-        background-color: $primary;
+        background-color: transparent;
         outline: none;
       }
 }
@@ -486,7 +486,12 @@ nav #icon {
 
         @media(min-width : 1800px)
         {
-            max-width: 570px;
+            max-width: 444px;
+        }
+
+        @media(min-width : 2400px)
+        {
+            max-width: 520px;
         }
 
         .expand-btn
@@ -573,6 +578,100 @@ nav #icon {
         
     }
 
+
+    .blue-box-2
+    {
+        padding: 35px;
+        background: #2741CC;
+        position: absolute;
+        width: 16vw;
+        left: 0;
+        z-index: 9999;
+        text-align: left;
+        top: 5px;
+        font-size: 13px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        font-weight: 600;
+        transform: translateX(-104%);
+
+        .list-blue-box-1
+        {
+            li
+            {
+                padding : 8px 0px;
+            }
+        }
+
+        &::after
+        {
+            content: "";
+            position: absolute;
+            right: -20px;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(./assest/arrow.png);
+            
+            background-size: 100% auto;
+            background-position: center center;
+            transform: rotate(
+        90deg);
+            background-repeat: no-repeat;
+
+        }
+
+        h2
+        {
+            color : #fff;
+        }
+
+        .gotit-btn
+        {
+            padding : 10px 15px;
+            border : 1px solid #fff;
+            color : #fff;
+            background: transparent;
+            margin-top: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .list-blue-box-1
+        {
+            li
+            {
+                padding : 8px 0px;
+            }
+        }
+
+        
+    }
+
+    .collapsible
+    {
+        .blue-box-2
+        {
+            top: 77px;
+        }
+    }
+
+    .base
+    {
+        .blue-box-2
+        {
+            top: 154px;
+        }
+    }
+
+    .graph
+    {
+        .blue-box-2
+        {
+            top: 224px;
+        }
+    }
+
     .backdrop
     {
         position: fixed;
@@ -630,19 +729,21 @@ nav #icon {
     .product-listing
     {
         margin-top: 30px;
-        
-
+        padding-top: 11px;
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 0% 2%;
         &::-webkit-scrollbar {
-            width: 5px;
+            width: 0px;
 
           }
            
           &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
           }
            
           &::-webkit-scrollbar-thumb {
-            background-color: $primary;
+            background-color: transparent;
             outline: none;
           }
     }
@@ -976,6 +1077,124 @@ nav #icon {
         }
     }
 
+    .product-card-2
+    {
+        padding: 20px;
+        border-radius: 11px;
+        background: #373639;
+        flex-basis: 49%;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+        margin-bottom: 3%;
+
+        .product-img-col
+        {
+            .product-img
+            {
+                width: 80px;
+                margin: 0 auto;
+                height: 160px;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .product-content-col
+        {
+            h1
+            {
+                font-size: 14px;
+                box-sizing: border-box;
+                color: #fff;
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                line-height: 122%;
+                padding-top: 10px;
+                padding-bottom: 0px;
+
+                @media(min-width : 2400px)
+                {
+                    font-size: 16px;
+                }
+            }
+
+            h3
+            {
+                font-size: 16px;
+                color: #fff;
+                font-weight: 400;
+                padding-top: 5px;
+            }
+
+            p
+            {
+                font-size: 14px;
+            }
+
+            .star
+            {
+                background: url(./assest/stars.png);
+                background-size: auto 100%;
+                height: 18px;
+                background-repeat: no-repeat;
+                margin: 0 auto;
+                margin-top: 12px;
+            }
+            .star-4
+            {
+                width: 80px;
+            }
+        }
+
+        .selection-check
+            {
+                width: 40px;
+                height: 30px;
+                box-shadow: none;
+                border : none; 
+                cursor: pointer; 
+                position: absolute;
+                top : -5px;
+                right: -5px;
+            }
+
+            .no-active-selection
+            {
+                background : url(./assest/plus.svg);
+                background-size: 100% 100%;
+            }
+            .active-selection-1
+            {
+                background : url(./assest/product-check-1.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-2
+            {
+                background : url(./assest/product-check-2.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-3
+            {
+                background : url(./assest/product-check-3.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-4
+            {
+                background : url(./assest/product-check-4.svg);
+                background-size: 100% 100%;
+            }
+
+            .delete-selection
+            {
+                background : url(./assest/delete.svg);
+                background-size: 100% 100%;
+            }
+    }
+
 #comparison-app[data-callpased="true"]
     {
         
@@ -1093,18 +1312,26 @@ path.cls-1 {
             grid-gap: 0.9rem;
         }
     }
+    
 
     .canvas-content
         {
             display: flex;
             grid-gap: 2.3rem;
-            padding-top: 5rem;
+            padding-top: 0rem;
             min-height: 52vh;
             justify-content: center;
             position: relative;
+ 
             .complete-graph
             {
                 flex-basis: 100%;
+            }
+
+            .unit-text
+            {
+                display: block;
+                opacity: 0;
             }
         }
 
@@ -1175,6 +1402,7 @@ path.cls-1 {
 .complete-graph
 {
     display: none;
+    position: relative;
 }
 
 .graphic-text
@@ -1220,7 +1448,14 @@ path.cls-1 {
 
         .complete-graph[data-activestatus="true"][data-callpaseds="true"][data-graph="true"]
         {
-            display: block;
+            display: flex;
+            justify-content: center;
+            grid-gap: 20px;
+
+            .fullgraph-canvas
+            {
+                margin : 0;
+            }
         }
 
 
@@ -1230,12 +1465,14 @@ path.cls-1 {
             grid-gap: 2.3rem;
             justify-content: center;
             position: relative;
-
-            .unit-text
+            .graphic-text
             {
-                position: absolute;
-                left: -33px;
-                bottom: 14px;
+                display: none;
+            }
+        }
+
+        .unit-text
+            {
                 display: none;
                 flex-direction: column;
                 grid-row-gap: 5px;
@@ -1250,18 +1487,24 @@ path.cls-1 {
                 }
             }
 
-            .graphic-text
-            {
-                display: none;
-            }
-        }
-
-        .canvas-text[data-graph="true"]
+        .canvas-text[data-active="true"].canvas-text[data-graph="true"].canvas-text[data-callpaseds="false"]
         {
             .unit-text
             {
                 display: flex;
+                align-self: end;
+                margin-bottom: 15px;
             }
+        }
+
+        .complete-graph 
+        {
+            .unit-text
+            {
+                display: flex;
+                margin-top: 7px;
+                bottom: initial !important;
+            } 
         }
 
         .canvas-text[data-active="true"]
@@ -1339,7 +1582,7 @@ path.cls-1 {
     top: 50%;
     transform: translateY(-50%);
     max-width: 70px;
-    z-index: 99;
+    z-index: 9999;
 
     .toolbar-options
     {
@@ -1360,6 +1603,19 @@ path.cls-1 {
     .collapsible[data-button-active=true]
     {
         background: url(./assest/collapsible_active.svg);
+        background-size: 100% 100%;
+    }
+
+
+    .lineview
+    {
+        background : url(./assest/outline.svg);
+        background-size: 100% 100%;
+    }
+
+    .lineview[data-button-active=true]
+    {
+        background: url(./assest/profile.png);
         background-size: 100% 100%;
     }
 
@@ -2873,16 +3129,16 @@ img.loading-image {
      }
 
      &::-webkit-scrollbar {
-        width: 5px;
+        width: 0px;
 
       }
        
       &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: none;
       }
        
       &::-webkit-scrollbar-thumb {
-        background-color: $primary;
+        background-color: transparent;
         outline: none;
       }
 
@@ -3205,6 +3461,88 @@ a.login-submit {
             font-family: "Poppins", sans-serif;
         }
     }
+}
+
+.walkthrough-content
+{
+    position: fixed;
+    top : 0;
+    left: 0;
+    right : 0;
+    bottom: 0;
+    z-index: 99999;
+    background: rgb(0, 0, 0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .walkthrough-box
+    {
+        padding: 30px;
+        background: #2741CC;
+        max-width: 700px;
+        box-sizing: border-box;
+        width: 35%;
+        text-align: center;
+
+        h1
+        {
+            font-family: "Poppins", sans-serif;
+            font-size: 2rem;
+            color : #fff;
+            font-weight: 700;
+            line-height: 100%;
+            padding-bottom: 5px;
+        }
+
+        p
+        {
+            font-family: "Poppins", sans-serif;
+            font-size: 15px;
+            color : #fff;
+        }
+
+        button.start-link {
+            padding: 12px 20px;
+            margin-top: 17px;
+            font-family: "Poppins", sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin-right: 14px;
+            cursor: pointer;
+        }
+
+        button.close-link
+        {
+            background: transparent;
+            padding: 12px 20px;
+            color : #fff;
+            border : none;
+            box-shadow: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+
+    .image-congrest
+    {
+        margin : 0 auto;
+        display: block;
+        max-width: 30%;
+        margin-bottom: 20px;
+    }
+
+}
+
+.walkthrough-content-transparent
+{
+    background: transparent;
+}
+
+
+.walkthrough-none
+{
+    display: none;
 }
 
 // @keyframes rotate {

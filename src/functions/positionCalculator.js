@@ -10,7 +10,7 @@ const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
     else
     {
         center = ((window.innerWidth)/2 - (window.innerWidth * 0.209809663))/2
-    }
+    } 
 
     let value_1
 
@@ -26,13 +26,14 @@ const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
 
     if(value_1 > center * 0.75)
      {
+
+        
        
-        if(window.innerWidth < 2400)
+        if(window.innerWidth < 1800)
         {
             
             return -(windowWidth * 1/2) + value_1 * 2.5
-        } 
-        
+        }  
         else
         {
             if(!sidebarshow)
@@ -53,7 +54,7 @@ const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
      {
  
         
-        if(window.innerWidth < 2400)
+        if(window.innerWidth < 1800)
         {
             if(!sidebarshow)
             {
@@ -77,7 +78,7 @@ const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
      else
      {
         
-        if(window.innerWidth < 2400)
+        if(window.innerWidth < 1800)
         {
 
             return -(windowWidth * 2.4/3) + value_1 * 2

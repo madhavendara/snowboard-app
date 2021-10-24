@@ -29,7 +29,7 @@ export class Product {
                                 "type": data[i].fields.Width,
                                 "stars": 4,
                                 "Price": data[i].fields.Pricing || '$0',
-                                "img": data[i].fields.Image[0] || "https://spotlexdigital.com/compare/product-1.jpg",
+                                "img": data[i].fields.Image[0]["url"] || "https://spotlexdigital.com/compare/product-1.jpg",
                                 "outline" : data[i].fields.Outline[0]["url"],
                                 "size" : data[i].fields['Size (cm)'] || 0,
                                 "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,

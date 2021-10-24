@@ -14,6 +14,7 @@ import Loading from '../component/loading'
 
 // function import 
 import PositionCalculator from '../functions/positionCalculator'
+import PositionCalculator2 from '../functions/positionCalculator2'
 
 // images import
 import placeholder_graphics from '../assest/placeholder-box.svg'
@@ -39,6 +40,7 @@ const Comparison = () => {
     const [activeGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
     const [activebars2 , setActivebar2] = useState([])
+    const [reset , setReset] = useState(false)
     const [search, setSearch] = useState("");
 
 
@@ -68,7 +70,7 @@ const Comparison = () => {
     })
     const [RockerType , SetRockerType] = useState([])
     const [widthType , SetwidthType] = useState([])
-    const [walkthrough ,Setwalkthrough] = useState(1)
+    const [walkthrough ,Setwalkthrough] = useState(0)
 
 
 
@@ -246,6 +248,23 @@ const Comparison = () => {
     const handleSearchChange = ({ target }) => {
         setSearch(target.value);
     };
+
+    
+    useEffect(() => {
+        if(walkthrough === 7)
+        {
+            setTimeout(function(){
+                setlineview(false)
+                setalignBottom(false)
+                setcollapsible(false)
+                setgraphactive(false)
+                
+                Setwalkthrough(null)
+            },2000)
+        }
+    },[walkthrough])
+
+
     // graphs base 
 
     const sizebase = 175;
@@ -270,12 +289,28 @@ const Comparison = () => {
         <h4>Taper</h4>
     </div>
     <div className="unit-row">
+        <h4>Tip</h4>
+    </div> 
+    <div className="unit-row">
+        <h4>Waist</h4>
+    </div>   
+</div> 
+
+const profileUnit = <div className="unit-text">
+    <div className="unit-row">
+        <h4>Size</h4>
+    </div>  
+    <div className="unit-row">
+        <h4>Taper</h4>
+    </div>
+    <div className="unit-row">
         <h4>Sidecut</h4>
     </div> 
     <div className="unit-row">
         <h4>Stance</h4>
     </div>   
 </div> 
+
   
 
     useEffect(() => {
@@ -321,14 +356,12 @@ const Comparison = () => {
     useEffect(() => {
         let size = window.innerWidth * 30 /100
 
-        size < 570 ? setsidebarSize(size) : setsidebarSize(570)
+        size < 444 ? setsidebarSize(size) : setsidebarSize(444)
        
         
         setWindowWidth(window.innerWidth)
         setWindowHeight(window.innerHeight)
     },[])
-
-
 
 
     // save data in bookmark
@@ -345,13 +378,13 @@ const Comparison = () => {
         if(!sidebarshow)
         {
             new_left = ev.pageX - (sidebarSize + window.innerWidth * 0.109809663)
-            new_top = ev.pageY - window.innerHeight * 0.1953125
+            new_top = ev.pageY - window.innerHeight * 0.3953125
         }
 
         else
         {
             new_left = ev.pageX - (window.innerWidth * 0.209809663)
-            new_top = ev.pageY - window.innerHeight * 0.1953125
+            new_top = ev.pageY - window.innerHeight * 0.3953125
         }
         
 
@@ -360,19 +393,35 @@ const Comparison = () => {
 
      }
 
+     
      const zoomClick = () => {
+         
          if(walkthrough > 0)
          return false
-
         if(window.innerWidth < 2400)
         {
             if(!sidebarshow)
             {
                 if(MousePosition.left > windowWidth * 1/100 && MousePosition.left < windowWidth * 50/100)
                 {
-                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                    if(MousePosition.top > -(windowHeight * 40/100) && MousePosition.top < windowHeight * 70/100)
                     {
                         setZoom(!zoom)
+                        if(reset)
+                        {
+                            setgraphactive(true)
+                            setReset(false)
+                        }
+
+                        if(!reset)
+                        {
+                           if(graphactive)
+                           {
+                               console.log("maki")
+                               setgraphactive(false)
+                               setReset(true)
+                           }
+                        }
                     }
                     
                 }
@@ -386,6 +435,21 @@ const Comparison = () => {
                     if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
                     {
                         setZoom(!zoom)
+                        if(reset)
+                        {
+                            setgraphactive(true)
+                            setReset(false)
+                        }
+
+                        if(!reset)
+                        {
+                           if(graphactive)
+                           {
+                               console.log("maki")
+                               setgraphactive(false)
+                               setReset(true)
+                           }
+                        }
                     }
                     
                 }
@@ -401,6 +465,22 @@ const Comparison = () => {
                     if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 80/100)
                     {
                         setZoom(!zoom)
+                        if(reset)
+                        {
+                            setgraphactive(true)
+                            setReset(false)
+                        }
+
+                        if(!reset)
+                        {
+                           if(graphactive)
+                           {
+                               console.log("maki")
+                               setgraphactive(false)
+                               setReset(true)
+                           }
+                        }
+    
                     }
                     
                 }
@@ -409,8 +489,25 @@ const Comparison = () => {
             else
             {
                 setZoom(!zoom)
+                if(reset)
+                {
+                    setgraphactive(true)
+                    setReset(false)
+                }
+
+                if(!reset)
+                {
+                   if(graphactive)
+                   {
+                       console.log("maki")
+                       setgraphactive(false)
+                       setReset(true)
+                   }
+                }
             }
         }
+
+       
             
      }
 
@@ -538,7 +635,7 @@ const Comparison = () => {
                { amount : graphics.WaistWidth , precentage : Math.floor(graphics.WaistWidth / WaistWidthbase * 100) , name : "mm"}
             ]}
              canvasHeight={canvasHeight}
-             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 570 ? canvasWidth * 30/100 : 570)}
+             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 444 ? canvasWidth * 30/100 : 444)}
            
              />    
         )
@@ -555,13 +652,13 @@ const Comparison = () => {
             //  graph={graphics.graph}
             graph =  {
                 [
-                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "Size(cm)"}  , 
-                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "Taper(mm)"}, 
-                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "Sidecutradius(m)"},
-                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "StanceSetback(mm)"}
+                   { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "cm"}  , 
+                   { amount : graphics["taper"] , precentage : Math.floor(graphics["taper"] / taperbase * 100) , name : "mm"}, 
+                   { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "m"},
+                   { amount : graphics["Stance Setback"] , precentage : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name : "mm"}
                 ]}
              canvasHeight={canvasHeight}
-             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 570 ? canvasWidth * 30/100 : 570)}
+             canvasWidth={canvasWidth - (canvasWidth * 30/100 < 444 ? canvasWidth * 30/100 : 444)}
            
              />    
         )
@@ -572,15 +669,23 @@ const Comparison = () => {
 
 
 
-
+    
 
     const placeholder = <img className="image-center" src={placeholder_graphics} alt="placeholder"/>
 
     return (
         <React.Fragment>
-
-            <Loading active={loading}/>
-        
+            
+            <div className={walkthrough === 0 ? "walkthrough-content" : "walkthrough-none"}>
+                <div className="walkthrough-box">
+                    <h1>New to ShredMetrix?</h1>
+                    <p>Click here for a quick walkthrough!</p>
+                    <button className="start-link" onClick={() => Setwalkthrough(1)} >Start</button>
+                    <button className="close-link" onClick={() => Setwalkthrough(null)}>Skip</button>
+                </div>    
+            </div>    
+              
+        <Loading active={loading}/>
         <section id="comparison-app" data-callpased={sidebarshow ? true : false}>
             <div className='app-sidebar'>
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
@@ -659,20 +764,26 @@ const Comparison = () => {
             className={!zoom ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
             onMouseMove={(ev) => handleMouseMove(ev)} 
             onClick={zoomClick}
-            style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth) , marginTop : -(MousePosition.top * 2) } : null}
+            style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth) , marginTop : -PositionCalculator2(MousePosition.top , windowHeight) } : null}
             >
 
                     <Toolbar 
                     collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
                     base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}
                     graphfun={() => !graphactive ? setgraphactive(true) : setgraphactive(false)}
+                    lineviewfun ={() => !lineview ? setlineview(true) : setlineview(false)}
                     callapsible={collapsible}
                     alignBottom={alignBottom}
                     graphactive={graphactive}
+                    lineview={lineview}
+                    tabline={() => Setwalkthrough(4)}
+                    tabOne={() => Setwalkthrough(5)}
+                    tabTwo={() => Setwalkthrough(6)}
+                    tabthree={() => Setwalkthrough(7)}
+                    walkthrough={walkthrough}
 
                     />
-                <div className="canvas-header">
-                    <h1>ALL SELECTED PRODUCTS</h1>
+                {/* <div className="canvas-header">
                     <div className="outline-profile-switch">
                         <button className="switch-button button" data-active={!lineview} onClick={()=> setlineview(false)}>OUTLINE</button>
                         <img src={arrowline} alt="arrow-line"/>    
@@ -682,10 +793,9 @@ const Comparison = () => {
                             walkthrough === 3 ? <>
                             <div className="blue-box-1">
                             <ol className="list-blue-box-1">    
-                                <li>Change buttons to “Outline View” and “Profile View”</li>
-                                <li>Arrow should change direction based on which option is selected</li>
+                                <li>Switch from “Outline View” to “Profile View”</li>
                             </ol>
-                            <button className="gotit-btn" onClick={() => Setwalkthrough(null)}>Got it</button>  
+                            <button className="gotit-btn" onClick={() => Setwalkthrough(4)}>Got it</button>  
                             </div>    
                             <div className="backdrop">
                             </div>  
@@ -693,12 +803,15 @@ const Comparison = () => {
                         }    
                         </button>
                     </div>
-                </div>
-                <div className="canvas-content"
+                </div> */}
+                <div className={!graphactive ? "canvas-content" :"canvas-content canvas-graph" }
                  data-lineview={lineview}
 
                         
 data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? "true" : "false"} ref={canvas}>
+                        {
+                        Array.isArray(activeGraphics) && activeGraphics.length && graphactive ? outlineUnit : null
+                        } 
                         {
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
                         }   
@@ -714,8 +827,11 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                         Array.isArray(activeGraphics) && activeGraphics.length ?   graphicsoutline : null
                         }   
                 </div>
-
+                
                 <div className="canvas-text" data-active={lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>
+                        {
+                        Array.isArray(activeGraphics) && activeGraphics.length ?   profileUnit : null
+                        } 
                         {
                         Array.isArray(activeGraphics) && activeGraphics.length ? graphicsprofile : null
                         }   
@@ -723,9 +839,22 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
 
                 
 
-                <Completegraph activestatus={!lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"}  activeBars={activebars} colorSets={colorSets}/>
+                <Completegraph 
+                activestatus={!lineview} 
+                callpaseds={collapsible ? "true" : "false"} 
+                graph={graphactive ? "true" : "false"}  
+                activeBars={activebars} 
+                colorSets={colorSets}
+                names={outlineUnit}
+                />
 
-                <Completegraph activestatus={lineview} callpaseds={collapsible ? "true" : "false"} graph={graphactive ? "true" : "false"} activeBars={activebars2} colorSets={colorSets}/>
+                <Completegraph 
+                activestatus={lineview} 
+                callpaseds={collapsible ? "true" : "false"} 
+                graph={graphactive ? "true" : "false"} 
+                activeBars={activebars2} colorSets={colorSets}
+                names={profileUnit}
+                />
                
                 {/* <Productgraphics color="red"  url={productsGraphicsJSON[0]["img"]}/> */}
     
