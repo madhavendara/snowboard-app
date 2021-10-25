@@ -398,7 +398,7 @@ const profileUnit = <div className="unit-text">
          
          if(walkthrough > 0)
          return false
-        if(window.innerWidth < 2400)
+        if(window.innerWidth < 1800)
         {
             if(!sidebarshow)
             {
@@ -458,11 +458,12 @@ const profileUnit = <div className="unit-text">
 
         else
         {
+            
             if(!sidebarshow)
             {
-                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 70/100)
+                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 55/100)
                 {
-                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 80/100)
+                    if(MousePosition.top > -(windowHeight * 40/100) && MousePosition.top < windowHeight * 70/100)
                     {
                         setZoom(!zoom)
                         if(reset)
@@ -475,15 +476,20 @@ const profileUnit = <div className="unit-text">
                         {
                            if(graphactive)
                            {
-                               console.log("maki")
+                               
                                setgraphactive(false)
                                setReset(true)
                            }
                         }
+                        console.log("kutiya")
     
                     }
+
+                   
                     
                 }
+
+                
             }
 
             else
@@ -689,7 +695,7 @@ const profileUnit = <div className="unit-text">
         <section id="comparison-app" data-callpased={sidebarshow ? true : false}>
             <div className='app-sidebar'>
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
-                <Header page="compare"/>
+                {/* <Header page="compare"/> */}
                 <div className="filter-container">
                     <Searchbar  onChange={handleSearchChange} value={search} />
                     <ProductFilter 
@@ -813,7 +819,7 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                         Array.isArray(activeGraphics) && activeGraphics.length && graphactive ? outlineUnit : null
                         } 
                         {
-                        Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : placeholder
+                        Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : null
                         }   
                 </div>
                 

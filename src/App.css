@@ -376,6 +376,21 @@ nav #icon {
   min-height: 100vh;
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
+  position: relative;
+}
+#comparison-app::after {
+  position: absolute;
+  content: "";
+  background: url(./assest/logo_bg.png);
+  width: 300px;
+  position: absolute;
+  top: 30%;
+  left: 62%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 100px;
+  background-size: 100% auto;
+  opacity: 0.1;
 }
 #comparison-app .app-sidebar {
   width: 30%;
@@ -428,7 +443,7 @@ nav #icon {
   display: -ms-flexbox;
   display: flex;
   grid-gap: 25px;
-  margin-top: 8vh;
+  margin-top: 0vh;
 }
 #comparison-app .filter-bar-container {
   position: relative;
@@ -1056,6 +1071,7 @@ path.cls-1 {
   margin-left: auto;
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
+  position: relative;
 }
 @media (min-width: 2000px) {
   .canvas-area {
