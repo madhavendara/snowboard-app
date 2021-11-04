@@ -679,6 +679,14 @@ nav #icon {
         }
     }
 
+    .base-left
+    {
+        .blue-box-2
+        {
+            top: 154px;
+        }
+    }
+
     .graph
     {
         .blue-box-2
@@ -761,6 +769,17 @@ nav #icon {
             background-color: transparent;
             outline: none;
           }
+
+          h4.no-products:nth-child(16) {
+            display: block;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            color: #646464;
+        }
+        h4.no-products {
+            display: none;
+        }
     }
 
     .product-listing-active
@@ -1101,7 +1120,7 @@ nav #icon {
         box-sizing: border-box;
         text-align: center;
         position: relative;
-        margin-bottom: 3%;
+        margin-bottom: 2%;
 
         .product-img-col
         {
@@ -1277,10 +1296,12 @@ path.cls-1 {
     flex-direction: column;
     padding-top: 3rem;
     margin-left: auto;
-    cursor: zoom-in;
     position: relative;
 
-   
+// [data-zoom=true]
+// {
+//     cursor: pointer;
+// }
 
     @media(min-width: 2000px)
     {
@@ -1351,6 +1372,8 @@ path.cls-1 {
                 display: block;
                 opacity: 0;
             }
+
+            
         }
 
         [data-callpased="true"]
@@ -1362,6 +1385,27 @@ path.cls-1 {
                 left: 50%;
                 top : 50%;
                 transform: translate(-50%,-50%);
+
+                .product-graphics-box
+                {
+                    .bar
+                    {
+                        h2
+                        {
+                            left: -33px;
+                            opacity: 0;
+                        }
+                        
+                        &:hover
+                        {
+                            h2
+                            {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
             }
         }
 
@@ -1376,6 +1420,8 @@ path.cls-1 {
             top: auto;
         }
     }
+
+   
 
     [data-callpased="true"][data-alignbottom="true"][data-lineview="true"]
     {
@@ -1572,7 +1618,10 @@ path.cls-1 {
         }
 }
 
-
+.canvas-area[data-zoom=true]
+{
+    cursor: zoom-in;
+}
 
 
 .canvas-area-zoom
@@ -1649,6 +1698,19 @@ path.cls-1 {
         background-size: 100% 100%; 
     }
 
+    .base-left
+    {
+        background : url(./assest/rotate-base.png);
+        background-size: 100% 100%;
+    }
+
+    .base-left[data-button-active=true]
+    {
+        background : url(./assest/rotate-base-active.png);
+        background-size: 100% 100%; 
+ 
+    }
+
     .graph
     {
         background : url(./assest/graph.svg);
@@ -1661,15 +1723,81 @@ path.cls-1 {
         background-size: 100% 100%;
     }
 
+
+    .zoom
+    {
+        background : url(./assest/zoom-1.svg);
+        background-size: 100% 100%;
+    }
+
+    .zoom[data-button-active=true]
+    {
+        background : url(./assest/zoom-active.svg);
+        background-size: 100% 100%;
+    }
+
 }
 
 
 .product-graphics-box
 {
-    -webkit-mask-position: center center;
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    background: #fff;
+    background: transparent;
+    position: relative;
+
+    .product-graphics-img
+    {
+        -webkit-mask-position: center center;
+        -webkit-mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        
+    }
+
+    .bar
+    {
+        position: absolute;
+        left: -60px;
+        top : 0;
+        bottom: 0;
+        width: 2px;
+
+        &::after
+        {
+            content: '';
+            position: absolute;
+            width: 10px;
+            background: inherit;
+            height: 2px;
+            left: 0;
+            top : 0;
+        }
+
+        &::before
+        {
+            content: '';
+            position: absolute;
+            width: 10px;
+            background: inherit;
+            height: 2px;
+            left: 0;
+            bottom : 0;
+        }
+
+        h2
+        {
+            display: block;
+            color: #fff;
+            position: absolute;
+            top: -9px;
+            left: 15px;
+            font-size: 14px;
+        }
+    }
 }
 
 

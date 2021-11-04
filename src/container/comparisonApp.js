@@ -237,6 +237,7 @@ const Comparison = () => {
     const [sidebarshow,setsidebarshow] = useState(false)
     const [popupOpen , setpopOpen] = useState([])
     const [zoom , setZoom] = useState(false)
+    const [zoomMode,setZoomMode] = useState(false)
     const [sidebarSize , setsidebarSize] = useState()
 
 
@@ -395,6 +396,8 @@ const profileUnit = <div className="unit-text">
 
      
      const zoomClick = () => {
+
+        if(!zoomMode) return false
          
          if(walkthrough > 0)
          return false
@@ -767,9 +770,10 @@ const profileUnit = <div className="unit-text">
             </div>
 
             <div 
-            className={!zoom ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
+            className={!zoom  ? 'canvas-area' : 'canvas-area canvas-area-zoom'} 
             onMouseMove={(ev) => handleMouseMove(ev)} 
             onClick={zoomClick}
+            data-zoom={zoomMode}
             style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth) , marginTop : -PositionCalculator2(MousePosition.top , windowHeight) } : null}
             >
 
@@ -782,6 +786,8 @@ const profileUnit = <div className="unit-text">
                     alignBottom={alignBottom}
                     graphactive={graphactive}
                     lineview={lineview}
+                    zoomMode={zoomMode}
+                    setZoom={() => setZoomMode(!zoomMode)}
                     tabline={() => Setwalkthrough(4)}
                     tabOne={() => Setwalkthrough(5)}
                     tabTwo={() => Setwalkthrough(6)}

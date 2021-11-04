@@ -1,13 +1,24 @@
 import React , {useState, useEffect}  from 'react'
 
-const Mask = ({ mask , width , height , color}) => (
+const Mask = ({ mask , width , height , color,size}) => (
     <div className="product-graphics-box"  style={{
-      WebkitMaskImage: mask,
-      maskImage: mask,
       width : width,
-      height : height,
-      background : color
+      height : size == 156 ? height - 7 : height,
     }}>
+      <div className="product-graphics-img"
+      style={{
+        WebkitMaskImage: mask,
+        maskImage: mask,
+        background : color
+      }}
+      >
+
+      </div>
+      <div className="bar" style={{
+        background : color
+      }} >
+        <h2>{size}</h2>
+      </div>
         </div>
 
   )
@@ -84,7 +95,7 @@ const Productgraphics = (props) => {
       <div className="snowboard-graphics-container">
     
         <div className="graphics-img-container">
-         <Mask mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} color={props.color} />
+         <Mask size={props.size} mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} color={props.color} />
          </div>
       </div>
        

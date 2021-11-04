@@ -545,6 +545,9 @@ nav #icon {
 #comparison-app .base .blue-box-2 {
   top: 154px;
 }
+#comparison-app .base-left .blue-box-2 {
+  top: 154px;
+}
 #comparison-app .graph .blue-box-2 {
   top: 224px;
 }
@@ -625,6 +628,16 @@ nav #icon {
 #comparison-app .product-listing::-webkit-scrollbar-thumb {
   background-color: transparent;
   outline: none;
+}
+#comparison-app .product-listing h4.no-products:nth-child(16) {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  color: #646464;
+}
+#comparison-app .product-listing h4.no-products {
+  display: none;
 }
 #comparison-app .product-listing-active {
   overflow-y: scroll;
@@ -923,7 +936,7 @@ nav #icon {
           box-sizing: border-box;
   text-align: center;
   position: relative;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 .product-card-2 .product-img-col .product-img {
   width: 80px;
@@ -1069,8 +1082,6 @@ path.cls-1 {
           flex-direction: column;
   padding-top: 3rem;
   margin-left: auto;
-  cursor: -webkit-zoom-in;
-  cursor: zoom-in;
   position: relative;
 }
 @media (min-width: 2000px) {
@@ -1140,6 +1151,13 @@ path.cls-1 {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+.canvas-area [data-callpased=true] .snowboard-graphics-container .product-graphics-box .bar h2 {
+  left: -33px;
+  opacity: 0;
+}
+.canvas-area [data-callpased=true] .snowboard-graphics-container .product-graphics-box .bar:hover h2 {
+  opacity: 1;
 }
 .canvas-area [data-callpased=true][data-alignbottom=true] .snowboard-graphics-container {
   position: absolute;
@@ -1295,6 +1313,11 @@ path.cls-1 {
   color: #fff;
 }
 
+.canvas-area[data-zoom=true] {
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+
 .canvas-area-zoom {
   position: fixed;
   -webkit-transform: scale(4, 4);
@@ -1359,6 +1382,14 @@ path.cls-1 {
   background: url(./assest/base_active.svg);
   background-size: 100% 100%;
 }
+.toolbar-container .base-left {
+  background: url(./assest/rotate-base.png);
+  background-size: 100% 100%;
+}
+.toolbar-container .base-left[data-button-active=true] {
+  background: url(./assest/rotate-base-active.png);
+  background-size: 100% 100%;
+}
 .toolbar-container .graph {
   background: url(./assest/graph.svg);
   background-size: 100% 100%;
@@ -1367,12 +1398,61 @@ path.cls-1 {
   background: url(./assest/graph_active.svg);
   background-size: 100% 100%;
 }
+.toolbar-container .zoom {
+  background: url(./assest/zoom-1.svg);
+  background-size: 100% 100%;
+}
+.toolbar-container .zoom[data-button-active=true] {
+  background: url(./assest/zoom-active.svg);
+  background-size: 100% 100%;
+}
 
 .product-graphics-box {
+  background: transparent;
+  position: relative;
+}
+.product-graphics-box .product-graphics-img {
   -webkit-mask-position: center center;
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
-  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.product-graphics-box .bar {
+  position: absolute;
+  left: -60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+.product-graphics-box .bar::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: inherit;
+  height: 2px;
+  left: 0;
+  top: 0;
+}
+.product-graphics-box .bar::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: inherit;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+}
+.product-graphics-box .bar h2 {
+  display: block;
+  color: #fff;
+  position: absolute;
+  top: -9px;
+  left: 15px;
+  font-size: 14px;
 }
 
 img.image-center {

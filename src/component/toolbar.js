@@ -41,7 +41,7 @@ const Toolbar = (props) => {
                  : null
                 }
             </button>
-            <button className="toolbar-options base" 
+            <button className={!props.lineview ? "toolbar-options base" : "toolbar-options base-left"} 
             onClick={props.base}
             data-button-active={props.alignBottom}
             >
@@ -75,6 +75,12 @@ const Toolbar = (props) => {
                 </>
                  : null
                 }
+            </button>
+
+            <button className="toolbar-options zoom"
+            onClick={props.setZoom}
+            data-button-active={props.zoomMode}
+            >
             </button>
         </div>  
 
