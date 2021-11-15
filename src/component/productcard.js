@@ -16,13 +16,15 @@ const Productcard = (props) => {
     
 
     return (
-
+        
         <div className='product-card-2'>
                         <div className="product-img-col">
                            <img src={props.productimg} className="product-img" alt={props.title}/> 
                         </div>
                         <div className="product-content-col">
-                                    <h1>{props.title}</h1> 
+                            
+                                <h1><a href={props.url} className="product-card-link"> {props.title}</a></h1> 
+                            
                                     <p>{props.Brand}</p>
                                     <h5>{props.size}cm</h5>
                                     <p>{props.type}</p> 
@@ -30,7 +32,7 @@ const Productcard = (props) => {
                                     <div className="star star-4"></div>
                         </div>
                         
-                        <button 
+                                <button 
                                 className={props.added ? "selection-check active-selection-" + active_type() : "selection-check no-active-selection"}
                                 onClick = {() => props.productadded(props.id)}
                                 >
@@ -47,7 +49,7 @@ const Productcard = (props) => {
                                 
                                 </button>
                     </div>
-
+                  
                  
     )
 }

@@ -64,7 +64,7 @@ const ProductFilter = (
                             {
                                 walkthrough === 1 ? <>
                                     <div className="blue-box-1">
-                                        <h2>Refine your options</h2>
+                                        <h2>Refine your options by filtering</h2>
                                         {  amount > 0 ?
                                             <button className="gotit-btn" onClick={walkfunction}>Got it</button> : null 
                                         }
@@ -198,15 +198,15 @@ const ProductFilter = (
                             <Accordion title="WIDTH">
                                 <div className="Accordion-content">
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Mid-wide" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <input type="checkbox" id="horns" name="horns" value="Mid-wide" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Mid-wide") !== -1 }/>
                                         <label >Mid-wide</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Regular" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <input type="checkbox" id="horns" name="horns" value="Regular" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Regular") !== -1 }/>
                                         <label >Regular</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Wide" onChange={(e) => widthFunction(e.target.value)}/>
+                                        <input type="checkbox" id="horns" name="horns" value="Wide" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Wide") !== -1 } />
                                         <label >Wide</label>
                                     </div>
                                 </div>

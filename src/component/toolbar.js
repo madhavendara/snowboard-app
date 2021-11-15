@@ -34,7 +34,7 @@ const Toolbar = (props) => {
                 props.walkthrough === 4 ? 
                 <>
                     <div class="blue-box-2">
-                    <h2>Expand switch to Overlay from separate</h2>
+                    <h2>Switch from Overlay to side-by-side</h2>
                     <button class="gotit-btn" onClick={props.tabOne}>Got it</button>
                     </div>
                 </>
@@ -50,8 +50,7 @@ const Toolbar = (props) => {
                 props.walkthrough === 5 ? 
                 <>
                     <div class="blue-box-2">
-                    <h2>Vertical Alignment</h2>
-                    <p>Center switch to bottom alignment</p>
+                    <h2>Switch from center to bottom Alignment</h2>
                     <button class="gotit-btn" onClick={props.tabTwo}>Got it</button>
                     </div>
                 </>
@@ -68,8 +67,8 @@ const Toolbar = (props) => {
                 props.walkthrough === 6 ? 
                 <>
                     <div class="blue-box-2">
-                    <h2>Tech View</h2>
-                    <p>see product comparison graph</p>
+                    <h2>See board Comparison graph</h2>
+          
                     <button class="gotit-btn" onClick={props.tabthree}>Got it</button>
                     </div>
                 </>

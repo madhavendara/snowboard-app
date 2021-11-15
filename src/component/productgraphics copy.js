@@ -97,39 +97,24 @@ const Productgraphics = (props) => {
   
         img.onload = function() {
           let properties;
-          let main_width;
-          let main_height;
 
               if(!props.lineview)
               {
-
-                if(props.canvasWidth < 1800)
+                if(props.canvasHeight > 800)
                 {
-                  main_height = (props.canvasHeight)/1.7;
-                  main_width = main_height * 40/170;
-                  properties = {width : main_width * props.tail/400 , height : main_height * props.size / 170}
+                  const ratio = this.height / this.width
+                  properties = {width : props.canvasHeight * 0.0875 , height : (props.canvasHeight * 0.0875) * ratio}
                 }
+
                 else
                 {
-                  main_height = (props.canvasHeight)/1.7;
-                  main_width = main_height * 40/170;
-                  properties = {width : main_width * props.tail/400 , height : main_height * props.size / 170}
+                  const ratio = this.height / this.width
+                  properties = {width : 70 , height : 70 * ratio}
+
+                  console.log(props.canvasHeight)
                 }
 
-
-                // if(props.canvasHeight > 800)
-                // {
-                //   const ratio = this.height / this.width
-                //   properties = {width : props.canvasHeight * 0.0875 , height : (props.canvasHeight * 0.0875) * ratio}
-                // }
-
-                // else
-                // {
-                //   const ratio = this.height / this.width
-                //   properties = {width : 70 , height : 70 * ratio}
-
-                //   console.log(props.canvasHeight)
-                // }
+                
 
                 setdeminition(properties);
                 setImage(img)

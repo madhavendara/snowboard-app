@@ -1,4 +1,4 @@
-const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
+const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth,collapsible) => {
 
     var center;
 
@@ -24,72 +24,103 @@ const PositionCalculator = (value , sidebarshow , sidebarSize, windowWidth) => {
         value_1 = value * 0.9
     }
 
-    if(value_1 > center * 0.75)
-     {
+    if(!collapsible)
 
-        
-       
-        if(window.innerWidth < 1800)
+    {
+        if(value_1 > center * 0.75)
         {
-            
-            return -(windowWidth * 1/2) + value_1 * 2.5
-        }  
+   
+           
+          
+           if(window.innerWidth < 1800)
+           {
+               
+               return -(windowWidth * 1/2) + value_1 * 2.5
+           }  
+           else
+           {
+               if(!sidebarshow)
+               {
+                   return -(windowWidth * 1/2) + value_1 * 2
+               }
+               else
+               {
+               
+                   return -(windowWidth * 1/2) + value_1 * 2.5
+                   
+               }
+               
+           }
+        }
+       //  
+        else if(value_1 > center/2.5 && value_1 < center * 0.75)
+        {
+    
+           
+           if(window.innerWidth < 1800)
+           {
+               if(!sidebarshow)
+               {
+                   return -(windowWidth * 1.5/3) + value_1 * 2
+               }
+   
+               else
+               {
+                   return -(windowWidth * 1.5/3) + value_1 * 1.5
+               }
+               
+           } 
+           
+           else
+           {
+               
+               return -(windowWidth * 1.5/3) + value_1 * 1
+           }
+        }
+        
         else
         {
-            if(!sidebarshow)
-            {
-                return -(windowWidth * 1/2) + value_1 * 2
-            }
-            else
-            {
-            
-                return -(windowWidth * 1/2) + value_1 * 2.5
-                
-            }
-            
+           
+           if(window.innerWidth < 1800)
+           {
+   
+               return -(windowWidth * 2.4/3) + value_1 * 2
+           } 
+           
+           else
+           {
+               return -(windowWidth * 2.4/3) + value_1 * 1.5
+           }
+           
         }
-     }
-    //  
-     else if(value_1 > center/2.5 && value_1 < center * 0.75)
-     {
- 
-        
-        if(window.innerWidth < 1800)
-        {
-            if(!sidebarshow)
-            {
-                return -(windowWidth * 1.5/3) + value_1 * 2
-            }
+    }
 
-            else
-            {
-                return -(windowWidth * 1.5/3) + value_1 * 1.5
-            }
-            
-        } 
-        
-        else
-        {
-            
-            return -(windowWidth * 1.5/3) + value_1 * 1
-        }
-     }
+    else
+    {
+        console.log('ari')
+           if(window.innerWidth < 1800)
+           {
+               if(!sidebarshow)
+               {
+                   return -(windowWidth * 1.5/3) + value_1 * 2
+               }
+   
+               else
+               {
+                   return -(windowWidth * 1.5/3) + value_1 * 1.5
+               }
+               
+           } 
+           
+           else
+           {
+               
+               return -(windowWidth * 1.5/3) + value_1 * 1
+           }
      
-     else
-     {
-        
-        if(window.innerWidth < 1800)
-        {
+    }
 
-            return -(windowWidth * 2.4/3) + value_1 * 2
-        } 
-        
-        else
-        {
-            return -(windowWidth * 2.4/3) + value_1 * 1.5
-        }
-        
-     } 
+    
 
  }
 

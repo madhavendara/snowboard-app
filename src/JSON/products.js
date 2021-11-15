@@ -1,10 +1,39 @@
 import productline from "../assest/product-line-1.svg";
 
 export class Product {
-    static getProduct =  (search) =>{
+    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange) =>{
         var searchData = (search !== undefined)?search:'';
+     
+
+        const url = () => {
+            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData;
+            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end+"&min_setback="+setbackRange.start+"&max_setback="+setbackRange.end;
+            if(RockerType.length)
+            {
+               for(let i = 0; i < RockerType.length; i++)
+               {
+                 main_url += '&avility[]='+'"'+RockerType[i]+'"'
+               }
+            }
+
+            if(widthType.length)
+            {
+                for(let i = 0; i < widthType.length; i++)
+                {
+                  main_url += '&width[]='+'"'+widthType[i]+'"'
+                }
+            }
+
+            
+            console.log(main_url)
+            console.log("http://shredmetrix.com/airtable/api/list.php")
+
+            return main_url
+        }
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/list.php?s="+searchData, {
+            await fetch(url(), 
+            
+            {
                 "method": "GET",
                 "headers": {
                     "content-type": "application/json",
@@ -40,7 +69,11 @@ export class Product {
                                 "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || 0,
                                 "Ability Level" : data[i].fields['Ability Level (from SB Categorical Specs)'][0] || 0,
-                                "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'][0] || 0
+                                "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'][0] || 0,
+                                "tip" : data[i].fields['Tip Width (mm)'],
+                                "tail" : data[i].fields['Tail Width (mm)']
+
+                                
 
                                 
                             });

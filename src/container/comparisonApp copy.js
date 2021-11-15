@@ -62,7 +62,7 @@ const Comparison = () => {
 
     const [setbackRange, setsetbackRange] = useState({
         start: 15,
-        end: 80
+        end: 70
     })
 
     const [lengthRange, setlengthRange] = useState({
@@ -319,7 +319,7 @@ const profileUnit = <div className="unit-text">
 
     useEffect(() => {
         
-        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange).then((products,err)=>{
+        Product.getProduct(search).then((products,err)=>{
             if(!err){
 
                 let exampleCopy = [...products];
@@ -339,7 +339,7 @@ const profileUnit = <div className="unit-text">
         console.log(search)
         setCanvasHeight(window.innerHeight)
         setCanvasWidth(window.innerWidth)
-    }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange])
+    }, [search])
 
     useEffect(() => {
         if(graphactive)
@@ -732,10 +732,9 @@ const profileUnit = <div className="unit-text">
                     copyJSON.length ? 
                     copyJSON.map((product , i) => {
                         return (
-                            // filterApply(product) || product["added"] ? 
+                            filterApply(product) || product["added"] ? 
                             <Productcard
                                 productimg={product["img"]} 
-                                setback={product["Stance Setback"]}
                                 title={product["Model"]}
                                 Brand={product["Brand"]} 
                                 url={product["url"]}
@@ -756,7 +755,7 @@ const profileUnit = <div className="unit-text">
                                 closePopup = {() => setpopOpen("") }
                                 bookmarkadd = {bookmarkAdded}
 
-                    />  
+                    />  : <div className="no-result"> No result to show</div>
                         )
                     })
 
