@@ -139,10 +139,14 @@ const Productgraphics = (props) => {
           }
 
           img2.onload = function() {
-            let properties
+            let properties;
+            let main_width;
+            let main_height;
   
                 if(props.lineview)
                 {
+                  main_width = props.canvasWidth;
+
                   const widthratio = this.width / 700
                   const actuallwidth = props.canvasWidth * widthratio
                   const ratio = this.height / this.width

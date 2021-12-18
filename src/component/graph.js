@@ -85,18 +85,37 @@ function MouseOver(event) {
             }
 
             ctx.fillStyle = props.color
-            ctx.fillRect(0,(i*26 + 10),props.width * bar[i].precentage / 100,15)
 
+            if(bar[i].precentage == 'undefined' ||  bar[i].precentage == "null" || isNaN(bar[i].precentage))
+              {
+                  ctx.fillRect(0,(i*26 + 10),props.width * 100 / 100,15)
+              }
+              else
+              {
+                  ctx.fillRect(0,(i*26 + 10),props.width * bar[i].precentage / 100,15)
+              }
 
-      
-
+              
             if(barActive && i+1 === barActive)
             {
               ctx.font = "800 14px Poppins"
               ctx.fillStyle = "black"
               ctx.textAlign = "left"
-              ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
+              if(bar[i].precentage == 'undefined' ||  bar[i].precentage == "null" || isNaN(bar[i].precentage))
+              {
+                ctx.fillText("N/A",props.width * 100 / 100 - 30, (i+1) * 26 - 3)
+              }
 
+              else if(bar[i].precentage < 33)
+              {
+                ctx.fillText(bar[i].amount + bar[i].name,props.width * bar[i].precentage / 100 - 30, (i+1) * 26 - 3)
+              }
+              else
+              {
+                ctx.fillText(bar[i].amount  + bar[i].name,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
+              }
+
+              console.log(bar[i].name , bar[i].amount)
               // ctx.fillStyle = "transparent"
               // ctx.fillRect((props.width * bar[i].precentage / 100 - 20), (i+1)*26 - 30, 50, 20);
 
@@ -112,7 +131,21 @@ function MouseOver(event) {
               ctx.font = "400 14px Poppins"
               ctx.fillStyle = "black"
               ctx.textAlign = "left"
-              ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
+
+              if(bar[i].precentage == 'undefined' ||  bar[i].precentage == "null" || isNaN(bar[i].precentage))
+              {
+                ctx.fillText("N/A",props.width * 100 / 100 - 30, (i+1) * 26 - 3)
+              }
+              else if(bar[i].precentage < 33)
+              {
+                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 30, (i+1) * 26 - 3)
+              }
+
+              else
+              {
+                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
+              }
+              
             }
 
             

@@ -4,11 +4,13 @@ const Productcard = (props) => {
     return (
         <div className='product-card'>
                         <div className="product-img-container">
-                           <img src={props.productimg} className="product-img" alt={props.title}/> 
+                           <img src={props.productimg.url} className="product-img" alt={props.title}/> 
+
+                           {console.log(props.console)}
                         </div>
                         <div className="product-content">
                             <div className="title-content">
-                                <h1>{props.title}</h1>
+                                <h1>product</h1>
                                 <h5>{props.type}</h5>
                             </div>
                             <div className="star star-4">

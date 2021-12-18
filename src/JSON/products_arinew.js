@@ -1,7 +1,5 @@
 import productline from "../assest/product-line-1.svg";
 
-
-
 export class Product {
     static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange) =>{
         var searchData = (search !== undefined)?search:'';
@@ -11,33 +9,33 @@ export class Product {
 
             let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData;
 
-            // main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
 
-            // if(setbackRange.start != 15 && setbackRange.end != 80)
-            // {
-            //     main_url += "&min_setback="+setbackRange.start+"&max_setback="+setbackRange.end
-            // }
+            if(setbackRange.start != 15 && setbackRange.end != 80)
+            {
+                main_url += "&min_setback="+setbackRange.start+"&max_setback="+setbackRange.end
+            }
  
            
-            // if(RockerType.length)
-            // {
-            //    for(let i = 0; i < RockerType.length; i++)
-            //    {
-            //      main_url += '&avility[]='+'"'+RockerType[i]+'"'
-            //    }
-            // }
+            if(RockerType.length)
+            {
+               for(let i = 0; i < RockerType.length; i++)
+               {
+                 main_url += '&avility[]='+'"'+RockerType[i]+'"'
+               }
+            }
 
-            // if(widthType.length)
-            // {
-            //     for(let i = 0; i < widthType.length; i++)
-            //     {
-            //       main_url += '&width[]='+'"'+widthType[i]+'"'
-            //     }
-            // }
+            if(widthType.length)
+            {
+                for(let i = 0; i < widthType.length; i++)
+                {
+                  main_url += '&width[]='+'"'+widthType[i]+'"'
+                }
+            }
 
             
             console.log(main_url)
-           
+            console.log("http://shredmetrix.com/airtable/api/list.php")
 
             return main_url
         }
@@ -54,8 +52,6 @@ export class Product {
                 .then(response => {
 
                     var data = response.records || '';
-                    var offset = response.offset
-                    
                     var products = [];
                     if (data) {
                         for (var i = 0; i < data.length; i++) {
@@ -71,7 +67,7 @@ export class Product {
                                 "type": data[i].fields.Width,
                                 "stars": 4,
                                 "Price": data[i].fields.Pricing || '$0',
-                                "img": data[i].fields.image_link || "https://spotlexdigital.com/compare/product-1.jpg",
+                                "img": data[i].fields.Image[0]["url"] || "https://spotlexdigital.com/compare/product-1.jpg",
                                 "outline" : data[i].fields.Outline[0]["url"],
                                 "size" : data[i].fields['Size (cm)'] || 0,
                                 "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,
@@ -82,10 +78,12 @@ export class Product {
                                 "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || "N/A",
                                 "Ability Level" : data[i].fields['Ability Level (from SB Categorical Specs)'][0] || 0,
-                                "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'] || 0,
+                                "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'][0] || 0,
                                 "tip" : data[i].fields['Tip Width (mm)'],
-                                "tail" : data[i].fields['Tail Width (mm)'],
-                                "offset" : offset
+                                "tail" : data[i].fields['Tail Width (mm)']
+
+                                
+
                                 
                             });
                         }
@@ -133,7 +131,6 @@ export class Product {
             }).then(response => response.json())
                 .then(response => {
                     var data = response.data || '';
-                    var offset = response.offset
                     var products = [];
                     if (data) {
                         for (var i = 0; i < data.length; i++) {

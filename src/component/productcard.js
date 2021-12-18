@@ -48,6 +48,8 @@ const Productcard = (props) => {
                                 }    
                                 
                                 </button>
+
+                                <img src={bookmark} onClick={() => props.bookmarkadd(props.id)} className="bookmarkAddition"/>
                     </div>
                   
                  

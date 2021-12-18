@@ -81,6 +81,12 @@ const Toolbar = (props) => {
             data-button-active={props.zoomMode}
             >
             </button>
+
+            <button className="toolbar-options circle_bar"
+            onClick={props.openNav}
+          
+            >
+            </button>
         </div>  
 
         {

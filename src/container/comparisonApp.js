@@ -6,7 +6,7 @@ import Searchbar from '../component/searchbar'
 import ProductFilter from '../component/filter'
 import Productcard from '../component/productcard'
 import Toolbar from '../component/toolbar'
-import Header from './header'
+import NavbaLinkbar from '../component/nav_linkbar'
 import Completegraph from '../component/completegraph'
 import Productgraphics from '../component/productgraphics'
 import Productgraphics2 from '../component/productgraphics_text'
@@ -43,8 +43,8 @@ const Comparison = () => {
     const [activebars2 , setActivebar2] = useState([])
     const [reset , setReset] = useState(false)
     const [search, setSearch] = useState("");
-
-
+    const [loadingStatus , setLoadingStatus] = useState(true)
+    const [offset , setOffset] = useState(null)
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
@@ -75,7 +75,16 @@ const Comparison = () => {
 
 
 
+    const [navclass , setNavclass] = useState("hidenav")
 
+    
+    const openNav = () => {
+        setNavclass('shownav')
+    }
+
+    const closeNav = () => {
+        setNavclass('hidenav')
+    }
     
 
     const RockerTypeFunction = (ev) => {
@@ -100,6 +109,12 @@ const Comparison = () => {
 
     const RockerTypeClear = () => {
         SetRockerType([])
+    }
+
+
+    const setsOffset = () => {
+        copyJSON.find((obj,i) => i < 1 ? setOffset(obj.offset) : null)
+        console.log(offset)
     }
 
     const widthFunction = (ev) => {
@@ -332,6 +347,9 @@ const profileUnit = <div className="unit-text">
 
                 setProducts(exampleCopy)
                 changecopy(exampleCopy)
+
+                console.log(products)
+                setLoadingStatus(false)
             }
         })
         //
@@ -659,7 +677,7 @@ const profileUnit = <div className="unit-text">
             <Productgraphics2 
             color={colorSets[i]} 
              key={graphics.id}
-             title={graphics.Title}
+             title={graphics.Model}
              size={graphics.size}
              tail={graphics.tail}
              tip={graphics.tip}
@@ -689,7 +707,8 @@ const profileUnit = <div className="unit-text">
 
     return (
         <React.Fragment>
-            
+             <NavbaLinkbar classlist={navclass} closenav={closeNav}/>
+             
             <div className={walkthrough === 0 ? "walkthrough-content" : "walkthrough-none"}>
                 <div className="walkthrough-box">
                     <h1>New to ShredMetrix?</h1>
@@ -726,13 +745,17 @@ const profileUnit = <div className="unit-text">
                 </div>
                 <div className={!walkthrough ? "product-listing product-listing-active" : "product-listing"}>
 
+                            {
+                                !loadingStatus && !copyJSON.length ? <h5 className="name-products">no products to show</h5> : null
+
+                            }
                 {/* product card start*/}
 
                 {
-                    copyJSON.length ? 
+                    !loadingStatus  ?
                     copyJSON.map((product , i) => {
                         return (
-                            // filterApply(product) || product["added"] ? 
+                            
                             <Productcard
                                 productimg={product["img"]} 
                                 setback={product["Stance Setback"]}
@@ -747,6 +770,7 @@ const profileUnit = <div className="unit-text">
                                 class={activeproduct}
                                 key = {product["id"]}
                                 id = {product["id"]}
+                                offset={products["offset"]}
                                 i={i}
                                 walkfunction={() => Setwalkthrough(3)}
                                 walkthrough={walkthrough}
@@ -756,19 +780,21 @@ const profileUnit = <div className="unit-text">
                                 closePopup = {() => setpopOpen("") }
                                 bookmarkadd = {bookmarkAdded}
 
-                    />  
+                    />
                         )
+
+                       
                     })
 
-                    : <div className="loading-container">
+                    :  <div className="loading-container">
                     <img src={loader} alt="loading.." className="loading-image"/>
                     <h5>Loading...</h5>
                    </div> 
-                       
+                      
                 }
 
-                    
-                   
+         
+                   <button onClick={setsOffset}>Load More</button>
 
                 {/* product card end*/}
 
@@ -799,7 +825,7 @@ const profileUnit = <div className="unit-text">
                     tabTwo={() => Setwalkthrough(6)}
                     tabthree={() => Setwalkthrough(7)}
                     walkthrough={walkthrough}
-
+                    openNav={openNav}
                     />
                 {/* <div className="canvas-header">
                     <div className="outline-profile-switch">

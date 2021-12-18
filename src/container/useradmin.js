@@ -106,7 +106,8 @@ const Admin = () => {
                         return (
                             <Productcard
                     productimg={product["img"]} 
-                    title={product["Title"]} 
+                    title={product["Model"]}
+                    console={product}
                     type={product["type"]}
                     stars={product["stars"]}
                     price={product["Price"]}
