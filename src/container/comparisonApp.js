@@ -44,7 +44,7 @@ const Comparison = () => {
     const [reset , setReset] = useState(false)
     const [search, setSearch] = useState("");
     const [loadingStatus , setLoadingStatus] = useState(true)
-    const [offset , setOffset] = useState(null)
+    const [offset , setOffset] = useState("")
     const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
@@ -334,7 +334,7 @@ const profileUnit = <div className="unit-text">
 
     useEffect(() => {
         
-        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange).then((products,err)=>{
+        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange,offset).then((products,err)=>{
             if(!err){
 
                 let exampleCopy = [...products];
