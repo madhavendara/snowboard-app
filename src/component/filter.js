@@ -26,9 +26,11 @@ const ProductFilter = (
     const [filteractive,setfilteractive] = useState(false) 
 
     const [price] = useState({
-        start: 500,
+        start: 200,
         end: 600
     })
+
+    const [setbackActive , updateSetback] = useState(false);
 
     const [setback] = useState({
         start: 15,
@@ -39,6 +41,8 @@ const ProductFilter = (
         start: 140,
         end: 180
     })
+
+  
 
 
 
@@ -55,7 +59,17 @@ const ProductFilter = (
     }
 
   
+    const switchFunction = (value) => {
+        if(value = 1)
+        {
+            updateSetback(false)
+        }
 
+        else if(value = 2)
+        {
+            updateSetback(true)
+        }
+    }
     return (
 
         <React.Fragment>
@@ -112,9 +126,19 @@ const ProductFilter = (
                                             </div>
                                         </div>
                                     </Accordion>
-                                    <Accordion title="SETBACK">
-                                        <div className="Accordion-content">
-                                            <div className="middle">
+
+                                    <Accordion title="SETBACK OPTIONS">
+                                    <div className="Accordion-content">
+                                        <div className='select-containers'>
+                                            <div className={!setbackActive ? 'active-option select-option' : "select-option"}  onClick={(e) => {updateSetback(false)}}>
+                                            Centered Setback
+                                            </div>
+                                            <div className={setbackActive ? 'active-option select-option' : "select-option"} onClick={(e) => {updateSetback(true)}}>
+                                            Side setback
+                                            </div>
+                                        </div>
+                                        <div className={!setbackActive ? 'side-setback-options' : 'side-setback-options-active'}>
+                                        <div className="middle">
                                                 <div className="multi-range-slider">
                                                     <Nouislider 
                                                     range={{ min: setback.start, max: setback.end }} 
@@ -128,9 +152,16 @@ const ProductFilter = (
                                                         <h1>{Math.floor(setbackRange.end)}</h1>
                                                     </div> 
                                                 </div>
-                                            </div>        
+                                            </div>  
                                         </div>
-                                </Accordion>
+                                    </div>    
+                                    </Accordion>
+
+                                    {/* <Accordion title="SETBACK">
+                                        <div className="Accordion-content">
+                                                  
+                                        </div>
+                                </Accordion> */}
                                 <Accordion title="Ability Level">
                                     <div className="Accordion-content">
                                         <div className="check-box">

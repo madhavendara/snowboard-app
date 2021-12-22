@@ -3281,3 +3281,62 @@ img.bookmarkAddition {
   width: 23px;
   margin-top: 18px;
 }
+
+.load-more {
+  display: block;
+  padding: 12px 25px;
+  background: #2741cc;
+  border: none;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.canvas-area .canvas-content[data-alignbottom=true][data-lineview=true] {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.canvas-area [data-callpased=true][data-lineview=true] .snowboard-graphics-container .product-graphics-box .tail-bar {
+  display: none;
+}
+
+.canvas-area [data-callpased=true][data-lineview=true] .snowboard-graphics-container .product-graphics-box .tip-bar {
+  display: none;
+}
+
+.side-setback-options {
+  display: none;
+}
+
+.side-setback-options-active {
+  display: block;
+}
+
+.select-containers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.select-option {
+  padding: 15px 20px;
+  border: 1px solid #303030;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.active-option.select-option {
+  background: #005FCF;
+  border-color: transparent;
+}

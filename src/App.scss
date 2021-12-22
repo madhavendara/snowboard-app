@@ -3887,6 +3887,64 @@ img.bookmarkAddition {
     margin-top: 18px;
 }
 
+.load-more {
+    display: block;
+    padding: 12px 25px;
+    background: #2741cc;
+    border: none;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.canvas-area .canvas-content[data-alignbottom=true][data-lineview=true] {
+    align-items: flex-start;
+}
+
+.canvas-area [data-callpased=true][data-lineview=true] .snowboard-graphics-container .product-graphics-box .tail-bar {
+    display: none;
+}
+
+.canvas-area [data-callpased=true][data-lineview=true] .snowboard-graphics-container .product-graphics-box .tip-bar {
+    display: none;
+}
+
+.side-setback-options
+{
+    display: none;
+}
+
+.side-setback-options-active
+{
+    display: block;
+}
+
+.select-containers
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-option {
+    padding: 15px 20px;
+    border: 1px solid #303030;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.active-option.select-option
+{
+    background: #005FCF;
+    border-color: transparent;
+}
+
 // @keyframes rotate {
 //     from { -webkit-transform: rotateY(0deg)}
 //     to{ -webkit-transform: rotateY(360deg)}

@@ -3,23 +3,16 @@ import productline from "../assest/product-line-1.svg";
 
 
 export class Product {
-    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange,offset) =>{
+    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange) =>{
         var searchData = (search !== undefined)?search:'';
-        let offsetData = (offset !== undefined)?offset:'';
-
+    
         const url = () => {
 
-            let offset_ari = "";
-            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData+offset_ari;
+    
+            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData;
 
-            if(offsetData)
-            {
-                offset_ari = "offset="+offsetData
-
-                console.log(offsetData)
-            }
-
-            // main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+       
+            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
 
             // if(setbackRange.start != 15 && setbackRange.end != 80)
             // {
@@ -27,21 +20,21 @@ export class Product {
             // }
  
            
-            // if(RockerType.length)
-            // {
-            //    for(let i = 0; i < RockerType.length; i++)
-            //    {
-            //      main_url += '&avility[]='+'"'+RockerType[i]+'"'
-            //    }
-            // }
+            if(RockerType.length)
+            {
+               for(let i = 0; i < RockerType.length; i++)
+               {
+                 main_url += '&avility[]='+'"'+RockerType[i]+'"'
+               }
+            }
 
-            // if(widthType.length)
-            // {
-            //     for(let i = 0; i < widthType.length; i++)
-            //     {
-            //       main_url += '&width[]='+'"'+widthType[i]+'"'
-            //     }
-            // }
+            if(widthType.length)
+            {
+                for(let i = 0; i < widthType.length; i++)
+                {
+                  main_url += '&width[]='+'"'+widthType[i]+'"'
+                }
+            }
 
             
             console.log(main_url)
@@ -67,6 +60,16 @@ export class Product {
                     var products = [];
                     if (data) {
                         for (var i = 0; i < data.length; i++) {
+                            var regExp = /[a-zA-Z]/g;
+                            let size = data[i].fields['Size (cm)'];
+                            if(regExp.test(size)){
+                                size = size.replace(/[A-Za-z]/g, "")
+                                size = parseInt(size)
+                              } else {
+                                size = parseInt(size)
+                                /* do something if letters are not found in your string */
+                              }
+
 							
 							if((typeof data[i].fields.Image !=='undefined') || (typeof data[i].fields.Outline !=='undefined')){
                             products.push({
@@ -78,14 +81,14 @@ export class Product {
                                 "url" : data[i].fields["Product href"] ?  data[i].fields["Product href"] :  "https://www.evo.com/shop/snowboard",
                                 "type": data[i].fields.Width,
                                 "stars": 4,
-                                "Price": data[i].fields.Pricing || '$0',
-                                "img": data[i].fields.image_link || "https://spotlexdigital.com/compare/product-1.jpg",
+                                "Price": data[i].fields.Pricing == 0 ? '0' : data[i].fields.Pricing ,
+                                "img": data[i].fields.Image[0].url,
                                 "outline" : data[i].fields.Outline[0]["url"],
-                                "size" : data[i].fields['Size (cm)'] || 0,
+                                "size" : size || 0,
                                 "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,
                                 "TipWidth" : data[i].fields['Tip Width (mm)'] || 0,
                                 "WaistWidth" : data[i].fields['Waist Width (mm)'] || 0,
-                                "line" : productline,
+                                "line" : data[i].fields.Profile[0]["url"],
                                 "taper" : data[i].fields['Taper (mm)'] || 0,
                                 "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || "N/A",

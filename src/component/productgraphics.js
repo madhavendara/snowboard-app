@@ -142,15 +142,20 @@ const Productgraphics = (props) => {
             let properties;
             let main_width;
             let main_height;
+
+           
   
                 if(props.lineview)
                 {
-                  main_width = props.canvasWidth;
+                  main_width = (props.canvasHeight)/1.2;
 
-                  const widthratio = this.width / 700
-                  const actuallwidth = props.canvasWidth * widthratio
+                  // const widthratio = this.width / 700
+
+                  const actuallwidth = main_width * props.size / 170
                   const ratio = this.height / this.width
-                  properties = {width : actuallwidth , height : ratio * actuallwidth}
+
+
+                  properties = {width :  actuallwidth, height : ratio * actuallwidth}
   
                   setdeminition(properties);
                   setImage(img2)

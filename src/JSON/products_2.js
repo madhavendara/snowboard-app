@@ -2,14 +2,13 @@ import productline from "../assest/product-line-1.svg";
 
 
 
-export class Product {
-    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange) =>{
-        var searchData = (search !== undefined)?search:'';
-     
+export class Product2 {
+    static getProduct =  (offset) =>{
+        let offset_ari = "&offset="+offset
 
         const url = () => {
 
-            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData;
+            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+offset_ari;
 
             // main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
 
@@ -56,9 +55,33 @@ export class Product {
                     var data = response.records || '';
                     var offset = response.offset
                     
+                    
                     var products = [];
                     if (data) {
                         for (var i = 0; i < data.length; i++) {
+                            var regExp = /[a-zA-Z]/g;
+                            let size = data[i].fields['Size (cm)'];
+                            if(regExp.test(size)){
+                                size = size.replace(/[A-Za-z]/g, "")
+                                size = parseInt(size)
+                              } else {
+                                size = parseInt(size)
+                                /* do something if letters are not found in your string */
+                              }
+
+                              let sidecut_radius = data[i].fields['Sidecut Radius (m)'];
+                              let sidecut_value;
+
+                                if(sidecut_radius.match("/"))
+                                {
+                                    sidecut_value = sidecut_radius.split("/")
+                                    sidecut_value = sidecut_value[0]
+                                }
+
+                                else
+                                {
+                                    sidecut_value = data[i].fields['Sidecut Radius (m)']
+                                }
 							
 							if((typeof data[i].fields.Image !=='undefined') || (typeof data[i].fields.Outline !=='undefined')){
                             products.push({
@@ -71,15 +94,16 @@ export class Product {
                                 "type": data[i].fields.Width,
                                 "stars": 4,
                                 "Price": data[i].fields.Pricing || '$0',
-                                "img": data[i].fields.image_link || "https://spotlexdigital.com/compare/product-1.jpg",
+                                "img": data[i].fields.Image[0].url || "https://spotlexdigital.com/compare/product-1.jpg",
                                 "outline" : data[i].fields.Outline[0]["url"],
-                                "size" : data[i].fields['Size (cm)'] || 0,
+                                "size" : size || 0,
                                 "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,
                                 "TipWidth" : data[i].fields['Tip Width (mm)'] || 0,
                                 "WaistWidth" : data[i].fields['Waist Width (mm)'] || 0,
                                 "line" : productline,
                                 "taper" : data[i].fields['Taper (mm)'] || 0,
-                                "Sidecut radius" : data[i].fields['Sidecut Radius (m)'] || 0,
+                                "Sidecut radius" : sidecut_value || 0,
+                                "Sidecut radius name" : sidecut_radius,
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || "N/A",
                                 "Ability Level" : data[i].fields['Ability Level (from SB Categorical Specs)'][0] || 0,
                                 "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'] || 0,
