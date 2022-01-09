@@ -3,7 +3,7 @@ import productline from "../assest/product-line-1.svg";
 
 
 export class Product {
-    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange) =>{
+    static getProduct =  (search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive) =>{
         var searchData = (search !== undefined)?search:'';
     
         const url = () => {
@@ -11,8 +11,23 @@ export class Product {
     
             let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+searchData;
 
-       
+            
             main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+
+            if(setbackActive != null)
+            {
+                if(setbackActive)
+                {
+                    main_url += "&min_setback="+setbackRange.start+"&max_setback="+setbackRange.end
+                }
+
+                else
+                {
+                    main_url += "&min_setback="+0+"&max_setback="+0
+                }
+
+                console.log("kara")
+            }
 
             // if(setbackRange.start != 15 && setbackRange.end != 80)
             // {

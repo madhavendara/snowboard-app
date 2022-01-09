@@ -3,14 +3,29 @@ import productline from "../assest/product-line-1.svg";
 
 
 export class Product2 {
-    static getProduct =  (offset) =>{
+    static getProduct =  (offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive) =>{
         let offset_ari = "&offset="+offset
 
         const url = () => {
 
             let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+offset_ari;
 
-            // main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+
+            if(setbackActive != null)
+            {
+                if(setbackActive)
+                {
+                    main_url += "&min_setback="+setbackRange.start+"&max_setback="+setbackRange.end
+                }
+
+                else
+                {
+                    main_url += "&min_setback="+0+"&max_setback="+0
+                }
+
+                console.log("kara")
+            }
 
             // if(setbackRange.start != 15 && setbackRange.end != 80)
             // {
@@ -18,21 +33,21 @@ export class Product2 {
             // }
  
            
-            // if(RockerType.length)
-            // {
-            //    for(let i = 0; i < RockerType.length; i++)
-            //    {
-            //      main_url += '&avility[]='+'"'+RockerType[i]+'"'
-            //    }
-            // }
+            if(RockerType.length)
+            {
+               for(let i = 0; i < RockerType.length; i++)
+               {
+                 main_url += '&avility[]='+'"'+RockerType[i]+'"'
+               }
+            }
 
-            // if(widthType.length)
-            // {
-            //     for(let i = 0; i < widthType.length; i++)
-            //     {
-            //       main_url += '&width[]='+'"'+widthType[i]+'"'
-            //     }
-            // }
+            if(widthType.length)
+            {
+                for(let i = 0; i < widthType.length; i++)
+                {
+                  main_url += '&width[]='+'"'+widthType[i]+'"'
+                }
+            }
 
             
             console.log(main_url)

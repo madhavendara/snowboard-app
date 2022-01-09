@@ -36,24 +36,24 @@ const Navbar_linkbar = (props) => {
         <Link to="/dashboard">My Account</Link>
             <img src={login} alt="login"/>
         </li>
-        
+{/*         
         <li className="login">
             <img src={search} alt=""/>
             <input type="text" name="fname" placeholder="Search Here."/>
-        </li>
+        </li> */}
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/invest">INVEST</Link></li>
-        <li><Link to="/snowboardeducation">Snowboard Education</Link></li>
-        <li><a href="#feedback">REVIEW</a></li>
+        {/* <li><Link to="/snowboardeducation">Snowboard Education</Link></li> */}
+        {/* <li><a href="#feedback">REVIEW</a></li> */}
             {button}
-         <div className="in-item">
+         {/* <div className="in-item">
             <div className="social-icon">
                 <img src={insta} alt="insta"/>
                 <img src={facebook} alt="facebook"/>
                 <img src={twitter} alt="twitter"/>
                 <img src={linkedin} alt="linkedin"/>
             </div>
-        </div>
+        </div> */}
     </ul>  
     )
 }

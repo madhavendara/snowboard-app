@@ -23,7 +23,7 @@ const Productcard = (props) => {
                         </div>
                         <div className="product-content-col">
                             
-                                <h1><a href={props.url} className="product-card-link"> {props.title}</a></h1> 
+                                <h1><a href={props.url} target="_blank" className="product-card-link"> {props.title}</a></h1> 
                             
                                     <p>{props.Brand}</p>
                                     <h5>{props.size}cm</h5>

@@ -80,7 +80,7 @@ const Admin = () => {
         <div className="dashboard-container">
             <div className="user-box div">
                 <div className="user-image-container">
-                        <img src={edit} alt="user" className="edit-content"/>
+                        {/* <img src={edit} alt="user" className="edit-content"/> */}
                      <img src={userimg} alt="user" className="user-image"/>
                 </div>
 
@@ -103,10 +103,11 @@ const Admin = () => {
                 <div className={activetab === "tab-1" ? "tab-content tab-content-active" : "tab-content"}>
                 {
                     userproducts.map(product => {
+                        console.log(product)
                         return (
                             <Productcard
                     productimg={product["img"]} 
-                    title={product["Model"]}
+                    title={product["Title"]}
                     console={product}
                     type={product["type"]}
                     stars={product["stars"]}

@@ -6,6 +6,7 @@ import twitter from '../assest/twitter.svg'
 import linkedin from '../assest/linkedin.svg'
 import insta from '../assest/insta.svg'
 import { Link } from 'react-router-dom'
+import applogo from '../assest/applogo.svg'
 
 
 const footer = () => {
@@ -13,14 +14,14 @@ const footer = () => {
     <div className="contact-wall container-fluid">
                 <div className="row">
                     <div className="contact-text">
-                        <h3>LOGO.</h3>
+                        <img src={applogo} alt="shredmetrix" class="app-logo"/>
                         <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,</p>
                     </div>
                     <div className="contact-menu">
                         <ul>
                         <li><Link to="/about">About us</Link></li>
                         <li><Link to="/invest">INVEST</Link></li>
-                        <li><a href="#feedback">REVIEW</a></li>
+                        {/* <li><a href="#feedback">REVIEW</a></li> */}
                         </ul>  
                     </div>
                 </div>

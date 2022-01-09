@@ -31,12 +31,12 @@ const Aboutus = () => {
                 <div className="row">
                     <div className="JARED-img">
                        <img src={jared} alt=""/>
-                       <div className="social-icon">
+                       {/* <div className="social-icon">
                            <img src={insta} alt=""/>
                            <img src={facebook} alt=""/>
                            <img src={twitter} alt=""/>
                            <img src={linkedin} alt=""/>
-                       </div>
+                       </div> */}
                     </div>
                     <div className="JARED-text ">
                         <h1>JARED MCNALLY <span>/ OWNER</span></h1>

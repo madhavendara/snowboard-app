@@ -25,7 +25,8 @@ const Invest = () => {
             .then((response) => {
                 if(response.success === true){
                     localStorage.setItem('token',response.data.id);
-                    history.push("/dashboard");
+                    history.push("/");
+                    
                 }
                 openSnackbar(response.msg)
             })

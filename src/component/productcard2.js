@@ -10,7 +10,7 @@ const Productcard = (props) => {
                         </div>
                         <div className="product-content">
                             <div className="title-content">
-                                <h1>product</h1>
+                                <h1>{props.title}</h1>
                                 <h5>{props.type}</h5>
                             </div>
                             <div className="star star-4">

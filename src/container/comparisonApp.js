@@ -1,5 +1,3 @@
-
-
 // component import
 import React , { useState, useEffect,useRef} from 'react'
 import Searchbar from '../component/searchbar'
@@ -11,6 +9,10 @@ import Completegraph from '../component/completegraph'
 import Productgraphics from '../component/productgraphics'
 import Productgraphics2 from '../component/productgraphics_text'
 import Loading from '../component/loading'
+
+// popup model
+import LoginModel from '../component/loginModel'
+
 
 // function import 
 import PositionCalculator from '../functions/positionCalculator'
@@ -38,15 +40,17 @@ const Comparison = () => {
     const [copyJSON , changecopy]  = useState([])
     const [filterJSON , changefilter] = useState([])
     const [loading] = useState(true)
-    const [activeproduct] = useState([])
+    const [activeproduct , setActiveproduct] = useState([])
     const [activeGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
     const [activebars2 , setActivebar2] = useState([])
     const [reset , setReset] = useState(false)
     const [search, setSearch] = useState("");
     const [loadingStatus , setLoadingStatus] = useState(true)
+    const [loadingStatus1 , setLoadingStatus1] = useState(true)
     const [offset , setOffset] = useState("")
-    const [colorSets] = useState(["#A5AEC6","#7479EC" , "#47D5D5" , "#19A0E3"])
+    const [noproducts , setnoproducts] = useState(false)
+    const [colorSets] = useState(["#949FBD","#7479EC" , "#3BCACA" , "#19A0E3"])
     const [canvasHeight, setCanvasHeight] = useState(null)
     const [canvasWidth, setCanvasWidth] = useState(null)
     const [windowWidth , setWindowWidth] = useState(null)
@@ -73,6 +77,9 @@ const Comparison = () => {
     const [RockerType , SetRockerType] = useState([])
     const [widthType , SetwidthType] = useState([])
     const [walkthrough ,Setwalkthrough] = useState(0)
+    const [setbackActive , updateSetback] = useState(null);
+    const [login_model , setlogin_model] = useState(false)
+
 
 
 
@@ -90,57 +97,46 @@ const Comparison = () => {
 
     const RockerTypeFunction = (ev) => {
 
-        const letRocker = [...RockerType]
-        if(letRocker.includes(ev))
-        {
-            const index = letRocker.indexOf(ev);
-            if (index > -1) {
-                letRocker.splice(index, 1);
-                SetRockerType(letRocker)
-            }
-        }
-
-        else
-        {
-            letRocker.push(ev)
-            SetRockerType(letRocker)
-        }
-        
+            SetRockerType(ev)
+    
+        setnoproducts(false)
     }
 
     const RockerTypeClear = () => {
         SetRockerType([])
+
+        setnoproducts(false)
     }
 
 
     const setsOffset = () => {
-        copyJSON.find((obj,i) => i == copyJSON.length -1 ? setOffset(obj.offset) : null)
-        console.log(offset)
+        copyJSON.find((obj,i) => {
+            if(i == copyJSON.length -1)
+            {
+                if(obj.offset)
+                {
+                    setOffset(obj.offset)
+                }
+                else
+                {
+                    setnoproducts(true)
+                }
+                
+            }
+        
+        })
+      
     }
 
     const widthFunction = (ev) => {
-
-        const letWidth = [...widthType]
-        if(letWidth.includes(ev))
-        {
-            const index = letWidth.indexOf(ev);
-            if (index > -1) {
-                letWidth.splice(index, 1);
-                SetwidthType(letWidth)
-            }
-        }
-
-        else
-        {
-            letWidth.push(ev)
-            SetwidthType(letWidth)
-        }
-
-        console.log("this is the way")
+        
+        SetwidthType(ev)
+        setnoproducts(false)
     }
 
     const WidthTypeClear = () => {
         SetwidthType([])
+        setnoproducts(false)
     }
 
     const filterApply = (data) => {
@@ -227,6 +223,8 @@ const Comparison = () => {
             start : Math.floor(start),
             end : Math.floor(end)
         })
+
+        setnoproducts(false)
     }
 
     const priceFunction = (start,end) => {
@@ -234,6 +232,7 @@ const Comparison = () => {
             start : Math.floor(start),
             end : Math.floor(end)
         })
+        setnoproducts(false)
     }
 
     const setbackFunction = (start,end) => {
@@ -241,6 +240,8 @@ const Comparison = () => {
             start : Math.floor(start),
             end : Math.floor(end)
         })
+
+        setnoproducts(false)
     }
 
    
@@ -265,9 +266,13 @@ const Comparison = () => {
 
     const [openSnackbar, closeSnackbar] = useSnackbar(); // show snackbar component
 
-    const handleSearchChange = ({ target }) => {
-        setSearch(target.value);
+    const handleSearchChange = (target) => {
+        
+        setSearch(target);
+        console.log(target)
+        setnoproducts(false)
     };
+
 
     
     useEffect(() => {
@@ -292,7 +297,7 @@ const Comparison = () => {
     const TipWidthbase = 350;
     const WaistWidthbase = 300;
 
-    const taperbase = 12;
+    const taperbase = 120;
     const Sidecutradiusbase = 8.0;
     const StanceSetbackbase = 64;
 
@@ -334,8 +339,8 @@ const profileUnit = <div className="unit-text">
   
 
     useEffect(() => {
-        
-        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange).then((products,err)=>{
+        setLoadingStatus(true)
+        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive).then((products,err)=>{
             if(!err){
 
                 let exampleCopy = [...products];
@@ -349,22 +354,22 @@ const profileUnit = <div className="unit-text">
                 setProducts(exampleCopy)
                 changecopy(exampleCopy)
 
-                console.log(products)
+     
                 setLoadingStatus(false)
             }
         })
         //
 
-        console.log(search)
+ 
         setCanvasHeight(window.innerHeight)
         setCanvasWidth(window.innerWidth)
-    }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange])
+    }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive])
 
 
 
     useEffect(() => {
-        setLoadingStatus(true)
-        Product2.getProduct(offset).then((products,err)=>{
+        setLoadingStatus1(true)
+        Product2.getProduct(offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive).then((products,err)=>{
   
             if(!err){
 
@@ -382,9 +387,7 @@ const profileUnit = <div className="unit-text">
 
                 setProducts(exampleCopy)
                 changecopy(exampleCopy)
-
-                console.log(products)
-                setLoadingStatus(false)
+                setLoadingStatus1(false)
             }
         })
         //
@@ -420,10 +423,17 @@ const profileUnit = <div className="unit-text">
     const bookmarkAdded = (key) => {
         Product.addProduct(key).then((res,err)=>{
             if(!err){
-                openSnackbar(res.msg)
+                if(res.msg == "You are not logged In.")
+                {
+                    setlogin_model(true)
+                }
+                
             }
         })
     }
+
+
+  
     function handleMouseMove(ev) { 
         let new_left
         let new_top
@@ -471,7 +481,7 @@ const profileUnit = <div className="unit-text">
                         {
                            if(graphactive)
                            {
-                               console.log("maki")
+          
                                setgraphactive(false)
                                setReset(true)
                            }
@@ -499,7 +509,7 @@ const profileUnit = <div className="unit-text">
                         {
                            if(graphactive)
                            {
-                               console.log("maki")
+               
                                setgraphactive(false)
                                setReset(true)
                            }
@@ -535,7 +545,7 @@ const profileUnit = <div className="unit-text">
                                setReset(true)
                            }
                         }
-                        console.log("kutiya")
+          
     
                     }
 
@@ -559,7 +569,7 @@ const profileUnit = <div className="unit-text">
                 {
                    if(graphactive)
                    {
-                       console.log("maki")
+             
                        setgraphactive(false)
                        setReset(true)
                    }
@@ -631,11 +641,57 @@ const profileUnit = <div className="unit-text">
      }
 
 
+     const buttonReturn = (func) => {
+         if(!noproducts)
+         {
+            return <a href='#bottom' className='load-more' onClick={func}>Load More</a>
+         }  
+         
+         else
+         {
+            return <p> No more products to show</p>
+         }
+     }
+
+
      const barUpdate = (graphics) => {
             let newOne = [];
             let newOne2 = []; 
             for (let i = 0; i < graphics.length; i++)
                 {
+                    let stance_value;
+                    let stance_precentage;
+                    // if(graphics[i]["Stance Setback"].includes(".") && graphics[i]["Stance Setback"] <= 3.149606299212598)
+                    // {
+                    //     stance_value = "0"+graphics[i]["Stance Setback"]
+                    //     stance_value = stance_value*25.4
+
+                    //     console.log("ke;lka;l"+stance_value)
+                    // }
+                    if(graphics[i]["Stance Setback"] <= 0)
+                    {
+                        stance_value = "Center"
+                        stance_precentage = 100
+      
+                      
+                    }
+                    else if(graphics[i]["Stance Setback"] > 0 && graphics[i]["Stance Setback"] <= 3.149606299212598)
+                    {
+                        stance_value = graphics[i]["Stance Setback"]*25.4
+                        stance_precentage = Math.floor(stance_value / StanceSetbackbase * 100)
+
+              
+                    }
+
+                    else
+                    {
+                        stance_value = graphics[i]["Stance Setback"]
+                        stance_precentage = Math.floor(stance_value / StanceSetbackbase * 100)
+                 
+           
+                    }
+
+                 
                    
                         let elements = [ { amount : graphics[i].size , precentage : Math.floor(graphics[i].size / sizebase * 100) , unit : 'cm'}  , 
                         { amount : graphics[i]["taper"] < 1 ? "Twin Tip’" : graphics[i]["taper"] , precentage : graphics[i]["taper"] < 1 ? 100 : Math.floor(graphics[i]["taper"] / taperbase * 100) , unit : 'mm'}, 
@@ -648,7 +704,7 @@ const profileUnit = <div className="unit-text">
                                { amount : graphics[i]["size"] , precentage : Math.floor(graphics[i]["size"] / sizebase * 100) }  , 
                                { amount : graphics[i]["taper"] == 0 ? "Twin Tip’" : graphics[i]["taper"] , precentage : graphics[i]["taper"] == 0 ? 100 : Math.floor(graphics[i]["taper"] / taperbase * 100) , unit : 'mm'}, 
                                { amount : graphics[i]["Sidecut radius"] , precentage : Math.floor(graphics[i]["Sidecut radius"] / Sidecutradiusbase * 100) },
-                               { amount : graphics[i]["Stance Setback"] , precentage : Math.floor(graphics[i]["Stance Setback"] / StanceSetbackbase * 100) }
+                               { amount : stance_value , precentage : stance_precentage , name :  graphics["Stance Setback"] <= 0 || !graphics["Stance Setback"] ? "" : "mm"}
                             ]
 
                         newOne.push(elements)
@@ -682,6 +738,8 @@ const profileUnit = <div className="unit-text">
     })
 
     const graphicsoutline = activeGraphics.map((graphics , i) => {
+
+ 
         return (
             <Productgraphics2 
             color={colorSets[i]} 
@@ -690,6 +748,8 @@ const profileUnit = <div className="unit-text">
              size={graphics.size}
              tail={graphics.tail}
              tip={graphics.tip}
+             productadded = {productAdded}
+             id={graphics.id}
             //  graph={graphics.graph}
              graph=  {
             [
@@ -707,6 +767,39 @@ const profileUnit = <div className="unit-text">
 
 
     const graphicsprofile = activeGraphics.map((graphics , i) => {
+
+        let stance_value;
+        let stance_precentage;
+        // if(graphics[i]["Stance Setback"].includes(".") && graphics[i]["Stance Setback"] <= 3.149606299212598)
+        // {
+        //     stance_value = "0"+graphics[i]["Stance Setback"]
+        //     stance_value = stance_value*25.4
+
+        //     console.log("ke;lka;l"+stance_value)
+        // }
+        if(graphics["Stance Setback"] <= 0)
+        {
+            stance_value = "Center"
+            stance_precentage = 100
+
+          
+        }
+        else if(graphics["Stance Setback"] > 0 && graphics["Stance Setback"] <= 3.149606299212598)
+        {
+            stance_value = graphics["Stance Setback"]*25.4
+            stance_precentage = Math.floor(stance_value / StanceSetbackbase * 100)
+
+ 
+        }
+
+        else
+        {
+            stance_value = graphics["Stance Setback"]
+            stance_precentage = Math.floor(stance_value / StanceSetbackbase * 100)
+
+
+        }
+
         return (
             <Productgraphics2 
             color={colorSets[i]} 
@@ -721,7 +814,7 @@ const profileUnit = <div className="unit-text">
                    { amount : graphics["size"] , precentage : Math.floor(graphics["size"] / sizebase * 100) , name : "cm"}  , 
                    { amount : graphics["taper"] < 1 ? "twin tip" : graphics["taper"] , precentage : graphics["taper"] < 1 ? 100 :  Math.floor(graphics["taper"] / taperbase * 100) , name : graphics["taper"] < 1 ? "" : "mm"},
                    { amount : graphics["Sidecut radius"] , precentage : Math.floor(graphics["Sidecut radius"] / Sidecutradiusbase * 100) , name : "m"},
-                   { amount : graphics["Stance Setback"] == 0 || graphics["Stance Setback"] ? "Centered" : graphics["Stance Setback"] , precentage : graphics["Stance Setback"] == 0 || graphics["Stance Setback"] ? 100 : Math.floor(graphics["Stance Setback"] / StanceSetbackbase * 100) , name :  graphics["Stance Setback"] == 0 || graphics["Stance Setback"] ? "" : "mm"}
+                   { amount :stance_value , precentage : stance_precentage , name :  graphics["Stance Setback"] == 0 || !graphics["Stance Setback"] ? "" : "mm"}
                 ]}
              canvasHeight={canvasHeight}
              canvasWidth={canvasWidth - (canvasWidth * 30/100 < 444 ? canvasWidth * 30/100 : 444)}
@@ -741,6 +834,8 @@ const profileUnit = <div className="unit-text">
 
     return (
         <React.Fragment>
+
+          {login_model ?<LoginModel closePopup={() => setlogin_model(false)} /> : null }  
              <NavbaLinkbar classlist={navclass} closenav={closeNav}/>
              
             <div className={walkthrough === 0 ? "walkthrough-content" : "walkthrough-none"}>
@@ -754,6 +849,7 @@ const profileUnit = <div className="unit-text">
               
         <Loading active={loading}/>
         <section id="comparison-app" data-callpased={sidebarshow ? true : false}>
+            
             <div className='app-sidebar'>
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
                 {/* <Header page="compare"/> */}
@@ -775,6 +871,8 @@ const profileUnit = <div className="unit-text">
                     walkfunction={() => Setwalkthrough(2)}
                     walkthrough={walkthrough}
                     amount={copyJSON.length}
+                    updateSetback2={() => updateSetback(true)}
+                    updateSetback1={() => updateSetback(false)}
                     />
                 </div>
                 <div className={!walkthrough ? "product-listing product-listing-active" : "product-listing"}>
@@ -786,7 +884,7 @@ const profileUnit = <div className="unit-text">
                 {/* product card start*/}
 
                 {
-                  
+                  !loadingStatus ? 
                     copyJSON.map((product , i) => {
                         return (
                             
@@ -818,14 +916,17 @@ const profileUnit = <div className="unit-text">
                         )
 
                        
-                    }) 
+                    }) : <div className="loading-container">
+                    <img src={loader} alt="loading.." className="loading-image"/>
+                    <h5>Loading...</h5>
+                   </div>
 
                     
                       
                 }
 
          
-                 { !loadingStatus ?  <a href='#bottom' className='load-more' onClick={setsOffset}>Load More</a> : <div className="loading-container">
+                 { !loadingStatus1 ?  buttonReturn(setsOffset) : <div className="loading-container">
                   <img src={loader} alt="loading.." className="loading-image"/>
                   <h5>Loading...</h5>
                  </div> 
@@ -845,6 +946,7 @@ const profileUnit = <div className="unit-text">
             style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth , collapsible) , marginTop : -PositionCalculator2(MousePosition.top , windowHeight,collapsible) } : null}
             >
 
+        
                     <Toolbar 
                     collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
                     base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}

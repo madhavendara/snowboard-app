@@ -2,6 +2,7 @@ import React , {useState , useRef , useEffect}  from 'react'
 import Nouislider from "nouislider-react";
 import "../nouislider.css";
 import Accordion from './accordion';
+import close from "../assest/x.svg"
 
 const ProductFilter = (
     {
@@ -19,62 +20,151 @@ const ProductFilter = (
     WidthTypeClear,
     walkthrough,
     walkfunction,
-    amount
+    amount,
+    updateSetback2,
+    updateSetback1
     }
     
     ) => {
     const [filteractive,setfilteractive] = useState(false) 
 
-    const [price] = useState({
+
+    // const [price] = useState({
+    //     start: 200,
+    //     end: 600
+    // })
+
+    // const [setback] = useState({
+    //     start: 15,
+    //     end: 80
+    // })
+
+    // const [length] = useState({
+    //     start: 140,
+    //     end: 180
+    // })
+
+    const [price,setPrice] = useState({
         start: 200,
         end: 600
     })
 
-    const [setbackActive , updateSetback] = useState(false);
+    const [setback_status, setbackActive] = useState(null)
 
-    const [setback] = useState({
+    const [setback,Updatesetback] = useState({
         start: 15,
-        end: 70
+        end: 80
     })
 
-    const [length] = useState({
-        start: 140,
-        end: 180
+    const [length,setLength] = useState({
+        start: 100,
+        end: 200
     })
 
-  
+    const [Rocker, setRocker] = useState([]);    
+    const [width, setwidth] = useState([]); 
 
+
+    const RockerTypeFunction1 = (ev) => {
+
+        const letRocker = [...Rocker]
+        if(letRocker.includes(ev))
+        {
+            const index = letRocker.indexOf(ev);
+            if (index > -1) {
+                letRocker.splice(index, 1);
+                setRocker(letRocker)
+            }
+        }
+
+        else
+        {
+            letRocker.push(ev)
+            setRocker(letRocker)
+        }
+    }
 
 
     const ClearAll = () => {
+        priceFunction1(200 , 600)
+        setbackFunction1(15,80)
+        lengthFunction1(100,200)
+        setRocker([])
+        setwidth([])
+    }
+
+    const applyFunction = () =>
+    {
         priceFunction(price.start , price.end)
-        setbackFunction(setback.start,setback.end)
+        if(setback_status !== null)
+        {
+            if(setback_status)
+            {
+                updateSetback1()
+                setbackFunction(setback.start,setback.end)
+            }
+            else
+            {
+                updateSetback2()
+            }
+        }
         lengthFunction(length.start,length.end)
-        RockerTypeClear()
-        WidthTypeClear()
+        widthFunction(width)
+        RockerTypeFunction(Rocker)
+        setfilteractive(false); 
+
     }
 
-    const ChangeCheck = (e) => {
-        RockerTypeFunction(e.target.value)
+
+    const priceFunction1 = (start,end) => {
+        setPrice({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
     }
 
-  
-    const switchFunction = (value) => {
-        if(value = 1)
+    const setbackFunction1 = (start,end) => {
+        Updatesetback({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
+    }
+
+ 
+
+   const lengthFunction1 = (start,end) => {
+    setLength({
+            start : Math.floor(start),
+            end : Math.floor(end)
+        })
+    }
+
+    const widthFunction1 = (ev) => {
+        const letWidth = [...width]
+        if(letWidth.includes(ev))
         {
-            updateSetback(false)
+            const index = letWidth.indexOf(ev);
+            if (index > -1) {
+                letWidth.splice(index, 1);
+                setwidth(letWidth)
+            }
         }
-
-        else if(value = 2)
+        else
         {
-            updateSetback(true)
+            letWidth.push(ev)
+            setwidth(letWidth)
         }
+    
     }
+
     return (
 
         <React.Fragment>
 
                         <div className="filter-bar-container" >
+
+                        
+                       
                             {
                                 walkthrough === 1 ? <>
                                     <div className="blue-box-1">
@@ -97,9 +187,7 @@ const ProductFilter = (
 
                                 
                                     <div className="side-filteroption" data-active={filteractive ? true : false}>
-                                <div className="setting-btn">
-                                    <img src="img/btn.svg" alt=""/>
-                                </div>
+                                    <img src={close} onClick={(e) => {setfilteractive(false);e.preventDefault();}} className='filter-close'/>
                                 <div className="top-title">
                                     <h1>Filter</h1>
                                 </div>
@@ -111,16 +199,16 @@ const ProductFilter = (
                                                 <div className="multi-range-slider">
                                                     {/* <input type="range" id="input-left" min="0" max="100" /> */}
                                                     <Nouislider 
-                                                    range={{ min: price.start, max: price.end }} 
-                                                    start={[Math.floor(priceRange.start), Math.floor(priceRange.end)]} 
+                                                    range={{ min: 200, max: 600}} 
+                                                    start={[Math.floor(price.start), Math.floor(price.end)]} 
                                                     connect 
-                                                    onUpdate={(ev) => priceFunction(ev[0],ev[1])} 
-                                                    set={[Math.floor(priceRange.start),Math.floor(priceRange.end)]}
+                                                    onUpdate={(ev) => priceFunction1(ev[0],ev[1])} 
+                                                    set={[Math.floor(price.start),Math.floor(price.end)]}
 
                                                     />
                                                     <div className="numbercontainer">
-                                                        <h1>${Math.floor(priceRange.start)}</h1>
-                                                        <h1>${Math.floor(priceRange.end)}</h1>
+                                                        <h1>${Math.floor(price.start)}</h1>
+                                                        <h1>${Math.floor(price.end)}</h1>
                                                     </div>    
                                                 </div>
                                             </div>
@@ -130,26 +218,26 @@ const ProductFilter = (
                                     <Accordion title="SETBACK OPTIONS">
                                     <div className="Accordion-content">
                                         <div className='select-containers'>
-                                            <div className={!setbackActive ? 'active-option select-option' : "select-option"}  onClick={(e) => {updateSetback(false)}}>
-                                            Centered Setback
+                                            <div className={setback_status && setback_status !== null ? 'active-option select-option' : "select-option"}  onClick={() => setbackActive(true)}>
+                                            Centered
                                             </div>
-                                            <div className={setbackActive ? 'active-option select-option' : "select-option"} onClick={(e) => {updateSetback(true)}}>
-                                            Side setback
+                                            <div className={!setback_status && setback_status !== null  ? 'active-option select-option' : "select-option"} onClick={() => setbackActive(false)}>
+                                            Setback
                                             </div>
                                         </div>
-                                        <div className={!setbackActive ? 'side-setback-options' : 'side-setback-options-active'}>
+                                        <div className={setback_status || setback_status === null ? 'side-setback-options' : 'side-setback-options-active'}>
                                         <div className="middle">
                                                 <div className="multi-range-slider">
                                                     <Nouislider 
-                                                    range={{ min: setback.start, max: setback.end }} 
-                                                    start={[setbackRange.start, setbackRange.end]} 
+                                                    range={{ min: 15, max: 80 }} 
+                                                    start={[setback.start, setback.end]} 
                                                     connect
-                                                    onUpdate={(ev) => setbackFunction(ev[0],ev[1])} 
+                                                    onUpdate={(ev) => setbackFunction1(ev[0],ev[1])} 
                                                     />
 
                                                     <div className="numbercontainer">
-                                                        <h1>{Math.floor(setbackRange.start)}</h1>
-                                                        <h1>{Math.floor(setbackRange.end)}</h1>
+                                                        <h1>{Math.floor(setback.start)}</h1>
+                                                        <h1>{Math.floor(setback.end)}</h1>
                                                     </div> 
                                                 </div>
                                             </div>  
@@ -165,11 +253,11 @@ const ProductFilter = (
                                 <Accordion title="Ability Level">
                                     <div className="Accordion-content">
                                         <div className="check-box">
-                                            <input type="checkbox" id="horns" value="Intermediate-Advanced" name="ability-level" onChange={(e) => RockerTypeFunction(e.target.value)} checked={RockerType.indexOf("Intermediate-Advanced") !== -1 }/>
+                                            <input type="checkbox" id="horns" value="Intermediate-Advanced" name="ability-level" onChange={(e) => RockerTypeFunction1(e.target.value)} checked={Rocker.indexOf("Intermediate-Advanced") !== -1 }/>
                                             <label>intermediate-Advanced</label>
                                         </div>
                                         <div className="check-box">
-                                            <input type="checkbox" id="horns" value="Advanced-Expert" name="ability-level"  onChange={(e) => RockerTypeFunction(e.target.value)} checked={RockerType.indexOf("Advanced-Expert") !== -1}/>
+                                            <input type="checkbox" id="horns" value="Advanced-Expert" name="ability-level"  onChange={(e) => RockerTypeFunction1(e.target.value)} checked={Rocker.indexOf("Advanced-Expert") !== -1}/>
                                             <label >Advanced-Expert</label>
                                         </div>
 
@@ -197,47 +285,33 @@ const ProductFilter = (
                                     <div className="middle">
                                                 <div className="multi-range-slider">
                                                     <Nouislider 
-                                                    range={{ min: 140, max: 180 }} 
-                                                    start={[lengthRange.start, lengthRange.end]} 
+                                                    range={{ min: 100, max: 200 }} 
+                                                    start={[length.start, length.end]} 
                                                     connect 
-                                                    onUpdate={(ev) => lengthFunction(ev[0],ev[1])} 
+                                                    onUpdate={(ev) => lengthFunction1(ev[0],ev[1])} 
                                                     />
 
                                                     <div className="numbercontainer">
-                                                        <h1>{Math.floor(lengthRange.start)}cm</h1>
-                                                        <h1>{Math.floor(lengthRange.end)}cm</h1>
+                                                        <h1>{Math.floor(length.start)}cm</h1>
+                                                        <h1>{Math.floor(length.end)}cm</h1>
                                                     </div> 
                                                 </div>
                                     </div> 
                                     </div>
                                </Accordion>
-
-                            {/* <Accordion title="GENDER">
-                                    <div className="Accordion-content">
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" value="male" name="gender"/>
-                                            <label >Male</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" value="female" name="gender"/>
-                                            <label >Female</label>
-                                        </div>
-                            
-                                    </div>
-                            </Accordion> */}
-
+                               
                             <Accordion title="WIDTH">
                                 <div className="Accordion-content">
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Mid-wide" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Mid-wide") !== -1 }/>
-                                        <label >Mid-wide</label>
+                                        <input type="checkbox" id="horns" name="horns" value="Mid-Wide" onChange={(e) => widthFunction1(e.target.value)} checked={width.indexOf("Mid-Wide") !== -1 }/>
+                                        <label >Mid-Wide</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Regular" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Regular") !== -1 }/>
+                                        <input type="checkbox" id="horns" name="horns" value="Regular" onChange={(e) => widthFunction1(e.target.value)} checked={width.indexOf("Regular") !== -1 }/>
                                         <label >Regular</label>
                                     </div>
                                     <div className="check-box">
-                                        <input type="checkbox" id="horns" name="horns" value="Wide" onChange={(e) => widthFunction(e.target.value)} checked={widthType.indexOf("Wide") !== -1 } />
+                                        <input type="checkbox" id="horns" name="horns" value="Wide" onChange={(e) => widthFunction1(e.target.value)} checked={width.indexOf("Wide") !== -1 } />
                                         <label >Wide</label>
                                     </div>
                                 </div>
@@ -246,16 +320,14 @@ const ProductFilter = (
                                 </div>
 
                                <div className="button-bottom-container">
-                                    <button className="apply-filter" onClick={(e) => {setfilteractive(false); e.preventDefault() }}>
+                                    <button className="apply-filter" onClick={applyFunction}>
                                         Close & Apply
                                     </button>   
 
                                     <button className="clear-filter"  onClick={(e) => ClearAll(e)}>
                                         Clear All
                                     </button>
-                                </div>     
-                                    {/* <a href="validvalue" className="close-btn" >&times;</a> */}
-                         
+                                </div>                          
                             </div>
         </React.Fragment>
 

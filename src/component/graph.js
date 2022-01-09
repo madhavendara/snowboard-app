@@ -99,23 +99,26 @@ function MouseOver(event) {
             if(barActive && i+1 === barActive)
             {
               ctx.font = "800 14px Poppins"
-              ctx.fillStyle = "black"
+              ctx.fillStyle = "white"
               ctx.textAlign = "left"
               if(bar[i].precentage == 'undefined' ||  bar[i].precentage == "null" || isNaN(bar[i].precentage))
               {
                 ctx.fillText("N/A",props.width * 100 / 100 - 30, (i+1) * 26 - 3)
               }
-
-              else if(bar[i].precentage < 33)
+              else if (bar[i].precentage < 25)
               {
-                ctx.fillText(bar[i].amount + bar[i].name,props.width * bar[i].precentage / 100 - 30, (i+1) * 26 - 3)
+                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 + 5, (i+1) * 26 - 3) 
+              }
+              else if(bar[i].precentage < 45)
+              {
+                ctx.fillText(bar[i].amount + bar[i].name,props.width * bar[i].precentage / 100 - 15, (i+1) * 26 - 3)
               }
               else
               {
                 ctx.fillText(bar[i].amount  + bar[i].name,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
               }
 
-              console.log(bar[i].name , bar[i].amount)
+
               // ctx.fillStyle = "transparent"
               // ctx.fillRect((props.width * bar[i].precentage / 100 - 20), (i+1)*26 - 30, 50, 20);
 
@@ -128,22 +131,29 @@ function MouseOver(event) {
 
             else
             {
-              ctx.font = "400 14px Poppins"
-              ctx.fillStyle = "black"
+              ctx.font = "500 14px Poppins"
+              ctx.fillStyle = "white"
               ctx.textAlign = "left"
 
               if(bar[i].precentage == 'undefined' ||  bar[i].precentage == "null" || isNaN(bar[i].precentage))
               {
                 ctx.fillText("N/A",props.width * 100 / 100 - 30, (i+1) * 26 - 3)
               }
-              else if(bar[i].precentage < 33)
+
+              else if (bar[i].precentage < 25)
               {
-                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 30, (i+1) * 26 - 3)
+                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 + 5, (i+1) * 26 - 3) 
+              }
+              else if(bar[i].precentage < 45)
+              {
+                ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 15, (i+1) * 26 - 3) 
+            
               }
 
               else
               {
                 ctx.fillText(bar[i].amount + bar[i].name ,props.width * bar[i].precentage / 100 - 70, (i+1) * 26 - 3)
+  
               }
               
             }

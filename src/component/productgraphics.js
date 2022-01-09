@@ -1,5 +1,5 @@
 import React , {useState, useEffect}  from 'react'
-
+import loading from '../assest/loading.gif'
 
 
 const Mask = ({ mask , width , height , color,size , tail , tip}) => {
@@ -86,6 +86,7 @@ const Productgraphics = (props) => {
     const [deminition , setdeminition] = useState({})  
     let [image, setImage] = useState("null")
 
+    let [imageActive, setActive] = useState(false)
 
 
     useEffect(() => {
@@ -133,6 +134,8 @@ const Productgraphics = (props) => {
 
                 setdeminition(properties);
                 setImage(img)
+                setActive(true)
+
               }
 
               
@@ -159,8 +162,7 @@ const Productgraphics = (props) => {
   
                   setdeminition(properties);
                   setImage(img2)
-
-                  console.log(this.width)
+                  setActive(true)
                 }
             }
 
@@ -185,10 +187,13 @@ const Productgraphics = (props) => {
       <div className="snowboard-graphics-container">
     
         <div className="graphics-img-container">
-         <Mask size={props.size} mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} color={props.color}
-         tail={props.tail}
-         tip={props.tip}          
-         />
+          {
+            imageActive   ?  <Mask size={props.size} mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} color={props.color}
+            tail={props.tail}
+            tip={props.tip}        
+            />  : <img src={loading} alt='loading..'/>
+          }
+        
          </div>
       </div>
        
