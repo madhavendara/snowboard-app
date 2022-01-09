@@ -79,6 +79,7 @@ const Comparison = () => {
     const [walkthrough ,Setwalkthrough] = useState(0)
     const [setbackActive , updateSetback] = useState(null);
     const [login_model , setlogin_model] = useState(false)
+    const [brandsActive, setbrand] = useState([]);
 
 
 
@@ -100,6 +101,11 @@ const Comparison = () => {
             SetRockerType(ev)
     
         setnoproducts(false)
+    }
+
+    const brandsFunction = (ev) => {
+        setbrand(ev)
+         setnoproducts(false)
     }
 
     const RockerTypeClear = () => {
@@ -340,7 +346,7 @@ const profileUnit = <div className="unit-text">
 
     useEffect(() => {
         setLoadingStatus(true)
-        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive).then((products,err)=>{
+        Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive).then((products,err)=>{
             if(!err){
 
                 let exampleCopy = [...products];
@@ -363,13 +369,13 @@ const profileUnit = <div className="unit-text">
  
         setCanvasHeight(window.innerHeight)
         setCanvasWidth(window.innerWidth)
-    }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive])
+    }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive])
 
 
 
     useEffect(() => {
         setLoadingStatus1(true)
-        Product2.getProduct(offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive).then((products,err)=>{
+        Product2.getProduct(offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive).then((products,err)=>{
   
             if(!err){
 
@@ -866,6 +872,7 @@ const profileUnit = <div className="unit-text">
                     RockerType={RockerType}
                     RockerTypeClear={RockerTypeClear}
                     widthFunction={widthFunction}
+                    brandsFunction={brandsFunction}
                     widthType={widthType}
                     WidthTypeClear={WidthTypeClear}
                     walkfunction={() => Setwalkthrough(2)}

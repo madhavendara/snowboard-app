@@ -6,7 +6,7 @@ import twitter from '../assest/twitter.svg'
 import linkedin from '../assest/linkedin.svg'
 import insta from '../assest/insta.svg'
 import { Link } from 'react-router-dom'
-import applogo from '../assest/applogo.svg'
+import applogo from '../assest/logo-white.svg'
 
 
 const footer = () => {
@@ -26,14 +26,14 @@ const footer = () => {
                     </div>
                 </div>
                <div className="boder row">
-                    <div className="social-icon">
+                    {/* <div className="social-icon">
                         <img src={insta} alt=""/>
                         <img src={facebook} alt=""/>
                         <img src={twitter} alt=""/>
                         <img src={linkedin} alt=""/>
-                    </div>
+                    </div> */}
                   <div className="text-last">
-                    <p>Copyright ©2021shredmetrix</p>
+                    <p>Copyright ©2022 shredmetrix</p>
                   </div>
                </div>
             </div> 

@@ -3,7 +3,7 @@ import productline from "../assest/product-line-1.svg";
 
 
 export class Product2 {
-    static getProduct =  (offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive) =>{
+    static getProduct =  (offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive) =>{
         let offset_ari = "&offset="+offset
 
         const url = () => {
@@ -48,6 +48,15 @@ export class Product2 {
                   main_url += '&width[]='+'"'+widthType[i]+'"'
                 }
             }
+
+            if(brandsActive.length)
+            {
+                for(let i = 0; i < brandsActive.length; i++)
+                {
+                  main_url += '&brand[]='+'"'+brandsActive[i]+'"'
+                }
+            }
+
 
             
             console.log(main_url)

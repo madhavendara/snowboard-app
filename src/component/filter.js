@@ -18,6 +18,7 @@ const ProductFilter = (
     widthType,
     RockerTypeClear,
     WidthTypeClear,
+    brandsFunction,
     walkthrough,
     walkfunction,
     amount,
@@ -62,7 +63,34 @@ const ProductFilter = (
     })
 
     const [Rocker, setRocker] = useState([]);    
-    const [width, setwidth] = useState([]); 
+    const [width, setwidth] = useState([]);
+    const [brands] = useState([
+        'Never Summer','Lib Tech','Burton','Salomon','Jones','Season','Arbor','Roxy','Nitro','Nidecker','CAPiTA','Bataleon','GNU','Sims','United Shapes','Gentemstick','Yes.','Cardiff','Weston','Moss Snowstick','Ride','K2','Rossignol','Slash','Public Snowboards','Korua Shapes'
+    ]) 
+
+    const [brandsActive , setbrands] = useState([]);
+
+
+    const brandsFunction1 = (ev) => {
+
+        const letBrand = [...brandsActive]
+        if(letBrand.includes(ev))
+        {
+            const index = letBrand.indexOf(ev);
+            if (index > -1) {
+                letBrand.splice(index, 1);
+                setbrands(letBrand)
+            }
+        }
+
+        else
+        {
+            letBrand.push(ev)
+            setbrands(letBrand)
+        }
+
+        console.log(brandsActive)
+    }
 
 
     const RockerTypeFunction1 = (ev) => {
@@ -91,6 +119,7 @@ const ProductFilter = (
         lengthFunction1(100,200)
         setRocker([])
         setwidth([])
+        setbrands([])
     }
 
     const applyFunction = () =>
@@ -110,6 +139,7 @@ const ProductFilter = (
         }
         lengthFunction(length.start,length.end)
         widthFunction(width)
+        brandsFunction(brandsActive)
         RockerTypeFunction(Rocker)
         setfilteractive(false); 
 
@@ -156,6 +186,16 @@ const ProductFilter = (
         }
     
     }
+
+
+    const brands_html =  brands.map((brand) => {
+        return (
+            <div className="check-box">
+            <input type="checkbox" id="horns" name="horns" onChange={(e) => brandsFunction1(e.target.value)} value={brand} checked={brandsActive.indexOf(brand) !== -1 }/>
+            <label >{brand}</label>
+        </div>
+        );
+    });
 
     return (
 
@@ -263,22 +303,12 @@ const ProductFilter = (
 
                                     </div>
                                 </Accordion>
-                                {/* <Accordion title="BRAND">
-                                    <div className="Accordion-content">
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Camber</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Rocker</label>
-                                        </div>
-                                        <div className="check-box">
-                                            <input type="checkbox" id="horns" name="horns"/>
-                                            <label >Flat</label>
-                                        </div>
-                                    </div>
-                                </Accordion> */}
+                                <Accordion title="BRAND">
+                                <div className="Accordion-content">
+                                  {brands_html}
+                            
+                                </div>
+                            </Accordion>
 
                                 <Accordion title="LENGTH">
                                     <div className="Accordion-content">
