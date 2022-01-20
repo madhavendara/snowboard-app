@@ -43,9 +43,16 @@ const Navbar_linkbar = (props) => {
         </li> */}
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/invest">INVEST</Link></li>
+        <li><Link to="/support">Support</Link></li>
+        {button}
+        <div className='mailing-list'>
+            <h1>Subscribe to mailing list</h1>
+            <input type="email" className='subscribe-mail' placeholder='Enter the mail address' name='email'/>
+            <input type="submit" value="submit" className="submit-name"/>
+        </div>
         {/* <li><Link to="/snowboardeducation">Snowboard Education</Link></li> */}
         {/* <li><a href="#feedback">REVIEW</a></li> */}
-            {button}
+            
          {/* <div className="in-item">
             <div className="social-icon">
                 <img src={insta} alt="insta"/>

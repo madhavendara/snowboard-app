@@ -18,6 +18,8 @@ const Toolbar = (props) => {
                     <h2>Switch from “Outline View” to “Profile View”</h2>
                
                 <button className="gotit-btn" onClick={props.tabline}>Got it</button>  
+                <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
+        
                 </div>    
                 </> : null
                 }
@@ -36,6 +38,7 @@ const Toolbar = (props) => {
                     <div class="blue-box-2">
                     <h2>Switch from Overlay to side-by-side</h2>
                     <button class="gotit-btn" onClick={props.tabOne}>Got it</button>
+                    <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
                     </div>
                 </>
                  : null
@@ -52,6 +55,7 @@ const Toolbar = (props) => {
                     <div class="blue-box-2">
                     <h2>Switch from center to bottom Alignment</h2>
                     <button class="gotit-btn" onClick={props.tabTwo}>Got it</button>
+                    <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
                     </div>
                 </>
                  : null
@@ -70,6 +74,7 @@ const Toolbar = (props) => {
                     <h2>See board Comparison graph</h2>
           
                     <button class="gotit-btn" onClick={props.tabthree}>Got it</button>
+                    <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
                     </div>
                 </>
                  : null

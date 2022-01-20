@@ -23,7 +23,8 @@ const ProductFilter = (
     walkfunction,
     amount,
     updateSetback2,
-    updateSetback1
+    updateSetback1,
+    walkfunction_null
     }
     
     ) => {
@@ -190,7 +191,7 @@ const ProductFilter = (
 
     const brands_html =  brands.map((brand) => {
         return (
-            <div className="check-box">
+            <div className="check-box" key={brand}>
             <input type="checkbox" id="horns" name="horns" onChange={(e) => brandsFunction1(e.target.value)} value={brand} checked={brandsActive.indexOf(brand) !== -1 }/>
             <label >{brand}</label>
         </div>
@@ -210,7 +211,7 @@ const ProductFilter = (
                                     <div className="blue-box-1">
                                         <h2>Refine your options by filtering</h2>
                                         {  amount > 0 ?
-                                            <button className="gotit-btn" onClick={walkfunction}>Got it</button> : null 
+                                            <><button className="gotit-btn" onClick={walkfunction}>Got it</button> <button className="skipit-btn" onClick={walkfunction_null}>Skip Demo</button> </>  : null 
                                         }
                                         
                                     </div> 

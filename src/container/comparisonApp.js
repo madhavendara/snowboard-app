@@ -39,6 +39,7 @@ const Comparison = () => {
 
     const [copyJSON , changecopy]  = useState([])
     const [filterJSON , changefilter] = useState([])
+    const [bookmark , setBookmark] = useState([])
     const [loading] = useState(true)
     const [activeproduct , setActiveproduct] = useState([])
     const [activeGraphics] = useState([])
@@ -55,6 +56,7 @@ const Comparison = () => {
     const [canvasWidth, setCanvasWidth] = useState(null)
     const [windowWidth , setWindowWidth] = useState(null)
     const [windowHeight , setWindowHeight] = useState(null)
+    
     const [MousePosition, setMousePosition] = useState({
         left: 0,
         top: 0
@@ -81,7 +83,7 @@ const Comparison = () => {
     const [login_model , setlogin_model] = useState(false)
     const [brandsActive, setbrand] = useState([]);
 
-
+    const [mobileCanvas, setmobileCanvas] = useState(false);
 
 
     const [navclass , setNavclass] = useState("hidenav")
@@ -112,6 +114,13 @@ const Comparison = () => {
         SetRockerType([])
 
         setnoproducts(false)
+    }
+
+    const mobileOption = () => {
+        if(activeproduct.length >= 2)
+        {
+            return <button className='compare-btn' onClick={() => setmobileCanvas(true)}>Compare</button>
+        }
     }
 
 
@@ -340,11 +349,20 @@ const profileUnit = <div className="unit-text">
     <div className="unit-row">
         <h4>Stance</h4>
     </div>   
-</div> 
+</div>
 
-  
+
 
     useEffect(() => {
+
+        Product.getBookmarkProduct().then((products,err)=>{
+            if(!err){
+                //if(products.data.length > 0){
+                setBookmark(products);
+                //}
+            }
+        })
+
         setLoadingStatus(true)
         Product.getProduct(search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive).then((products,err)=>{
             if(!err){
@@ -363,6 +381,8 @@ const profileUnit = <div className="unit-text">
      
                 setLoadingStatus(false)
             }
+
+
         })
         //
 
@@ -849,14 +869,14 @@ const profileUnit = <div className="unit-text">
                     <h1>New to ShredMetrix?</h1>
                     <p>Click here for a quick walkthrough!</p>
                     <button className="start-link" onClick={() => Setwalkthrough(1)} >Start</button>
-                    <button className="close-link" onClick={() => Setwalkthrough(null)}>Skip</button>
+                    <button className="close-link" onClick={() => Setwalkthrough(null)}>Skip Demo</button>
                 </div>    
             </div>    
               
         <Loading active={loading}/>
         <section id="comparison-app" data-callpased={sidebarshow ? true : false}>
             
-            <div className='app-sidebar'>
+            <div className={mobileCanvas ? 'app-sidebar d-none' : "app-sidebar"} >
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
                 {/* <Header page="compare"/> */}
                 <div className="filter-container">
@@ -880,6 +900,7 @@ const profileUnit = <div className="unit-text">
                     amount={copyJSON.length}
                     updateSetback2={() => updateSetback(true)}
                     updateSetback1={() => updateSetback(false)}
+                    walkfunction_null={() => Setwalkthrough(null)}
                     />
                 </div>
                 <div className={!walkthrough ? "product-listing product-listing-active" : "product-listing"}>
@@ -912,12 +933,14 @@ const profileUnit = <div className="unit-text">
                                 offset={products["offset"]}
                                 i={i}
                                 walkfunction={() => Setwalkthrough(3)}
+                                walkfunction_null={() => Setwalkthrough(null)}
                                 walkthrough={walkthrough}
                                 productBoxactive={popupOpen === product["id"] ? true : false}
                                 productadded = {productAdded}
                                 popupOne = {() => setpopOpen(product["id"]) }
                                 closePopup = {() => setpopOpen("") }
                                 bookmarkadd = {bookmarkAdded}
+                                bookmarkCheck = {bookmark}
 
                     />
                         )
@@ -953,25 +976,29 @@ const profileUnit = <div className="unit-text">
             style={zoom ? {right : PositionCalculator(MousePosition.left , sidebarshow , sidebarSize, windowWidth , collapsible) , marginTop : -PositionCalculator2(MousePosition.top , windowHeight,collapsible) } : null}
             >
 
+                  {
+                      window.innerWidth > 800 ? <Toolbar 
+                      collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
+                      base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}
+                      graphfun={() => !graphactive ? setgraphactive(true) : setgraphactive(false)}
+                      lineviewfun ={() => !lineview ? setlineview(true) : setlineview(false)}
+                      callapsible={collapsible}
+                      alignBottom={alignBottom}
+                      graphactive={graphactive}
+                      lineview={lineview}
+                      zoomMode={zoomMode}
+                      setZoom={() => setZoomMode(!zoomMode)}
+                      tabline={() => Setwalkthrough(4)}
+                      tabOne={() => Setwalkthrough(5)}
+                      tabTwo={() => Setwalkthrough(6)}
+                      tabthree={() => Setwalkthrough(7)}
+                      walkfunction_null={() => Setwalkthrough(null)}
+                      walkthrough={walkthrough}
+                      openNav={openNav}
+                      /> : mobileOption()
+                  }
         
-                    <Toolbar 
-                    collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
-                    base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}
-                    graphfun={() => !graphactive ? setgraphactive(true) : setgraphactive(false)}
-                    lineviewfun ={() => !lineview ? setlineview(true) : setlineview(false)}
-                    callapsible={collapsible}
-                    alignBottom={alignBottom}
-                    graphactive={graphactive}
-                    lineview={lineview}
-                    zoomMode={zoomMode}
-                    setZoom={() => setZoomMode(!zoomMode)}
-                    tabline={() => Setwalkthrough(4)}
-                    tabOne={() => Setwalkthrough(5)}
-                    tabTwo={() => Setwalkthrough(6)}
-                    tabthree={() => Setwalkthrough(7)}
-                    walkthrough={walkthrough}
-                    openNav={openNav}
-                    />
+                    
                 {/* <div className="canvas-header">
                     <div className="outline-profile-switch">
                         <button className="switch-button button" data-active={!lineview} onClick={()=> setlineview(false)}>OUTLINE</button>

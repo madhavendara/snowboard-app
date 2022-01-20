@@ -26,7 +26,7 @@ function App() {
   return (
     <React.Fragment>
 
-          {window.innerWidth > 800 ?
+   
             <Switch>
                   <Route path='/' exact>
                         <SnackbarProvider>
@@ -85,9 +85,7 @@ function App() {
                   </PrivateRoute>
             </Switch>
 
-            : <Comingsoon/>
 
-}
     </React.Fragment>
     
   );

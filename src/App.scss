@@ -149,20 +149,24 @@ canvas
 
 #menu
 {
-   position: fixed;
-   top: 0;
-   right: 0%;
-   background-color: rgb(255, 255, 255);
-   width: 18%;
-   height: 100vh;
-    transition: all .5s;
+    position: fixed;
+    top: 0;
+    right: 0%;
+    background-color: white;
+    width: 18%;
+    height: 100vh;
+    transition: all 0.5s;
     z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     .login
     {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 40px;
+    margin-top: 40px;
         .close-btn 
         {
            font-size: 50px;
@@ -223,9 +227,9 @@ canvas
 
     li
     {
-       display: block;
-       margin: 30px 40px;
-       line-height: 20px;
+        display: block;
+        margin: 19px 40px;
+        line-height: 20px;
    }
    a 
    {
@@ -535,6 +539,11 @@ nav #icon {
             z-index: 99;
             top: 0;
             cursor: pointer;
+        }
+
+        @media(max-width : 768px)
+        {
+            width: 100%;
         }
     }
 
@@ -1531,7 +1540,33 @@ path.cls-1 {
 
             .bar
             {
-                display: none;
+                top: 34px;
+                bottom: initial;
+                height: 2px;
+                left: 0;
+                right: 0;
+                width: 100%;
+
+                &::before
+                {
+                    height: 10px;
+                    width: 2px;
+                }
+
+                &::after
+                {
+                    height: 10px;
+                    width: 2px;
+                    left: initial;
+                    right: 0;
+                    bottom: 0;
+                    top: initial;
+                }
+
+                h2
+                {
+                    left: -30px;
+                }
             }
         }
 
@@ -1840,7 +1875,7 @@ path.cls-1 {
 
     .base-left[data-button-active=true]
     {
-        background : url(./assest/rotate-base-active.png);
+        background : url(./assest/bottom-left.svg);
         background-size: 100% 100%; 
         @include background-circle-1;
  
@@ -3859,6 +3894,7 @@ a.login-submit {
         padding: 30px;
         background: #2741CC;
         max-width: 700px;
+        min-width: 300px;
         box-sizing: border-box;
         width: 35%;
         text-align: center;
@@ -4122,3 +4158,79 @@ h4.press-enter-active
 //     from { -webkit-transform: rotateY(0deg)}
 //     to{ -webkit-transform: rotateY(360deg)}
 // }
+
+.compare-btn
+{
+    position: fixed;
+    z-index: 99999;
+    background: #2741cc;
+    color: #fff;
+    padding: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10%;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    max-width: 160px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+}
+
+.d-none
+{
+    display: none !important;
+}
+
+button.skipit-btn {
+    font-size: 13px;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px;
+    background: transparent;
+    border: navajowhite;
+    cursor: pointer;
+}
+
+.mailing-list {
+    padding: 22px;
+    background: #2741cc;
+    margin-top: auto;
+}
+
+input.subscribe-mail {
+    padding: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    border : none;
+    outline: none;
+}
+
+input.subscribe-mail:focus-visible 
+{
+    border : none;
+    outline: none;
+}
+
+
+input.submit-name {
+    padding: 7px;
+    border-radius: 0px;
+    margin-top: 8px;
+    border: none;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+}
+
+.mailing-list h1 {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 125%;
+    text-transform: uppercase;
+}

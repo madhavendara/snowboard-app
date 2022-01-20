@@ -1,5 +1,6 @@
 import React from 'react'
 import bookmark from '../assest/bookmark.svg'
+import bookmark_active from '../assest/bookmark-active.svg'
 import Productbox from './productbox';
 
 
@@ -41,15 +42,17 @@ const Productcard = (props) => {
                                     <div className="blue-box-1">
                                     <h2>Select 2-4 Boards</h2>
                                     <button className="gotit-btn" onClick={props.walkfunction}>Got it</button>  
+                                    <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
+                                    
                                     </div>    
                                     <div className="backdrop">
                                     </div>  
                                     </> : null
                                 }    
-                                
                                 </button>
 
-                                <img src={bookmark} onClick={() => props.bookmarkadd(props.id)} className="bookmarkAddition"/>
+                                { (props.bookmarkCheck.some(e1=> e1.id === props.id))?<img src={bookmark_active} onClick={() => props.bookmarkadd(props.id)} className='bookmarkAddition' />:<img src={bookmark} onClick={() => props.bookmarkadd(props.id)} className='bookmarkAddition' />}
+                                
                     </div>
                   
                  
