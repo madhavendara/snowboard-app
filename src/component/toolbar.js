@@ -81,17 +81,16 @@ const Toolbar = (props) => {
                 }
             </button>
 
-            <button className="toolbar-options zoom"
+            {window.innerWidth > 900 ? <button className="toolbar-options zoom"
             onClick={props.setZoom}
             data-button-active={props.zoomMode}
             >
-            </button>
+            </button> : null }
 
-            <button className="toolbar-options circle_bar"
+            {window.innerWidth > 900 ? <button className="toolbar-options circle_bar"
             onClick={props.openNav}
-          
-            >
-            </button>
+            > 
+            </button> : null}
         </div>  
 
         {

@@ -1160,6 +1160,12 @@ path.cls-1 {
     width: calc(100% - 520px);
   }
 }
+@media (max-width: 900px) {
+  .canvas-area {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
 @media (min-width: 2000px) {
   .canvas-area {
     width: 80%;
@@ -1210,6 +1216,13 @@ path.cls-1 {
           justify-content: center;
   position: relative;
 }
+@media (max-width: 900px) {
+  .canvas-area .canvas-content {
+    grid-gap: 0px;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
 .canvas-area .canvas-content .complete-graph {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
@@ -1217,6 +1230,14 @@ path.cls-1 {
 .canvas-area .canvas-content .unit-text {
   display: block;
   opacity: 0;
+}
+@media (max-width: 900px) {
+  .canvas-area .canvas-content[data-lineview=true] {
+    grid-gap: 50px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 .canvas-area .canvas-content[data-alignbottom=true] {
   -webkit-box-align: end;
@@ -1479,6 +1500,29 @@ path.cls-1 {
   cursor: pointer;
   margin: 10px;
 }
+@media (max-width: 900px) {
+  .toolbar-container {
+    max-width: 100%;
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    top: auto;
+    background: #fff;
+  }
+  .toolbar-container .toolbar-options {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    border-radius: 0px !important;
+  }
+}
 .toolbar-container .collapsible {
   background: url(./assest/collapse.svg);
   background-size: 100% 100%;
@@ -1623,6 +1667,11 @@ path.cls-1 {
   top: 0;
   bottom: 0;
   width: 2px;
+}
+@media (max-width: 900px) {
+  .product-graphics-box .bar {
+    left: -27px;
+  }
 }
 .product-graphics-box .bar::after {
   content: "";
@@ -3585,17 +3634,18 @@ h4.press-enter-active {
   z-index: 99999;
   background: #2741cc;
   color: #fff;
-  padding: 20px;
+  padding: 9px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  bottom: 10%;
+  bottom: 5%;
   border: none;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 15px;
   max-width: 160px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 .d-none {
@@ -3651,4 +3701,23 @@ input.submit-name {
   font-weight: 600;
   line-height: 125%;
   text-transform: uppercase;
+}
+
+button.compare-btn2 {
+  font-size: 22px;
+  color: #fff;
+  background: transparent;
+  border: navajowhite;
+  display: inline-block;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+}
+button.compare-btn2::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background: url(./assest/chevron-white.svg);
+  background-size: 100% 100%;
+  display: inline-block;
 }

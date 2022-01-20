@@ -1365,6 +1365,12 @@ path.cls-1 {
     {
         width: calc(100% - 520px);
     }
+
+    @media(max-width : 900px)
+    {
+        width: 100%;
+        margin-left: 0px;
+    }
 // [data-zoom=true]
 // {
 //     cursor: pointer;
@@ -1428,6 +1434,12 @@ path.cls-1 {
             min-height: 62vh;
             justify-content: center;
             position: relative;
+
+            @media(max-width : 900px)
+            {
+                grid-gap: 0px;
+                justify-content: space-around;
+            }
  
             .complete-graph
             {
@@ -1441,6 +1453,15 @@ path.cls-1 {
             }
 
             
+        }
+
+        .canvas-content[data-lineview=true]
+        {
+            @media(max-width : 900px)
+            {
+                grid-gap: 50px;
+                justify-content: center;
+            }
         }
 
         .canvas-content[data-alignbottom="true"]
@@ -1803,6 +1824,8 @@ path.cls-1 {
     max-width: 70px;
     z-index: 9999;
 
+   
+
     .toolbar-options
     {
         width: 50px;
@@ -1812,7 +1835,25 @@ path.cls-1 {
         box-shadow: none;
         cursor: pointer;
         margin : 10px;
-        
+    }
+
+
+    @media(max-width : 900px)
+    {
+        max-width: 100%;
+        transform: translateY(0%);
+        flex-direction: row;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        top: auto;
+        background : #fff;
+        .toolbar-options
+        {
+            flex : 1;
+            border-radius: 0px !important;
+        }
     }
 
     .collapsible
@@ -1944,6 +1985,11 @@ path.cls-1 {
         top : 0;
         bottom: 0;
         width: 2px;
+
+        @media(max-width : 900px)
+        {
+            left: -27px;
+        }
 
         &::after
         {
@@ -4165,16 +4211,17 @@ h4.press-enter-active
     z-index: 99999;
     background: #2741cc;
     color: #fff;
-    padding: 20px;
+    padding: 9px;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 10%;
+    bottom: 5%;
     border: none;
     outline: none;
-    font-size: 1.1rem;
+    font-size: 15px;
     max-width: 160px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
+    text-transform: uppercase;
 
 }
 
@@ -4233,4 +4280,25 @@ input.submit-name {
     font-weight: 600;
     line-height: 125%;
     text-transform: uppercase;
+}
+
+button.compare-btn2 {
+    font-size: 22px;
+    color: #fff;
+    background: transparent;
+    border: navajowhite;
+    display: inline-block;
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+
+    &::before
+    {
+        content : '';
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        background: url(./assest/chevron-white.svg);
+        background-size: 100% 100%;
+        display: inline-block;
+    }
 }

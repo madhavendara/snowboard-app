@@ -150,6 +150,9 @@ const Productgraphics = (props) => {
   
                 if(props.lineview)
                 {
+                  if(window.innerWidth > 900)
+                  {
+              
                   main_width = (props.canvasHeight)/1.2;
 
                   // const widthratio = this.width / 700
@@ -163,6 +166,25 @@ const Productgraphics = (props) => {
                   setdeminition(properties);
                   setImage(img2)
                   setActive(true)
+                  }
+
+                  else
+                  {
+                    main_width = props.canvasWidth * 85/100;
+
+                  // const widthratio = this.width / 700
+
+                    const actuallwidth = main_width * props.size / 170
+                    const ratio = this.height / this.width
+
+
+                    properties = {width :  actuallwidth, height : ratio * actuallwidth}
+    
+                    setdeminition(properties);
+                    setImage(img2)
+                    setActive(true)
+                  }
+
                 }
             }
 

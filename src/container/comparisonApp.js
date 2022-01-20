@@ -117,9 +117,33 @@ const Comparison = () => {
     }
 
     const mobileOption = () => {
-        if(activeproduct.length >= 2)
+        if(activeproduct.length >= 2 || mobileCanvas)
         {
-            return <button className='compare-btn' onClick={() => setmobileCanvas(true)}>Compare</button>
+            return <>
+                {!mobileCanvas ? <button className='compare-btn' onClick={() => setmobileCanvas(!mobileCanvas)}>Compare</button> : <button className='compare-btn2' onClick={() => setmobileCanvas(!mobileCanvas)}>Back</button>}
+
+
+                {mobileCanvas ? <Toolbar 
+                      collapsd={() => !collapsible ? setcollapsible(true) : setcollapsible(false)}
+                      base={() => !alignBottom ? setalignBottom(true) : setalignBottom(false)}
+                      graphfun={() => !graphactive ? setgraphactive(true) : setgraphactive(false)}
+                      lineviewfun ={() => !lineview ? setlineview(true) : setlineview(false)}
+                      callapsible={collapsible}
+                      alignBottom={alignBottom}
+                      graphactive={graphactive}
+                      lineview={lineview}
+                      zoomMode={zoomMode}
+                      setZoom={() => setZoomMode(!zoomMode)}
+                      tabline={() => Setwalkthrough(4)}
+                      tabOne={() => Setwalkthrough(5)}
+                      tabTwo={() => Setwalkthrough(6)}
+                      tabthree={() => Setwalkthrough(7)}
+                      walkfunction_null={() => Setwalkthrough(null)}
+                      walkthrough={walkthrough}
+                      openNav={openNav}
+                      /> : null}
+                    </>
+                
         }
     }
 
@@ -389,6 +413,8 @@ const profileUnit = <div className="unit-text">
  
         setCanvasHeight(window.innerHeight)
         setCanvasWidth(window.innerWidth)
+
+        console.log(window.innerWidth)
     }, [search,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive])
 
 
@@ -638,7 +664,9 @@ const profileUnit = <div className="unit-text">
               
                     else
                     {
-                        if(activeproduct.length < 4)
+                        if(windowWidth > 900)
+                        {
+                            if(activeproduct.length < 4)
                         {
                         activeproduct.push(products[i].id)
 
@@ -656,7 +684,32 @@ const profileUnit = <div className="unit-text">
                         else
                         {
                             alert("Can't compare more than 4 products at a time")
-                        }        
+                        }  
+                        }
+
+                        else
+                        {
+                            if(activeproduct.length < 2)
+                            {
+                            activeproduct.push(products[i].id)
+    
+    
+                            for(let i = 0; i < products.length; i++)
+                            {
+                                if(products[i]["ref"] === key)
+                                {
+                                    activeGraphics.push(products[i])
+                                }
+                            }
+    
+                                products[i].added = true
+                            }
+                            else
+                            {
+                                alert("Can't compare more than 2 products at a time")
+                            }  
+                        }
+                              
                     }
                     changecopy(products)
                 }
