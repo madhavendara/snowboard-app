@@ -617,6 +617,42 @@ nav #icon {
             }
         }
 
+
+        @media(max-width : 768px)
+        {
+            padding: 35px;
+            background: #2741CC;
+            position: fixed;
+            width: 16vw;
+            left: 45px;
+            z-index: 9999;
+            text-align: left;
+            top: 89px;
+            font-size: 13px;
+            font-family: "Poppins", sans-serif;
+            color: #fff;
+            font-weight: 600;
+            width: 60%;
+
+            &::after
+            {
+                content: "";
+                position: absolute;
+                left: auto;
+                top: -25px;
+                width: 30px;
+                height: 30px;
+                background: url(./assest/arrow.png);
+                background-size: 100% auto;
+                background-position: center center;
+                transform: rotate(
+            -0deg
+            );
+                background-repeat: no-repeat;
+                right: 0;
+            }
+        }
+
         
     }
 
@@ -749,13 +785,14 @@ nav #icon {
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
             border-bottom: 1px solid rgba(255,255,255,0.3);
-            flex-basis: 100%;
+            width: 95%;
             background: none;
             box-sizing: border-box;
             font-size: 16px;
             padding-bottom: 5px;
             color : #fff;
             margin-left: 10px;
+        
             &::placeholder
             {
                 color : rgba(255,255,255,0.3);
@@ -776,6 +813,7 @@ nav #icon {
     .filter-icon
     {
         cursor: pointer;
+        width: 40px;
     }
 
     .product-listing
@@ -4190,6 +4228,11 @@ h4.press-enter {
     opacity: 0.3;
     z-index: 0;
     transition: all 0.4s;
+}
+
+
+svg.search-icon {
+    width: 23px;
 }
 
 h4.press-enter-active

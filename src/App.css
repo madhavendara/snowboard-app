@@ -522,6 +522,38 @@ nav #icon {
 #comparison-app .blue-box-1 .list-blue-box-1 li {
   padding: 8px 0px;
 }
+@media (max-width: 768px) {
+  #comparison-app .blue-box-1 {
+    padding: 35px;
+    background: #2741CC;
+    position: fixed;
+    width: 16vw;
+    left: 45px;
+    z-index: 9999;
+    text-align: left;
+    top: 89px;
+    font-size: 13px;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    font-weight: 600;
+    width: 60%;
+  }
+  #comparison-app .blue-box-1::after {
+    content: "";
+    position: absolute;
+    left: auto;
+    top: -25px;
+    width: 30px;
+    height: 30px;
+    background: url(./assest/arrow.png);
+    background-size: 100% auto;
+    background-position: center center;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    background-repeat: no-repeat;
+    right: 0;
+  }
+}
 #comparison-app .blue-box-2 {
   padding: 35px;
   background: #2741CC;
@@ -609,8 +641,7 @@ nav #icon {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
+  width: 95%;
   background: none;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -642,6 +673,7 @@ nav #icon {
 }
 #comparison-app .filter-icon {
   cursor: pointer;
+  width: 40px;
 }
 #comparison-app .product-listing {
   margin-top: 30px;
@@ -3619,6 +3651,10 @@ h4.press-enter {
   z-index: 0;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
+}
+
+svg.search-icon {
+  width: 23px;
 }
 
 h4.press-enter-active {
