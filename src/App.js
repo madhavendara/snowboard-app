@@ -11,6 +11,7 @@ import Riderstyle from './container/Education/riderstyle'
 import Chooseboard from './container/Education/chooseaboard'
 import About from './container/aboutus'
 import Invest from './container/invest'
+import Support from './container/support'
 import Login from './container/login'
 import Register from './container/register'
 import Admin from './container/useradmin'
@@ -57,6 +58,12 @@ function App() {
                   <Route path='/about' exact>
                         <About />
                   </Route>
+
+                  <Route path='/support' exact>
+                        <Support />
+                  </Route>
+
+                  
 
                   <Route path='/invest' exact>
                         <SnackbarProvider>

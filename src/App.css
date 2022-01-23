@@ -3761,3 +3761,9 @@ button.compare-btn2::before {
 .my-form {
   height: 100%;
 }
+
+.support-typeform {
+  width: 100%;
+  height: 100vh;
+  margin-top: 14vh;
+}
