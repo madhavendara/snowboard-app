@@ -2219,7 +2219,7 @@ img {
 .Qick-wall .QUICK-text {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
-  margin: 60px 40px;
+  margin: 80px 40px;
 }
 .Qick-wall .QUICK-Login {
   -ms-flex-preferred-size: 50%;
@@ -3756,4 +3756,8 @@ button.compare-btn2::before {
   background: url(./assest/chevron-white.svg);
   background-size: 100% 100%;
   display: inline-block;
+}
+
+.my-form {
+  height: 100%;
 }

@@ -2637,7 +2637,7 @@ img
     .QUICK-text 
     {
         flex-basis: 50%;
-        margin: 60px 40px;
+        margin: 80px 40px;
     }
     .QUICK-Login
     {
@@ -4344,4 +4344,8 @@ button.compare-btn2 {
         background-size: 100% 100%;
         display: inline-block;
     }
+}
+
+.my-form {
+    height: 100%;
 }

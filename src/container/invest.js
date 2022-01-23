@@ -11,6 +11,7 @@ import vector from '../assest/Vector.svg'
 
 import {User} from '../JSON/user'
 import {Product} from "../JSON/products";
+import { Widget } from '@typeform/embed-react'
 
 const Invest = () => {
 
@@ -103,7 +104,9 @@ const Invest = () => {
                 <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius </p>
            </div>
            <div className="QUICK-Login">
-               <h1>QUICK INVEST</h1>
+
+           <Widget id="tRZWymIb" className="my-form" />
+               {/* <h1>QUICK INVEST</h1>
                <form onSubmit={handleSubmit(onSubmit)}>
                <div className="wrapper">
                 <div className="contact-form">
@@ -134,7 +137,7 @@ const Invest = () => {
                    </div>
                  </div>
               </div>
-           </form>
+           </form> */}
           </div>
        </div>
    </div>
