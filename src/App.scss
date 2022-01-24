@@ -673,6 +673,19 @@ nav #icon {
         font-weight: 600;
         transform: translateX(-104%);
 
+        @media(max-width : 900px)
+        {
+            padding: 35px;
+            background: #2741CC;
+            position: fixed;
+            width: 65%;
+            left: 21px;
+            z-index: 9999;
+            text-align: left;
+            top: -225px;
+            transform: translate(0px);
+        }
+
         .list-blue-box-1
         {
             li
@@ -681,22 +694,38 @@ nav #icon {
             }
         }
 
-        &::after
-        {
-            content: "";
-            position: absolute;
-            right: -20px;
-            top: 10px;
-            width: 30px;
-            height: 30px;
-            background: url(./assest/arrow.png);
-            
-            background-size: 100% auto;
-            background-position: center center;
-            transform: rotate(
-        90deg);
-            background-repeat: no-repeat;
+            &::after
+            {
+                content: "";
+                position: absolute;
+                right: -20px;
+                top: 10px;
+                width: 30px;
+                height: 30px;
+                background: url(./assest/arrow.png);
+                background-size: 100% auto;
+                background-position: center center;
+                transform: rotate(90deg);
+                background-repeat: no-repeat;
+            }
 
+        @media(max-width : 768px)
+        {
+            &::after
+            {
+                content: "";
+                position: absolute;
+                left: 11px;
+                top: auto;
+                width: 30px;
+                height: 30px;
+                background: url(./assest/arrow.png);
+                background-size: 100% auto;
+                background-position: center center;
+                transform: rotate(180deg);
+                background-repeat: no-repeat;
+                bottom: -26px;
+            }
         }
 
         h2
@@ -731,7 +760,18 @@ nav #icon {
         .blue-box-2
         {
             top: 77px;
+
+            @media(max-width : 900px)
+            {
+                top : -225px;
+
+                ::after
+                {
+                    left : 108px;
+                }
+            }
         }
+
     }
 
     .base

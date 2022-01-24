@@ -315,6 +315,14 @@ const Comparison = () => {
 
     
     useEffect(() => {
+
+        if(window.innerWidth < 900)
+        {
+            if(walkthrough > 2)
+            {
+                setmobileCanvas(true)
+            }
+        }
         if(walkthrough === 7)
         {
             setTimeout(function(){
@@ -327,6 +335,9 @@ const Comparison = () => {
             },2000)
         }
     },[walkthrough])
+
+
+
 
 
     // graphs base 
