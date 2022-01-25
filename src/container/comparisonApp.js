@@ -12,7 +12,7 @@ import Loading from '../component/loading'
 
 // popup model
 import LoginModel from '../component/loginModel'
-
+import BookmarkModel from '../component/bookmarkModel'
 
 // function import 
 import PositionCalculator from '../functions/positionCalculator'
@@ -33,6 +33,7 @@ import  {Product} from '../JSON/products'
 import  {Product2} from '../JSON/products_2'
 
 import { useSnackbar } from 'react-simple-snackbar';
+import bookmark_active from "../assest/bookmark-active.svg";
 
 
 const Comparison = () => {
@@ -81,6 +82,7 @@ const Comparison = () => {
     const [walkthrough ,Setwalkthrough] = useState(0)
     const [setbackActive , updateSetback] = useState(null);
     const [login_model , setlogin_model] = useState(false)
+    const [bookmark_model , setbookmark_model] = useState(false)
     const [brandsActive, setbrand] = useState([]);
 
     const [mobileCanvas, setmobileCanvas] = useState(false);
@@ -315,14 +317,6 @@ const Comparison = () => {
 
     
     useEffect(() => {
-
-        if(window.innerWidth < 900)
-        {
-            if(walkthrough > 2)
-            {
-                setmobileCanvas(true)
-            }
-        }
         if(walkthrough === 7)
         {
             setTimeout(function(){
@@ -335,9 +329,6 @@ const Comparison = () => {
             },2000)
         }
     },[walkthrough])
-
-
-
 
 
     // graphs base 
@@ -490,7 +481,16 @@ const profileUnit = <div className="unit-text">
                 {
                     setlogin_model(true)
                 }
-                
+
+                if(res.success){
+                   // var newBookmarkChecked = bookmark.push({'id':key});
+                   //console.log(bookmark)
+                   // setBookmark(bookmark)
+                   setbookmark_model(true)
+                    document.getElementById(key).src=bookmark_active;
+                    
+                }
+
             }
         })
     }
@@ -926,6 +926,8 @@ const profileUnit = <div className="unit-text">
         <React.Fragment>
 
           {login_model ?<LoginModel closePopup={() => setlogin_model(false)} /> : null }  
+          {bookmark_model ?<BookmarkModel closePopup={() => setbookmark_model(false)} /> : null } 
+          
              <NavbaLinkbar classlist={navclass} closenav={closeNav}/>
              
             <div className={walkthrough === 0 ? "walkthrough-content" : "walkthrough-none"}>

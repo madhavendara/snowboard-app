@@ -3806,3 +3806,9 @@ button.compare-btn2::before {
   height: 100vh;
   margin-top: 14vh;
 }
+
+.bookmark-btn {
+  padding: 7px 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}

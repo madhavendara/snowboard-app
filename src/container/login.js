@@ -80,7 +80,7 @@ const Invest = () => {
                                         <input type="checkbox" id="check"/>
                                         <label for="check">Remember me</label>
                                     </div>
-                                    <p>Forgot your password?</p>
+                                    <Link to="/forget"><p>Forgot your password?</p></Link>
                                 </div>
                                 <div className="contact-form">
                                     <button className="login-submit">Submit</button>

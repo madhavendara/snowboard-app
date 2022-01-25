@@ -51,7 +51,7 @@ const Productcard = (props) => {
                                 }    
                                 </button>
 
-                                { (props.bookmarkCheck.some(e1=> e1.id === props.id))?<img src={bookmark_active} onClick={() => props.bookmarkadd(props.id)} className='bookmarkAddition' />:<img src={bookmark} onClick={() => props.bookmarkadd(props.id)} className='bookmarkAddition' />}
+                                { (props.bookmarkCheck.some(e1=> e1.id === props.id))?<img src={bookmark_active} onClick={() => props.bookmarkadd(props.id)} className='bookmarkAddition' />:<img src={bookmark} onClick={() => props.bookmarkadd(props.id)} id={props.id} className='bookmarkAddition' />}
                                 
                     </div>
                   

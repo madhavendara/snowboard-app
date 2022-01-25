@@ -13,6 +13,7 @@ import About from './container/aboutus'
 import Invest from './container/invest'
 import Support from './container/support'
 import Login from './container/login'
+import Forget from './container/forget'
 import Register from './container/register'
 import Admin from './container/useradmin'
 import SnackbarProvider from 'react-simple-snackbar'
@@ -63,7 +64,7 @@ function App() {
                         <Support />
                   </Route>
 
-                  
+                  Support
 
                   <Route path='/invest' exact>
                         <SnackbarProvider>
@@ -80,6 +81,12 @@ function App() {
                   <Route path='/register' exact>
                         <SnackbarProvider>
                               <Register />
+                        </SnackbarProvider>
+                  </Route>
+
+                  <Route path='/forget' exact>
+                        <SnackbarProvider>
+                              <Forget />
                         </SnackbarProvider>
                   </Route>
 
