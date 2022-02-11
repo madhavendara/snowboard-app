@@ -30,6 +30,7 @@ function App() {
 
    
             <Switch>
+         
                   <Route path='/' exact>
                         <SnackbarProvider>
                               <Comparison />
@@ -51,24 +52,28 @@ function App() {
                   <Route path='/snowboardeducation/riderstyle' exact>
                         <Riderstyle />
                   </Route>
-
+               
                   <Route path='/snowboardeducation/chooseboard' exact>
+                        <SnackbarProvider>
                         <Chooseboard />
+                        </SnackbarProvider>
                   </Route>
 
                   <Route path='/about' exact>
+                        <SnackbarProvider>
                         <About />
+                        </SnackbarProvider>
                   </Route>
-
-                  <Route path='/support' exact>
-                        <Support />
-                  </Route>
-
-                  Support
 
                   <Route path='/invest' exact>
                         <SnackbarProvider>
                               <Invest />
+                        </SnackbarProvider>
+                  </Route>
+
+                  <Route path='/support' exact>
+                  <SnackbarProvider>
+                        <Support />
                         </SnackbarProvider>
                   </Route>
 

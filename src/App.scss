@@ -160,13 +160,20 @@ canvas
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    @media(max-width : 900px)
+    {
+        width: 100vw;
+        right : 0%;
+        left: 0%;
+    }
     .login
     {
         display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 40px;
-    margin-top: 40px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 40px;
+        margin-top: 40px;
         .close-btn 
         {
            font-size: 50px;
@@ -264,6 +271,11 @@ nav #icon {
 #menu.hidenav 
 {
    right: -100%;
+
+   @media(max-width : 900px)
+   {
+       left: initial;
+   }
 }
 
 // choice section css
@@ -544,6 +556,7 @@ nav #icon {
         @media(max-width : 768px)
         {
             width: 100%;
+            padding-top: 10px;
         }
     }
 
@@ -654,6 +667,16 @@ nav #icon {
         }
 
         
+    }
+
+    .product-card-2 {
+        @media(max-width : 768px)
+        {
+            .blue-box-1
+            {
+                top: 190px;
+            }
+        }
     }
 
 
@@ -787,6 +810,16 @@ nav #icon {
         .blue-box-2
         {
             top: 154px;
+
+            @media(max-width : 900px)
+            {
+                top: -226px;
+
+                &::after
+                {
+                    left: 61%;
+                }
+            }
         }
     }
 
@@ -795,6 +828,16 @@ nav #icon {
         .blue-box-2
         {
             top: 224px;
+            @media(max-width : 900px)
+            {
+                top: -226px;
+                left: 50px;
+
+                &::after
+                {
+                    left: 86%;
+                }
+            }
         }
     }
 
@@ -1185,9 +1228,15 @@ nav #icon {
                 background : url(./assest/plus.svg);
                 background-size: 100% 100%;
             }
-            .active-selection-1
+            .active-selection-1 
             {
                 background : url(./assest/product-check-1.svg);
+                background-size: 100% 100%;
+            }
+
+            .active-selection-0
+            {
+                background : url(./assest/plus.svg);
                 background-size: 100% 100%;
             }
 
@@ -1315,6 +1364,12 @@ nav #icon {
                 background-size: 100% 100%;
             }
 
+            .active-selection-0
+            {
+                background : url(./assest/plus.svg);
+                background-size: 100% 100%;
+            }
+
             .active-selection-2
             {
                 background : url(./assest/product-check-2.svg);
@@ -1382,6 +1437,8 @@ nav #icon {
         {
             width: 100%;
             transition: width 0.6s;
+
+            
         }
 
         &::after
@@ -1408,6 +1465,11 @@ nav #icon {
     display: flex;
     align-items: center;
     grid-gap: 26px;
+
+    @media(max-width : 900px)
+    {
+        padding: 0 30px;
+    }
 }
 
 #main-navbar
@@ -1448,6 +1510,7 @@ path.cls-1 {
     {
         width: 100%;
         margin-left: 0px;
+        padding-bottom: 90px;
     }
 // [data-zoom=true]
 // {
@@ -1932,6 +1995,10 @@ path.cls-1 {
             flex : 1;
             border-radius: 0px !important;
         }
+
+        button.toolbar-options.collapsible .blue-box-2:after {
+            left: 33% !important;
+        }
     }
 
     .collapsible
@@ -2262,6 +2329,18 @@ img
         text-align: left;
         min-width: 370px;
         margin-right: 30px;
+
+        @media(max-width : 900px )
+        {
+            h1
+            {
+                font-size: 40px;
+                margin-top: 20px;
+                line-height: 100%;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
+        }
     }
     .in-text
     {
@@ -2381,6 +2460,8 @@ img
            {
                flex-basis: 50%;
                margin-left: 90px;
+
+               
                h3 
                {
                    color: white;
@@ -2393,6 +2474,16 @@ img
                    max-width: 300px;
                    color: white;
                    margin: 10px 0;
+               }
+
+               @media(max-width : 900px) 
+               {
+                   text-align: center;
+                   margin-left: 0px !important;
+                   p
+                   {
+                       max-width: 100%;
+                   }
                }
            }
            .contact-menu
@@ -2445,6 +2536,16 @@ img
                  font-size: $small;
                  margin-left: auto;
                  margin-right: 50px;
+
+                 @media(max-width : 900px)
+                 {
+                     margin-right: auto;
+                    p
+                    {
+                        text-align: center;
+                        display: block;
+                    } 
+                 }
              }
           }
 
@@ -2583,6 +2684,11 @@ img
         {
             color: white;
             margin: 10px 0;
+
+            @media(max-width : 900px)
+            {
+                font-size: 36px;
+            }
         }
         p 
         {
@@ -2678,6 +2784,15 @@ img
     {
         flex-basis: 50%;
         margin: 80px 40px;
+
+        @media(max-width : 900px)
+        {
+            h1
+            {
+                font-size: 36px;
+                padding-top: 30px;
+            }
+        }
     }
     .QUICK-Login
     {
@@ -2694,11 +2809,21 @@ img
 .wrapper{
     margin: 40px;
 
+    @media(max-width : 900px)
+    {
+        margin : 0px;
+    }
+
     .input-fields
     {
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        @media(max-width : 900px)
+        {
+            display: block;
+        }
         p 
         {
             color: black;
@@ -2791,6 +2916,13 @@ img
     {
         margin: 15px 40px;
         color: white;
+
+        h1
+        {
+            font-family: 'Poppins';
+            font-weight: 700;
+            line-height: 100%;
+        }
     }
     .login-facebook
     {
@@ -2834,6 +2966,17 @@ img
         justify-content: space-between;
         align-items: center;
         margin: 5px 0;
+
+        @media(max-width : 900px)
+        {
+            display: block;
+        }
+
+        > a
+        {
+            padding-top: 13px;
+            display: inline-block;
+        }
 
         input[type="checkbox"]
         {
@@ -3234,6 +3377,11 @@ img.loading-image {
         max-width: 1160px;
         margin: auto;
 
+        @media(max-width : 900px)
+        {
+            padding: 0px 25px;
+        }
+
         @media(min-width : 1600px)
         {
             width: 90%;
@@ -3535,6 +3683,11 @@ img.loading-image {
         p
         {
             text-align: left;
+
+            @media(max-width : 900px)
+            {
+                padding: 0px 36px;
+            }
         }
     }
 }
@@ -3753,6 +3906,14 @@ a.login-submit {
     justify-content: space-between;
     grid-gap: 30px;
 
+    @media(max-width : 900px)
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
     .user-box
     {
         flex-basis: 200px;
@@ -3835,10 +3996,19 @@ a.login-submit {
         display : flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
         .product-card
         {
             width: 49%;
+        }
+
+        @media(max-width : 900px)
+        {
+            display: block;
+
+            .product-card
+            {
+                width: 100%;
+            }
         }
     }
 
@@ -3904,6 +4074,11 @@ a.login-submit {
         width: 45%;
         color : #fff;
 
+        @media(max-width : 900px)
+        {
+            width: 100%;
+        }
+
         p
         {
             color: #fff;
@@ -3939,6 +4114,11 @@ a.login-submit {
 {
     background: #fff;
     padding: 46px;
+
+    @media(max-width : 900px)
+    {
+        padding : 0;
+    }
 }
 
 .under-construction
@@ -4031,6 +4211,11 @@ a.login-submit {
             font-weight: 700;
             line-height: 100%;
             padding-bottom: 5px;
+
+            @media(max-width : 900px)
+            {
+                font-size: 22px;
+            }
         }
 
         p
@@ -4204,6 +4389,11 @@ div#not-login h1 {
     font-weight: 700;
     line-height: 100%;
     padding-bottom: 5px;
+
+    @media(max-width : 900px)
+    {
+        font-size: 24px;
+    }
 }
 
 a.login-btn {
@@ -4354,6 +4544,7 @@ input.submit-name {
     border: 2px solid #fff;
     color: #fff;
     font-family: "Poppins", sans-serif;
+    cursor: pointer;
 }
 
 .mailing-list h1 {
@@ -4388,6 +4579,12 @@ button.compare-btn2 {
 
 .my-form {
     height: 100%;
+    min-height: 360px;
+}
+
+.tf-v1-widget iframe {
+    min-height: 360px;
+
 }
 
 // Support 
@@ -4401,4 +4598,32 @@ button.compare-btn2 {
     padding: 7px 15px;
     font-size: 1.2rem;
     font-weight: 600;
+}
+
+.shredmetrix-logo {
+    width: 100%;
+}
+
+.shredmetrix-logo img {
+    max-width: 66px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 17px;
+}
+
+.mobile-zoomClass {
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    z-index: 9999999999;
+    background: #fff;
+    color: #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: 10px;
 }

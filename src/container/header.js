@@ -4,7 +4,7 @@ import NavbaLinkbar from '../component/nav_linkbar'
 
 
 // images import
-import applogo from '../assest/applogo.svg'
+import applogo from '../assest/logo-white.svg'
 import navbar_logo from '../assest/nav-bar.svg'
 import logo from '../assest/logo-white.svg'
 

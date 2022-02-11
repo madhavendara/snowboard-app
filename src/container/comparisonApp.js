@@ -1,5 +1,6 @@
 // component import
 import React , { useState, useEffect,useRef} from 'react'
+import Draggable from "react-draggable";
 import Searchbar from '../component/searchbar'
 import ProductFilter from '../component/filter'
 import Productcard from '../component/productcard'
@@ -23,7 +24,7 @@ import placeholder_graphics from '../assest/placeholder-box.svg'
 import arrowline from '../assest/arrow-line.svg'
 import expandbtn from '../assest/expand-arrow.svg'
 import zoomImg from '../assest/zoom.svg'
-
+import logo_img from '../assest/logo-white.svg'
 import loader from '../assest/Rhombus.gif'
 
 
@@ -43,7 +44,7 @@ const Comparison = () => {
     const [bookmark , setBookmark] = useState([])
     const [loading] = useState(true)
     const [activeproduct , setActiveproduct] = useState([])
-    const [activeGraphics] = useState([])
+    const [activeGraphics,setActiveGraphics] = useState([])
     const [activebars , setActivebar] = useState([])
     const [activebars2 , setActivebar2] = useState([])
     const [reset , setReset] = useState(false)
@@ -86,19 +87,10 @@ const Comparison = () => {
     const [brandsActive, setbrand] = useState([]);
 
     const [mobileCanvas, setmobileCanvas] = useState(false);
-
-
     const [navclass , setNavclass] = useState("hidenav")
 
-    
-    const openNav = () => {
-        setNavclass('shownav')
-    }
 
-    const closeNav = () => {
-        setNavclass('hidenav')
-    }
-    
+
 
     const RockerTypeFunction = (ev) => {
 
@@ -116,6 +108,17 @@ const Comparison = () => {
         SetRockerType([])
 
         setnoproducts(false)
+    }
+
+
+
+    
+    const openNav = () => {
+        setNavclass('shownav')
+    }
+
+    const closeNav = () => {
+        setNavclass('hidenav')
     }
 
     const mobileOption = () => {
@@ -328,6 +331,19 @@ const Comparison = () => {
                 Setwalkthrough(null)
             },2000)
         }
+
+        if(walkthrough === null)
+        {
+            setmobileCanvas(false)
+        }
+
+        if(walkthrough === 3)
+        {
+            if(window.innerWidth < 900)
+            {
+                setmobileCanvas(!mobileCanvas)
+            }
+        }
     },[walkthrough])
 
 
@@ -525,7 +541,67 @@ const profileUnit = <div className="unit-text">
          
          if(walkthrough > 0)
          return false
-        if(window.innerWidth < 1500)
+
+        if(window.innerWidth < 900)
+        {
+            if(!sidebarshow)
+            {
+                if(MousePosition.left > windowWidth * -31/100 && MousePosition.left < windowWidth * 100/100)
+                {
+                    if(MousePosition.top > -(windowHeight * 40/100) && MousePosition.top < windowHeight * 70/100)
+                    {
+                        setZoom(!zoom)
+                        if(reset)
+                        {
+                            setgraphactive(true)
+                            setReset(false)
+                        }
+
+                        if(!reset)
+                        {
+                           if(graphactive)
+                           {
+          
+                               setgraphactive(false)
+                               setReset(true)
+                           }
+                        }
+                    }
+                    
+                }
+            }
+
+            else
+            {
+                // setZoom(!zoom)
+                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 60/100)
+                {
+                    if(MousePosition.top > windowHeight * 1/100 && MousePosition.top < windowHeight * 70/100)
+                    {
+                        setZoom(!zoom)
+                        if(reset)
+                        {
+                            setgraphactive(true)
+                            setReset(false)
+                        }
+
+                        if(!reset)
+                        {
+                           if(graphactive)
+                           {
+               
+                               setgraphactive(false)
+                               setReset(true)
+                           }
+                        }
+                    }
+                    
+                }
+            }
+
+            console.log('good')
+        }  
+        else if(window.innerWidth > 900 && window.innerWidth < 1500)
         {
             if(!sidebarshow)
             {
@@ -588,7 +664,7 @@ const profileUnit = <div className="unit-text">
             
             if(!sidebarshow)
             {
-                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 60/100)
+                if(MousePosition.left > -windowWidth * 10/100 && MousePosition.left < windowWidth * 55/100)
                 {
                     if(MousePosition.top > -(windowHeight * 40/100) && MousePosition.top < windowHeight * 70/100)
                     {
@@ -644,13 +720,47 @@ const profileUnit = <div className="unit-text">
             
      }
 
-    
+
+     const productAdded2 = (key) => {
+
+        for(let i = 0; i < products.length; i++)
+        {
+            if(products[i].id === key)
+            {
+                if(products[i].added === true)
+                    {
+                        products[i].added = false
+                    }
+            }
+        }
+
+        let activeAri = [...activeGraphics];
+        for(let i = 0; i < activeAri.length; i++)
+        {
+            if(activeAri[i]["ref"] === key)
+            {
+                const index = activeproduct.indexOf(activeAri[i]["ref"])
+
+                        if (index > -1) {
+                            activeproduct.splice(index, 1);
+                        }
+
+                activeAri.splice(i,1);
+                setActiveGraphics(activeAri)
+            }
+        }
+
+        
+     }
+   
 
     const productAdded = (key) => {
 
+
+
            for(let i = 0; i < products.length; i++)
             {
-              
+              let active = false;
                 if(products[i].id === key)
                 {
                     if(products[i].added === true)
@@ -723,12 +833,17 @@ const profileUnit = <div className="unit-text">
                               
                     }
                     changecopy(products)
+                    active = true
                 }
+
             }
             
             barUpdate(activeGraphics)
           
      }
+
+
+
 
 
      const buttonReturn = (func) => {
@@ -838,7 +953,7 @@ const profileUnit = <div className="unit-text">
              size={graphics.size}
              tail={graphics.tail}
              tip={graphics.tip}
-             productadded = {productAdded}
+             productadded = {productAdded2}
              id={graphics.id}
             //  graph={graphics.graph}
              graph=  {
@@ -924,7 +1039,7 @@ const profileUnit = <div className="unit-text">
 
     return (
         <React.Fragment>
-
+{zoom && window.innerWidth < 900 ? <button className='mobile-zoomClass' onClick={() => setZoom(!zoom)}>Zoom out</button> : null}
           {login_model ?<LoginModel closePopup={() => setlogin_model(false)} /> : null }  
           {bookmark_model ?<BookmarkModel closePopup={() => setbookmark_model(false)} /> : null } 
           
@@ -945,28 +1060,35 @@ const profileUnit = <div className="unit-text">
             <div className={mobileCanvas ? 'app-sidebar d-none' : "app-sidebar"} >
                 <img src={expandbtn} className="expand-btn" alt="expand-btn" onClick={() => setsidebarshow(!sidebarshow)}/>    
                 {/* <Header page="compare"/> */}
+                {window.innerWidth < 900 ? <>
+                <NavbaLinkbar classlist={navclass} closenav={closeNav}/>
+                <div className='shredmetrix-logo'>
+                    <img src={logo_img} onClick={openNav} alt="shredmetrix" />
+                    </div> 
+                    </>
+                    : null}
                 <div className="filter-container">
                     <Searchbar  onChange={handleSearchChange} value={search} />
                     <ProductFilter 
-                    priceFunction={priceFunction} 
-                    priceRange={priceRange} 
-                    setbackRange={setbackRange}
-                    setbackFunction={setbackFunction}
-                    lengthFunction={lengthFunction}
-                    lengthRange={lengthRange}
-                    RockerTypeFunction={RockerTypeFunction}
-                    RockerType={RockerType}
-                    RockerTypeClear={RockerTypeClear}
-                    widthFunction={widthFunction}
-                    brandsFunction={brandsFunction}
-                    widthType={widthType}
-                    WidthTypeClear={WidthTypeClear}
-                    walkfunction={() => Setwalkthrough(2)}
-                    walkthrough={walkthrough}
-                    amount={copyJSON.length}
-                    updateSetback2={() => updateSetback(true)}
-                    updateSetback1={() => updateSetback(false)}
-                    walkfunction_null={() => Setwalkthrough(null)}
+                        priceFunction={priceFunction} 
+                        priceRange={priceRange} 
+                        setbackRange={setbackRange}
+                        setbackFunction={setbackFunction}
+                        lengthFunction={lengthFunction}
+                        lengthRange={lengthRange}
+                        RockerTypeFunction={RockerTypeFunction}
+                        RockerType={RockerType}
+                        RockerTypeClear={RockerTypeClear}
+                        widthFunction={widthFunction}
+                        brandsFunction={brandsFunction}
+                        widthType={widthType}
+                        WidthTypeClear={WidthTypeClear}
+                        walkfunction={() => Setwalkthrough(2)}
+                        walkthrough={walkthrough}
+                        amount={copyJSON.length}
+                        updateSetback2={() => updateSetback(true)}
+                        updateSetback1={() => updateSetback(false)}
+                        walkfunction_null={() => Setwalkthrough(null)}
                     />
                 </div>
                 <div className={!walkthrough ? "product-listing product-listing-active" : "product-listing"}>
@@ -1086,6 +1208,8 @@ const profileUnit = <div className="unit-text">
                         </button>
                     </div>
                 </div> */}
+                 { zoom && window.innerWidth < 900 ? 
+                <Draggable>
                 <div className={!graphactive ? "canvas-content" :"canvas-content canvas-graph" }
                  data-lineview={lineview}
 
@@ -1098,6 +1222,20 @@ data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? 
                         Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : null
                         }   
                 </div>
+                </Draggable> :
+                <div className={!graphactive ? "canvas-content" :"canvas-content canvas-graph" }
+                data-lineview={lineview}
+
+                       
+data-callpased={collapsible ? "true" : "false"} data-alignbottom={alignBottom ? "true" : "false"} ref={canvas}>
+                       {
+                       Array.isArray(activeGraphics) && activeGraphics.length && graphactive ? outlineUnit : null
+                       } 
+                       {
+                       Array.isArray(activeGraphics) && activeGraphics.length ? Graphicsrender : null
+                       }   
+               </div>
+            }
                 
                         
                 <div className="canvas-text" data-active={!lineview ? "true" : "false"} data-callpaseds={collapsible ? "true" : "false"} data-graph={graphactive ? "true" : "false"} ref={canvas}>

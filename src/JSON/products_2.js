@@ -8,7 +8,7 @@ export class Product2 {
 
         const url = () => {
 
-            let main_url = "http://shredmetrix.com/airtable/api/list.php?s="+offset_ari;
+            let main_url = "https://shredmetrix.com/airtable/api/list.php?s="+offset_ari;
 
             main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
 
@@ -157,7 +157,7 @@ export class Product2 {
         formData.append('products_id', data);
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/wishlist.php", {
+            await fetch("https://shredmetrix.com/airtable/api/wishlist.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())
@@ -176,7 +176,7 @@ export class Product2 {
     static getBookmarkProduct =  () =>{
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/get_wishlist.php?user_id="+localStorage.getItem('token'), {
+            await fetch("https://shredmetrix.com/airtable/api/get_wishlist.php?user_id="+localStorage.getItem('token'), {
                 "method": "GET"
             }).then(response => response.json())
                 .then(response => {
@@ -219,7 +219,7 @@ export class Product2 {
         formData.append('id', data);
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/delete_wishlist.php", {
+            await fetch("https://shredmetrix.com/airtable/api/delete_wishlist.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())

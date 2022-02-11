@@ -17,7 +17,7 @@ const Forget = () => {
 
         let formData = new FormData();
         formData.append('email', data.email);
-        await fetch("http://shredmetrix.com/airtable/api/forget-password.php", {
+        await fetch("https://shredmetrix.com/airtable/api/forget-password.php", {
             "method": "POST",
             "body":formData,
         }).then(response => response.json())

@@ -1,7 +1,7 @@
 export class User {
     static getUser =  () =>{
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/get_user.php?id="+localStorage.getItem('token'), {
+            await fetch("https://shredmetrix.com/airtable/api/get_user.php?id="+localStorage.getItem('token'), {
                 "method": "GET"
             }).then(response => response.json())
                 .then(response => {
@@ -24,7 +24,7 @@ export class User {
         formData.append('password', data.password || '');
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/user_details.php", {
+            await fetch("https://shredmetrix.com/airtable/api/user_details.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())
@@ -46,7 +46,7 @@ export class User {
         formData.append('price', data.price || '');
 
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/invest.php", {
+            await fetch("https://shredmetrix.com/airtable/api/invest.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())
@@ -66,7 +66,7 @@ export class User {
         let formData = new FormData();
         formData.append('email', data.email || '');
         return new Promise(async (resolve, reject)=>{
-            await fetch("http://shredmetrix.com/airtable/api/subscribe.php", {
+            await fetch("https://shredmetrix.com/airtable/api/subscribe.php", {
                 "method": "POST",
                 "body":formData,
             }).then(response => response.json())

@@ -14,6 +14,16 @@ const Productgraphics2 = (props) => {
     //         yourImg.style.width = imgWidth + 'px';
     //     }
 
+    let width;
+
+    if(window.innerWidth < 900)
+    {
+      width = props.canvasWidth / 2.3
+    }
+    else
+    {
+      width = props.canvasWidth / 6
+    }
     return (
       <div className="snowboard-graphics-container">
            <div className="graphic-text">
@@ -22,7 +32,7 @@ const Productgraphics2 = (props) => {
             <h5>{props.size}cm</h5>
            </div>
 
-         <Graph color={props.color} width={props.canvasWidth / 6} graph={props.graph} />
+         <Graph color={props.color} width={width} graph={props.graph} />
       </div>
        
     )
