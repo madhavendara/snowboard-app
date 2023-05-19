@@ -15,7 +15,7 @@ const footer = () => {
                 <div className="row">
                     <div className="contact-text">
                         <img src={applogo} alt="shredmetrix" class="app-logo"/>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,</p>
+                        <p>The Science of Shred</p>
                     </div>
                     <div className="contact-menu">
                         <ul>

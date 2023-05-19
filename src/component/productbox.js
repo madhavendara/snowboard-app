@@ -7,6 +7,7 @@ import addimg from '../assest/productAdded.svg'
 
 export default function Productbox(props) {
     const size_array = props.sizes.split(" , ");
+
     
     return (
         <div className="product-box-container">

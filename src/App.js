@@ -9,6 +9,7 @@ import Boardcomponent from './container/Education/board-component'
 import ConditionAffect from './container/Education/conditionaffect'
 import Riderstyle from './container/Education/riderstyle'
 import Chooseboard from './container/Education/chooseaboard'
+import Getstarted from './container/get_started';
 import About from './container/aboutus'
 import Invest from './container/invest'
 import Support from './container/support'

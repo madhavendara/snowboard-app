@@ -1,8 +1,10 @@
 import React , {useState, useEffect}  from 'react'
 import loading from '../assest/loading.gif'
+import good from '../assest/good.png'
+import premium_boards_img from '../assest/premium_board.svg'
 
 
-const Mask = ({ mask , width , height , color,size , tail , tip}) => {
+const Mask = ({ mask , width , height , color,size , tail , tip ,onClick1,tailtip,image,view,lineview}) => {
   
   const [tail_main,Settail] = useState();
   const [tip_main, Settip] = useState();
@@ -14,53 +16,58 @@ const Mask = ({ mask , width , height , color,size , tail , tip}) => {
     let tailpx;
     let tippx;
 
-    if(height != null)
+    if(tailtip != null)
     {
-      tailpx =  height * tailcm/size
-      tippx = height * tipcm/size
+      tailpx =  tailtip * tailcm/size
+      tippx = tailtip * tipcm/size
 
       Settail(tailpx) 
       Settip(tippx)
     }
 
-    
-        
     // console.log(tailpx)
   }
 
   useEffect(() => {
     fakeCdpr()
-},[height])
+},[height,tailtip])
 
   // fakeCdpr()
   
   return (
 
-    <div className="product-graphics-box"  style={{
+    <div className="product-graphics-box" data-img-src={good} style={{
       width : width,
       height : size == 156 ? height - 7 : height,
     }}
-    
-    onClick={() => console.log('it')}
+
     >
+      <div className={view == "Graphics" && !lineview ? 'product-graphics-ima' : "product-graphics-ima product-graphics-hidden"} style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize : "100% 100%"
+        }}>
+
+      </div>
       <div className="product-graphics-img"
       style={{
         WebkitMaskImage: mask,
         maskImage: mask,
         background : color
       }}
+      onClick={onClick1}
       >
 
       </div>
       <div className="bar" style={{
-        background : color
+        background: color
       }} >
         <h2>{size}</h2>
       </div>
       <div className="tail-bar"
       style={{
         width : tail_main ? tail_main : 0,
-        background : color
+        background : color,
+        marginBottom : size > 150 ? 0 : -(164 - size)
       }}
       >
 <h2>{tail}</h2>
@@ -69,7 +76,9 @@ const Mask = ({ mask , width , height , color,size , tail , tip}) => {
       <div className="tip-bar"
       style={{
         width : tip_main ? tip_main : 0,
-        background : color
+        background : color,
+        marginTop : size > 150 ? 0 : -(164 - size)
+        
       }}
       >
           <h2>{tip}</h2>
@@ -83,8 +92,13 @@ const Mask = ({ mask , width , height , color,size , tail , tip}) => {
 
 
 const Productgraphics = (props) => {
-    const [deminition , setdeminition] = useState({})  
+    const [deminition , setdeminition] = useState({})
+    const [tailtip, settailtip] = useState({})  
     let [image, setImage] = useState("null")
+    let height_size = 170;
+
+ 
+   
 
     let [imageActive, setActive] = useState(false)
 
@@ -97,6 +111,9 @@ const Productgraphics = (props) => {
         img2.src = props.url2;
   
         img.onload = function() {
+
+
+          
           let properties;
           let main_width;
           let main_height;
@@ -106,14 +123,28 @@ const Productgraphics = (props) => {
 
                 if(props.canvasWidth < 1800)
                 {
-                  main_height = (props.canvasHeight)/1.7;
-                  main_width = main_height * 40/170;
+                  if(props.switchoption == "Snowboard")
+                  {
+                    main_height = (props.canvasHeight)/1.35;
+                  }
+                  else
+                  {
+                    main_height = (props.canvasHeight)/1.6;
+                  }
+                  main_width = main_height * 40/height_size;
                   properties = {width : main_width * props.tail/400 , height : main_height * props.size / 170}
                 }
                 else
                 {
-                  main_height = (props.canvasHeight)/1.7;
-                  main_width = main_height * 40/170;
+                  if(props.switchoption == "Snowboard")
+                  {
+                    main_height = (props.canvasHeight)/1.35;
+                  }
+                  else
+                  {
+                    main_height = (props.canvasHeight)/1.6;
+                  }
+                  main_width = main_height * 40/height_size;
                   properties = {width : main_width * props.tail/400 , height : main_height * props.size / 170}
                 }
 
@@ -137,7 +168,37 @@ const Productgraphics = (props) => {
                 setActive(true)
 
               }
+              
 
+               
+              if(props.canvasWidth < 1800)
+              {
+                if(props.switchoption == "Snowboard")
+                  {
+                    main_height = (props.canvasHeight)/1.35;
+                  }
+                  else
+                  {
+                    main_height = (props.canvasHeight)/1.6;
+                  }
+                main_width = main_height * 40/height_size;
+                properties = {width : main_width * props.tail/400 , height : main_height * props.size / height_size}
+              }
+              else
+              {
+                if(props.switchoption == "Snowboard")
+                {
+                  main_height = (props.canvasHeight)/1.35;
+                }
+                else
+                {
+                  main_height = (props.canvasHeight)/1.6;
+                }
+                main_width = main_height * 40/height_size;
+                properties = {width : main_width * props.tail/400 , height : main_height * props.size / height_size}
+              }
+
+              settailtip(properties);
               
           }
 
@@ -157,7 +218,7 @@ const Productgraphics = (props) => {
 
                   // const widthratio = this.width / 700
 
-                  const actuallwidth = main_width * props.size / 170
+                  const actuallwidth = main_width * props.size / height_size
                   const ratio = this.height / this.width
 
 
@@ -174,7 +235,7 @@ const Productgraphics = (props) => {
 
                   // const widthratio = this.width / 700
 
-                    const actuallwidth = main_width * props.size / 170
+                    const actuallwidth = main_width * props.size / height_size
                     const ratio = this.height / this.width
 
 
@@ -207,12 +268,19 @@ const Productgraphics = (props) => {
 
     return (
       <div className="snowboard-graphics-container">
+
+        
     
         <div className="graphics-img-container">
+        <img src={premium_boards_img} className='premium-brand-img' alt='premium-brand'/>
           {
-            imageActive   ?  <Mask size={props.size} mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} color={props.color}
+            imageActive   ?  <Mask size={props.size} mask={'url(' + image.src + ')'} width={deminition.width} height={deminition.height} tailtip={tailtip.height} color={props.color}
             tail={props.tail}
-            tip={props.tip}        
+            tip={props.tip}  
+            onClick1={props.onClick1}
+            image={props.url3}  
+            view={props.view} 
+            lineview={props.lineview}   
             />  : <img src={loading} alt='loading..'/>
           }
         

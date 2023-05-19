@@ -102,6 +102,8 @@ const Admin = () => {
 
                 <div className={activetab === "tab-1" ? "tab-content tab-content-active" : "tab-content"}>
                 {
+
+                    
                     userproducts.map(product => {
                         console.log(product)
                         return (

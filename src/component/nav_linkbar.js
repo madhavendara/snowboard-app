@@ -60,7 +60,7 @@ const Navbar_linkbar = (props) => {
     return (
         <ul id="menu" className={props.classlist}>
         <li className="login">
-            <p>Close</p>
+            {/* <p>Close</p> */}
            <div className="close-btn" onClick={props.closenav}>&times;</div>
         </li>
         <li className="login">
@@ -79,10 +79,10 @@ const Navbar_linkbar = (props) => {
         <div className='mailing-list'>
             <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Subscribe to mailing list</h1>
-            <input type="email" className='subscribe-mail' {...register("email", { required: 'This field is required' })} placeholder='Enter the mail address'/>
+            <input type="email" className='subscribe-mail' {...register("email", { required: 'This field is required' })} placeholder='Enter your email address'/>
 
                 {errors.email && <span>{errors.email.message}</span>}
-            <input type="submit" value="submit" className="submit-name"/>
+            <input type="submit" value="Submit" className="submit-name"/>
             </form>
         </div>
         {/* <li><Link to="/snowboardeducation">Snowboard Education</Link></li> */}

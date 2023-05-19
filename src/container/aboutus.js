@@ -9,7 +9,8 @@ import twitter from '../assest/twitter.svg'
 import linkedin from '../assest/linkedin.svg'
 import insta from '../assest/insta.svg'
 import jared from '../assest/JARED.png'
-
+import kammie from '../assest/kammie.png'
+import mike from '../assest/mike.png'
 
 const Aboutus = () => {
     return (
@@ -25,7 +26,8 @@ const Aboutus = () => {
                         <h1>MEET OUR TEAM</h1>
                     </div>
                     <div className="in-text">
-                      <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem</p>
+                        <h5>What happens when you bring a lifelong boardsports enthusiast together with a rocket engineer and a social scientist? Shred happens.</h5>
+                      <p>Our goal is to enable extreme sports connoisseurs to reach their athletic potential through visualizing and comparing gear specification data.</p>
                    </div>
                 </div>
                 <div className="row">
@@ -40,8 +42,8 @@ const Aboutus = () => {
                     </div>
                     <div className="JARED-text ">
                         <h1>JARED MCNALLY <span>/ OWNER</span></h1>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem. voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem</p>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, </p>
+                        <p>Jared is a boardsports enthusiast and considers himself a “board nerd”. He also happens to be a scientist who specializes in visual representation of data and education through data. The idea for ShredMetrix spawned in 2019 when Jared was trying to find a solution to allow him to compare the physical specs and dimensions of snowboards. After a phone call to his best friend and business partner, Mike Lee, Jared realized that there was no solution in the marketplace for a true visualization and comparison of boards virtually. ShredMetrix is a true passion project for Jared, and after several years of development, his efforts have paid off.</p>
+
                    </div>
                 </div>
             </div>
@@ -52,34 +54,24 @@ const Aboutus = () => {
                 <div className="member-group">
                     <div className="row">
                          <div className="member-img">
-                             <img src={jared} alt=""/>
+                             <img src={mike} alt=""/>
                          </div>
                          <div className="member-info">
                              <h2>MIKE LEE <span>/ CTO</span></h2>
-                             <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
-                             <div className="social-icon">
-                             <img src={insta} alt=""/>
-                           <img src={facebook} alt=""/>
-                           <img src={twitter} alt=""/>
-                           <img src={linkedin} alt=""/>
-                             </div>
+                             <p>Mike specializes in understanding. Being one of the top engineers in the world, he brings a unique perspective to the extreme sports world. His focus - accurately measuring gear specs and simplifying the not-so-elementary physics behind gear AND athlete performance so that the rest of us can understand how to maximize performance. Mike has been instrumental in developing the proprietary measuring and visualization processes that make ShredMetrix unique.</p>
+      
                          </div>
                     </div>
                 </div>
                 <div className="member-group">
                  <div className="row">
                       <div className="member-img">
-                          <img src={jared} alt=""/>
+                          <img src={kammie} alt=""/>
                       </div>
                       <div className="member-info">
                           <h2>Kammie Melt0n <span>/Creative Director</span></h2>
-                          <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
-                          <div className="social-icon">
-                          <img src={insta} alt=""/>
-                           <img src={facebook} alt=""/>
-                           <img src={twitter} alt=""/>
-                           <img src={linkedin} alt=""/>
-                          </div>
+                          <p>Kammie is a passionate skier (she shreds) and is passionate about assessing and improving the user experience in software design with a focus on presentation and end-user interpreation of data. Her ongoing input has been a key factor is the creating and optimizing the UI and UX of the ShredMetrix platform. When it comes to understanding what users want, Kammie is the go-to.</p>
+                
                       </div>
                  </div>
              </div>

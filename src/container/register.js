@@ -67,7 +67,7 @@ const Invest = () => {
                                 
                                 </Link>
                             <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="wrapper">
+                            <div className="wrapper No-wrapper">
                                 <div className="contact-form">
                                 <div className="input-fields">
 

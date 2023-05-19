@@ -3,14 +3,14 @@ import productline from "../assest/product-line-1.svg";
 
 
 export class Product2 {
-    static getProduct =  (offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive) =>{
+    static getProduct =  (offset,priceRange,RockerType,widthType,setbackRange,lengthRange,setbackActive,brandsActive,switchoption,Radius) =>{
         let offset_ari = "&offset="+offset
 
         const url = () => {
 
             let main_url = "https://shredmetrix.com/airtable/api/list.php?s="+offset_ari;
 
-            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end;
+            main_url += "&min_price="+priceRange.start+"&max_price="+priceRange.end+"&min_length="+lengthRange.start+"&max_length="+lengthRange.end+"&type_of_data="+switchoption;
 
             if(setbackActive != null)
             {
@@ -38,6 +38,14 @@ export class Product2 {
                for(let i = 0; i < RockerType.length; i++)
                {
                  main_url += '&avility[]='+'"'+RockerType[i]+'"'
+               }
+            }
+
+            if(Radius.length)
+            {
+               for(let i = 0; i < Radius.length; i++)
+               {
+                 main_url += '&side_cut_radious[]='+''+Radius[i]+''
                }
             }
 
@@ -106,26 +114,37 @@ export class Product2 {
                                 {
                                     sidecut_value = data[i].fields['Sidecut Radius (m)']
                                 }
+
+                                let model;
+                                if(data[i].fields["Model"].endsWith("  - "))  
+                                {
+                                    model = data[i].fields["Model"].replace('  - ','');
+                                } 
+                                else
+                                {
+                                    model = data[i].fields["Model"]
+                                } 
 							
 							if((typeof data[i].fields.Image !=='undefined') || (typeof data[i].fields.Outline !=='undefined')){
                             products.push({
                                 "id": data[i].id || '',
                                 "ref": data[i].id || '',
                                 "Title": data[i].fields["Product title"] ?  data[i].fields["Product title"] :  data[i].fields.SKU,
-                                "Model" : data[i].fields["Model"],
+                                "Model" : model,
                                 "Brand" : data[i].fields["Brand"],
                                 "url" : data[i].fields["Product href"] ?  data[i].fields["Product href"] :  "https://www.evo.com/shop/snowboard",
                                 "type": data[i].fields.Width,
                                 "stars": 4,
                                 "Price": data[i].fields.Pricing || '$0',
                                 "img": data[i].fields.Image[0].url || "https://spotlexdigital.com/compare/product-1.jpg",
-                                "outline" : data[i].fields.Outline[0]["url"],
+                                "outline" : data[i].fields.Outline_copy[0]["url"],
+                                "outline-img" : data[i].fields.Outline[0]["url"],
                                 "size" : size || 0,
                                 "EffectiveEdge" : data[i].fields['Effective Edge (mm)'] || 0,
                                 "TipWidth" : data[i].fields['Tip Width (mm)'] || 0,
                                 "WaistWidth" : data[i].fields['Waist Width (mm)'] || 0,
                                 "line" : productline,
-                                "taper" : data[i].fields['Taper (mm)'] || 0,
+                                "taper" : parseInt(data[i].fields['Tip Width (mm)']) - parseInt(data[i].fields['Tail Width (mm)']) || 0,
                                 "Sidecut radius" : sidecut_value || 0,
                                 "Sidecut radius name" : sidecut_radius,
                                 "Stance Setback" : data[i].fields['Stance Setback Clean (mm)'] || "N/A",
@@ -133,7 +152,8 @@ export class Product2 {
                                 "Rocker Type" : data[i].fields['Rocker Type (from SB Categorical Specs)'] || 0,
                                 "tip" : data[i].fields['Tip Width (mm)'],
                                 "tail" : data[i].fields['Tail Width (mm)'],
-                                "offset" : offset
+                                "offset" : offset,
+                                "Avantlink" : data[i].fields['Avantlink']
                                 
                             });
                         }

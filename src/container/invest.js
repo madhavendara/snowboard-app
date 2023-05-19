@@ -40,9 +40,9 @@ const Invest = () => {
             <div className="Invest-main container">
                 <div className="row">
                     <div className="Invest-text ">
-                        <h1>INVESTOR RELATIONS WITH SHREDMETRIX</h1>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem</p>
-                        <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem</p>
+                        <h1>INVEST IN YOUR FUTURE</h1>
+                        <p>Ready to become a part of something big? Shredmetrix brings science into extreme sports to allow anyone to maximize their shredding experience through accurate data visualization and education. Now is the time to become a part of the future of extreme sports. Oh, and by the way - we have two patents pending, so don’t wait too long!</p>
+                 
                     </div>
                 </div>
                 <div className="fly-img">
@@ -61,35 +61,36 @@ const Invest = () => {
                 <div className="row">
                     <div className="colume">
                         <h3>1</h3>
-                        <h6>What is Lorem Ipsum?</h6>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                        <h6>Proprietary systems</h6>
+                        <p>Our data collection, gear measurement, and visualizations we designed and built in house- and yes, our patents are pending. </p>
                     </div>
                     <div className="colume">
                         <h3>2</h3>
-                        <h6>What is Lorem Ipsum?</h6>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                        <h6>Disrupt the Industry</h6>
+                        <p>No more specs tables. No more uneducated suggestions from gear “experts”. No more guessing which board or ski is best for you and your specific needs. We are changing the game, and you can be a part of it.</p>
                     </div>
                     <div className="colume last">
                         <h3>3</h3>
-                        <h6>What is Lorem Ipsum?</h6>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                        <h6>Industry Involvement</h6>
+                        <p>We plan to use capital to become a mojor player in the industry - sponsoring contest, events, videos and movies, and working with manufacturers to enhance the customer/shredder experience.</p>
                     </div>
                 </div>
                 <div className="row two">
                     <div className="colume">
                         <h3>4</h3>
-                        <h6>What is Lorem Ipsum?</h6>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                        <h6>Dedicated Leadership</h6>
+                        <p>Imagine a world where you can be matched with the best gear for your ability level, conditions, and desired improvement? Our founder and executives are dedicated to bringing this solution to the world.</p>
                     </div>
                     <div className="colume">
                     <h3>5</h3>
-                    <h6>What is Lorem Ipsum?</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                    <h6>Future efforts</h6>
+                    <p>We have a slew of future features and functions that we plan to implement through several phases which are planned to be completed by 2023.</p>
                 </div>
                 <div className="colume last">
                     <h3>6</h3>
-                    <h6>What is Lorem Ipsum?</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                    <h6>Exit Strategy</h6>
+                    <p>Sell to the gear manufacturers and merchants - change the world by bringing this tool to the souce our of gear.
+</p>
                 </div>
                 </div>
             </div>
@@ -100,8 +101,8 @@ const Invest = () => {
    <div className="container">
        <div className="row">
            <div className="QUICK-text">
-                <h1>ADVANTAGE OF INVESTING OPPORTUNITIES WITH SHREDMETRIX</h1>
-                <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius </p>
+                <h1>READY TO GET INVOLVED?</h1>
+                <p>Make a donation to help us change the world (of extreme sports). Every dollar helps get us where we want to be. Your donation will be applied to marketing campaigns, feature and function advancement and development, partnership development efforts, athlete sponsorship, event hosting and sponsorship, and anything else that our capable executive team deems necessary to make the biggest impact possible.</p>
            </div>
            <div className="QUICK-Login">
 

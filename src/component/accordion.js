@@ -1,11 +1,19 @@
-import React , { useState } from 'react'
+import React , { useEffect, useState } from 'react'
 
 
 
 
-export default function Accordion(props) {
-    const [active,setactive] = useState(false)
+const Accordion = (props) => {
+    const [active,setactive] = useState(false);
 
+
+    useEffect(() => {
+        if(props.title == "Price" || props.title == "Ability Level" || props.title == "LENGTH")
+        {
+            setactive(true);
+        }
+    },[]);
+   
     return (
         <div className={active ? "mainAccordion active-content" : "mainAccordion"}>
              <div className="Accordion-label" onClick={() => setactive(!active)}>
@@ -16,3 +24,5 @@ export default function Accordion(props) {
         </div>     
     )
 }
+
+export default Accordion;

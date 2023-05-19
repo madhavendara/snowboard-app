@@ -49,19 +49,19 @@ const Invest = () => {
                     <div className="row">
                         <div className="login-text">
                             <img src="img/blue-line.png" alt=""/>
-                            <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem voluptatem sequi nesciunt. Neque porro </p>
+                            <p>Be the first to receive data-focused, deeply analyzed gear suggestions considering your specific physical characteristics and preferences. </p>
                         </div>
                         <div className="login-side">
                             <div className="login-uptext">
-                                <h1>LOG-IN</h1>
-                                <p>voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem </p>
+                                <h1>Login</h1>
+                                <p>New here? Register to personalize your gear geek out. </p>
                             </div>
       
                                 <Link to="/register" className="login-facebook">
                                 <p>Register</p>
                                 </Link>
                             <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="wrapper">
+                            <div className="wrapper No-wrapper">
                                 <div className="contact-form">
                                 <div className="input-fields">
                                 <div>

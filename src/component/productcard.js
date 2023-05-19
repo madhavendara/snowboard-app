@@ -18,13 +18,13 @@ const Productcard = (props) => {
 
     return (
         
-        <div className='product-card-2'>
+        <div className={'product-card-2 '+props.switchoption}>
                         <div className="product-img-col">
                            <img src={props.productimg} className="product-img" alt={props.title}/> 
                         </div>
                         <div className="product-content-col">
                             
-                                <h1><a href={props.url} target="_blank" className="product-card-link"> {props.title}</a></h1> 
+                                <h1><a href={props.Avantlink} target="_blank" className="product-card-link"> {props.title}</a></h1> 
                             
                                     <p>{props.Brand}</p>
                                     <h5>{props.size}cm</h5>
@@ -40,7 +40,7 @@ const Productcard = (props) => {
                                 {
                                     props.i === 0 && props.walkthrough === 2 ? <>
                                     <div className="blue-box-1">
-                                    <h2>Select 2-4 Boards</h2>
+                                 {   window.innerWidth > 900 ? <h2>Select 2-4 Boards</h2> : <h2>Select 2 Boards</h2>}
                                     <button className="gotit-btn" onClick={props.walkfunction}>Got it</button>  
                                     <button className="skipit-btn" onClick={props.walkfunction_null}>Skip Demo</button>  
                                     
